@@ -108,6 +108,9 @@ selfupdate(){
 
 autoload -U compinit
 compinit
+bindkey "^[[3~" delete-char
+bindkey "^[3;5~" delete-char
+bindkey "^[[2~" overwrite-mode
 bindkey "^?" backward-delete-char
 bindkey '^[OH' beginning-of-line
 bindkey '^[OF' end-of-line
