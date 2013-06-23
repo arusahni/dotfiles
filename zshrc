@@ -22,7 +22,12 @@ setopt MENUCOMPLETE
 setopt ALL_EXPORT
 
 # Set/unset  shell options
-setopt   notify globdots correct pushdtohome cdablevars autolist
+setopt   notify #Report the status of background jobs immediately, rather than waiting until just before printing a prompt. 
+#setopt   globdots #Do not require a leading ‘.’ in a filename to be matched explicitly. 
+setopt   correct
+setopt   pushdtohome
+setopt   cdablevars
+setopt   autolist
 setopt   correctall autocd recexact longlistjobs
 setopt   autoresume histignoredups pushdsilent 
 setopt   autopushd pushdminus extendedglob rcquotes mailwarning
@@ -71,40 +76,9 @@ unsetopt ALL_EXPORT
 # # aliases
 # # --------------------------------------------------------------------
 
-alias slrn="slrn -n"
 alias man='LC_ALL=C LANG=C man'
-alias f=finger
 alias ll='ls -al'
 alias ls='ls --color=auto '
-alias offlineimap-tty='offlineimap -u TTY.TTYUI'
-alias hnb-partecs='hnb $HOME/partecs/partecs-hnb.xml'
-alias rest2html-css='rst2html --embed-stylesheet --stylesheet-path=/usr/share/python-docutils/s5_html/themes/default/print.css'
-#if [[ $HOSTNAME == "kamna" ]] {
-#	alias emacs='emacs -l ~/.emacs.kamna'
-#}	
-
-# alias	=clear
-
-#chpwd() {
-#     [[ -t 1 ]] || return
-#     case $TERM in
-#     sun-cmd) print -Pn "\e]l%~\e\\"
-#     ;;
-#    *xterm*|screen|rxvt|(dt|k|E)term) print -Pn "\e]2;%~\a"
-#    ;;
-#    esac
-#}
-selfupdate(){
-        URL="http://stuff.mit.edu/~jdong/misc/zshrc"
-        echo "Updating zshrc from $URL..."
-        echo "Press Ctrl+C within 5 seconds to abort..."
-        sleep 5
-        cp ~/.zshrc ~/.zshrc.old
-        wget $URL -O ~/.zshrc
-        echo "Done; existing .zshrc saved as .zshrc.old"
-}
-#chpwd
-
 autoload -U compinit
 compinit
 bindkey "^[[3~" delete-char
