@@ -1,0 +1,3 @@
+[submodule "blur-console"]
+	path = blur-console
+	url = https://github.com/flying-sheep/dotfiles.git
