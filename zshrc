@@ -147,7 +147,7 @@ zstyle ':completion:*:processes-names' command 'ps axho command'
 zstyle ':completion:*' hosts $(awk '/^[^#]/ {print $2 $3" "$4" "$5}' /etc/hosts | grep -v ip6- && grep "^#%" /etc/hosts | awk -F% '{print $2}') 
 # Filename suffixes to ignore during completion (except after rm command)
 zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~' \
-    '*?.old' '*?.pro'
+    '*?.old' '*?.pro' '*?.pyc' '*?.py~'
 # the same for old style completion
 #fignore=(.o .c~ .old .pro)
 
