@@ -175,3 +175,7 @@ zstyle '*' single-ignored show
 SCRIPT_SOURCE=${0%/*}
 ### PLUGINS
 source $SCRIPT_SOURCE/blur-console/blur_console.sh
+if [[ -e "$SCRIPT_SOURCE/local.sh" ]]; then
+    source $SCRIPT_SOURCE/local.sh
+fi
+
