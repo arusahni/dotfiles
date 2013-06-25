@@ -75,7 +75,7 @@ unsetopt ALL_EXPORT
 # # --------------------------------------------------------------------
 # # aliases
 # # --------------------------------------------------------------------
-
+alias sudo='nocorrect sudo'
 alias man='LC_ALL=C LANG=C man'
 alias ll='ls -al'
 alias ls='ls --color=auto '
@@ -171,11 +171,29 @@ zstyle ':completion:*:ssh:*' group-order \
    hosts-domain hosts-host users hosts-ipaddr
 zstyle '*' single-ignored show
 
+ENABLE_GIT=0
+ENABLE_APTITUDE=0
+
+### ALIASES
+alias vim='nocorrect vim '
+alias cp='nocorrect cp '
+alias mv='nocorrect mv '
+alias ssh='nocorrect ssh '
+if (( $+commands[git] )); then
+  alias git='nocorrect git '
+fi
+if (( $+commands[aptitude] )); then
+  alias aptitude='nocorrect aptitude '
+fi
+if (( $+commands[ack-grep] )); then
+  alias ack='ack-grep'
+fi
+
 ### ENV
 SCRIPT_SOURCE=${0%/*}
+
 ### PLUGINS
 source $SCRIPT_SOURCE/blur-console/blur_console.sh
 if [[ -e "$SCRIPT_SOURCE/local.sh" ]]; then
     source $SCRIPT_SOURCE/local.sh
 fi
-
