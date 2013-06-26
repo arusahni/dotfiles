@@ -176,8 +176,6 @@ ENABLE_APTITUDE=0
 
 ### ALIASES
 alias vim='nocorrect vim '
-alias cp='nocorrect cp '
-alias mv='nocorrect mv '
 alias ssh='nocorrect ssh '
 if (( $+commands[git] )); then
   alias git='nocorrect git '
