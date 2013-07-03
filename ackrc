@@ -1,0 +1,2 @@
+# Add LESS file support
+--type-add=css=.less
