@@ -171,9 +171,6 @@ zstyle ':completion:*:ssh:*' group-order \
    hosts-domain hosts-host users hosts-ipaddr
 zstyle '*' single-ignored show
 
-ENABLE_GIT=0
-ENABLE_APTITUDE=0
-
 ### ALIASES
 alias vim='nocorrect vim '
 alias ssh='nocorrect ssh '
@@ -191,7 +188,16 @@ fi
 SCRIPT_SOURCE=${0%/*}
 
 ### PLUGINS
+function virtualenv_info {
+    [ $VIRTUAL_ENV ] && echo '['`basename $VIRTUAL_ENV`'] '
+} 
 source $SCRIPT_SOURCE/blur-console/blur_console.sh
 if [[ -e "$SCRIPT_SOURCE/local.sh" ]]; then
     source $SCRIPT_SOURCE/local.sh
+fi
+if (( $+commands[virtualenvwrapper.sh] )); then
+    export WORKON_HOME=$HOME/.virtualenvs
+    source /usr/local/bin/virtualenvwrapper.sh
+    export PIP_VIRTUALENV_BASE=$WORKON_HOME
+    export PIP_RESPECT_VIRTUALENV=true
 fi
