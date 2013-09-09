@@ -1,2 +1,5 @@
+# Improved paging
+--pager=less -FRSX
+
 # Add LESS file support
 --type-add=css=.less
