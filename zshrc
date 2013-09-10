@@ -81,6 +81,8 @@ alias ll='ls -al'
 alias ls='ls --color=auto '
 autoload -U compinit
 compinit
+bindkey ";5C" forward-word
+bindkey ";5D" backward-word
 bindkey "^[[3~" delete-char
 bindkey "^[3;5~" delete-char
 bindkey "^[[2~" overwrite-mode
