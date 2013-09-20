@@ -203,3 +203,5 @@ if (( $+commands[virtualenvwrapper.sh] )); then
     export PIP_VIRTUALENV_BASE=$WORKON_HOME
     export PIP_RESPECT_VIRTUALENV=true
 fi
+
+REPORTTIME=10
