@@ -188,7 +188,10 @@ fi
 
 ### ENV
 SCRIPT_SOURCE=${0%/*}
-
+if [[ "$SCRIPT_SOURCE" -eq "zsh" ]]; then
+	RELPATH="code/dotfiles"
+	SCRIPT_SOURCE="$PWD"/"$RELPATH"
+fi
 ### PLUGINS
 function virtualenv_info {
     [ $VIRTUAL_ENV ] && echo '['`basename $VIRTUAL_ENV`'] '
