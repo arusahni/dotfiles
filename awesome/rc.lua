@@ -81,7 +81,13 @@ local layouts =
 -- {{{ Wallpaper
 if beautiful.wallpaper then
     for s = 1, screen.count() do
-        gears.wallpaper.maximized(beautiful.wallpaper, s, true)
+		if s == 1 then
+			gears.wallpaper.tiled("/home/aru/Pictures/Wallpapers/nin-lights.jpg", s)
+		elseif s == 2 then
+			gears.wallpaper.tiled("/home/aru/Pictures/Wallpapers/nin-lights2.jpg", s)
+		else
+	        gears.wallpaper.maximized(beautiful.wallpaper, s, true)
+		end
     end
 end
 -- }}}
@@ -90,7 +96,7 @@ end
 -- Define a tag table which hold all screen tags.
 tags = {
   names = { "dev", "terms", "webdev", "www", 5, 6, 7, 8, 9 },
-  layout = { layouts[9], layouts[6], layouts[3], layouts[3], layouts[1], layouts[2], layouts[2], layouts[2], layouts[2] }
+  layout = { layouts[9], layouts[6], layouts[2], layouts[2], layouts[1], layouts[2], layouts[2], layouts[2], layouts[9] }
 }
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
@@ -367,10 +373,10 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
-    -- Set Firefox to always map on tags number 2 of screen 1.
     { rule = { class = "Firefox" },
-      properties = { tag = tags[2][4] } 
-	},
+      properties = { tag = tags[2][4] } },
+	{ rule = { class = "sublime_text" },
+	  properties = { tag = tags[1][1] } },
 }
 -- }}}
 
