@@ -54,6 +54,7 @@ file = "thunar"
 awful.util.spawn_with_shell("xrandr --output VBOX1 --right-of VBOX0")
 awful.util.spawn_with_shell("run_once xfce4-power-manager")
 awful.util.spawn_with_shell("pgrep xfsettings &>/dev/null || /usr/bin/xfsettingsd")
+awful.util.spawn_with_shell("nm-applet --sm-disable")
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
