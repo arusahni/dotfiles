@@ -13,3 +13,6 @@
 [submodule "vim/minibufexpl"]
 	path = vim/minibufexpl
 	url = https://github.com/fholgado/minibufexpl.vim
+[submodule "vim/vundle"]
+	path = vim/vundle
+	url = https://github.com/gmarik/vundle.git
