@@ -38,3 +38,31 @@ let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1 
+
+function! NumberOfWindows()
+  let i = 1
+  while winbufnr(i) != -1
+  let i = i+1
+  endwhile
+  return i - 1
+endfunction
+
+
+function! DonotQuitLastWindow()
+  if NumberOfWindows() != 1
+    let v:errmsg = ""
+    silent! quit
+    if v:errmsg != ""
+        "echohl ErrorMsg | echomsg v:errmsg | echohl NONE
+        "echoerr v:errmsg
+        echohl ErrorMsg | echo v:errmsg | echohl NONE
+    endif
+  else
+     echohl Error | echo "Can't quit the last window..." | echohl None
+  endif
+endfunction
+
+if has("gui_running")
+    cnoreabbrev <expr> q getcmdtype() == ":" && getcmdline() == 'q' ? 'call DonotQuitLastWindow()' : 'q'
+    cnoreabbrev <expr> qa getcmdtype() == ":" && getcmdline() == 'qa' ? 'call DonotQuitLastWindow()' : 'qa'
+endif
