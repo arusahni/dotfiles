@@ -116,7 +116,9 @@ myawesomemenu = {
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "Debian", debian_menu.Debian },
-                                    { "open terminal", terminal }
+									{ "Firefox", "firefox" },
+									{ "Firefox Dev", "firefox -no-remote -P dev" },
+
                                   }
                         })
 
@@ -366,37 +368,45 @@ root.keys(globalkeys)
 -- }}}
 
 -- {{{ Rules
-awful.rules.rules = {
-    -- All clients will match this rule.
-    { rule = { },
-      properties = { border_width = beautiful.border_width,
-                     border_color = beautiful.border_normal,
-                     focus = awful.client.focus.filter,
-                     keys = clientkeys,
-                     buttons = clientbuttons } },
-    { rule = { class = "MPlayer" },
-      properties = { floating = true } },
-    { rule = { class = "pinentry" },
-      properties = { floating = true } },
-    { rule = { class = "gimp" },
-      properties = { floating = true } },
-    { rule = { class = "Firefox" },
-      properties = { tag = tags[2][4] } },
-	{ rule = { class = "sublime_text" },
-	  properties = { tag = tags[1][1] } },
-}
+--awful.rules.rules = {
+    ---- All clients will match this rule.
+    --{ rule = { },
+      --properties = { border_width = beautiful.border_width,
+                     --border_color = beautiful.border_normal,
+                     --focus = awful.client.focus.filter,
+                     --keys = clientkeys,
+                     --buttons = clientbuttons } },
+    --{ rule = { class = "MPlayer" },
+      --properties = { floating = true } },
+    --{ rule = { class = "pinentry" },
+      --properties = { floating = true } },
+    --{ rule = { class = "gimp" },
+      --properties = { floating = true } },
+	--{ rule = { name = "[ffdev]" },
+	  --properties = { tag = tags[2][3] } },
+    --{ rule = { class = "Firefox" },
+      --properties = { tag = tags[2][4] } },
+	--{ rule = { class = "sublime_text" },
+	  --properties = { tag = tags[1][1] } },
+--}
 -- }}}
 
 -- {{{ Signals
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function (c, startup)
     -- Enable sloppy focus
-    c:connect_signal("mouse::enter", function(c)
-        if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
-            and awful.client.focus.filter(c) then
-            client.focus = c
-        end
-    end)
+     c:connect_signal("mouse::enter", function(c)
+         if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
+             and awful.client.focus.filter(c) then
+             client.focus = c
+         end
+     end)
+	--c:connect_signal("button::press", function(c)
+		--if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
+			--and awful.client.focus.filter(c) then
+			--client.focus = c
+		--end
+	--end)
 
     if not startup then
         -- Set the windows at the slave,
