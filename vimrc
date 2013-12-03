@@ -7,6 +7,10 @@ set expandtab
 set mouse=a
 set clipboard=unnamedplus
 set showcmd
+autocmd Filetype html setlocal ts=4 sw=4
+autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
+autocmd Filetype python setlocal ts=4 sts=4 sw=4
+autocmd Filetype css setlocal ts=4 sts=4 sw=4
 
 " call pathogen#infect()
 set rtp+=~/.vim/bundle/vundle/
@@ -25,6 +29,7 @@ Bundle 'groenewege/vim-less'
 Bundle 'jnurmine/Zenburn'
 Bundle 'vim-scripts/L9'
 Bundle 'vim-scripts/FuzzyFinder'
+Bundle 'nathanaelkane/vim-indent-guides'
 
 filetype plugin indent on
 
