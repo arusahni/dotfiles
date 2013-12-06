@@ -7,11 +7,13 @@ set expandtab
 set mouse=a
 set clipboard=unnamedplus
 set showcmd
-autocmd Filetype html setlocal ts=4 sw=4
+set number
+set hidden
+autocmd Filetype html setlocal ts=4 noet sw=4
 autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
 autocmd Filetype python setlocal ts=4 sts=4 sw=4
 autocmd Filetype css setlocal ts=4 sts=4 sw=4
-
+autocmd bufread *.less set ft=less
 " call pathogen#infect()
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -25,6 +27,7 @@ Bundle 'jasoncodes/ctrlp-modified.vim'
 Bundle 'tpope/vim-surround'
 Bundle 'fholgado/minibufexpl.vim'
 Bundle 'vim-scripts/taglist.vim'
+Bundle 'hail2u/vim-css3-syntax'
 Bundle 'groenewege/vim-less'
 Bundle 'jnurmine/Zenburn'
 Bundle 'vim-scripts/L9'
@@ -43,14 +46,25 @@ let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1 
-let g:NERDTreeChDirMode=2
+let g:NERDTreeChDirMode = 2
 
-hi MBEVisibleActive guifg=#A6DB29 guibg=fg
-hi MBEVisibleChangedActive guifg=#F1266F guibg=fg
-hi MBEVisibleChanged guifg=#F1266F guibg=fg
-hi MBEVisibleNormal guifg=#5DC2D6 guibg=fg
-hi MBEChanged guifg=#CD5907 guibg=fg
+hi MBEVisibleActive guifg=#a6db29 guibg=fg
+hi MBEVisibleChangedActive guifg=#f1266f guibg=fg
+hi MBEVisibleChanged guifg=#f1266f guibg=fg
+hi MBEVisibleNormal guifg=#5dc2d6 guibg=fg
+hi MBEChanged guifg=#cd5907 guibg=fg
 hi MBENormal guifg=#808080 guibg=fg
+
+let g:indent_guides_start_level=2
+let g:indent_guides_guide_size=1
+
+hi IndentGuidesOdd ctermbg=darkgrey
+hi IndentGuidesEven ctermbg=lightgrey
+
+let g:syntastic_check_on_open = 1
+
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
 
 function! NumberOfWindows()
   let i = 1

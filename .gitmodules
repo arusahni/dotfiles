@@ -16,3 +16,6 @@
 [submodule "vim/vundle"]
 	path = vim/vundle
 	url = https://github.com/gmarik/vundle.git
+[submodule "vim/powerline"]
+	path = vim/powerline
+	url = https://github.com/Lokaltog/vim-powerline
