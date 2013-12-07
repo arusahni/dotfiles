@@ -7,15 +7,6 @@
 [submodule "vim/zenburn"]
 	path = vim/zenburn
 	url = https://github.com/jnurmine/Zenburn.git
-[submodule "vim/nerdtree"]
-	path = vim/nerdtree
-	url = https://github.com/scrooloose/nerdtree.git
-[submodule "vim/minibufexpl"]
-	path = vim/minibufexpl
-	url = https://github.com/fholgado/minibufexpl.vim
 [submodule "vim/vundle"]
 	path = vim/vundle
 	url = https://github.com/gmarik/vundle.git
-[submodule "vim/powerline"]
-	path = vim/powerline
-	url = https://github.com/Lokaltog/vim-powerline
