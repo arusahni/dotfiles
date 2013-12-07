@@ -35,6 +35,7 @@ Bundle 'vim-scripts/L9'
 Bundle 'vim-scripts/FuzzyFinder'
 Bundle 'nathanaelkane/vim-indent-guides'
 set rtp+=~/code/dotfiles/powerline/powerline/bindings/vim
+set laststatus=2
 
 filetype plugin indent on
 
