@@ -14,6 +14,7 @@ autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
 autocmd Filetype python setlocal ts=4 sts=4 sw=4
 autocmd Filetype css setlocal ts=4 sts=4 sw=4
 autocmd bufread *.less set ft=less
+
 " call pathogen#infect()
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -33,6 +34,7 @@ Bundle 'jnurmine/Zenburn'
 Bundle 'vim-scripts/L9'
 Bundle 'vim-scripts/FuzzyFinder'
 Bundle 'nathanaelkane/vim-indent-guides'
+set rtp+=~/code/dotfiles/powerline/powerline/bindings/vim
 
 filetype plugin indent on
 
