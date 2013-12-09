@@ -22,20 +22,26 @@ call vundle#rc()
 Bundle 'gmaarik/vundle'
 
 Bundle 'scrooloose/syntastic'
+Bundle 'mileszs/ack.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'kien/ctrlp.vim'
 Bundle 'jasoncodes/ctrlp-modified.vim'
 Bundle 'tpope/vim-surround'
-Bundle 'fholgado/minibufexpl.vim'
+Bundle 'tpope/vim-fugitive'
 Bundle 'vim-scripts/taglist.vim'
+Bundle 'bling/vim-bufferline'
 Bundle 'hail2u/vim-css3-syntax'
 Bundle 'groenewege/vim-less'
 Bundle 'jnurmine/Zenburn'
 Bundle 'vim-scripts/L9'
 Bundle 'vim-scripts/FuzzyFinder'
 Bundle 'nathanaelkane/vim-indent-guides'
-set rtp+=~/code/dotfiles/powerline/powerline/bindings/vim
+Bundle 'bling/vim-airline'
+"set rtp+=~/code/dotfiles/powerline/powerline/bindings/vim
 set laststatus=2
+
+let g:zenburn_alternate_Visual=1
+let g:zenburn_force_dark_Background=1
 
 filetype plugin indent on
 
@@ -45,10 +51,6 @@ nnoremap <F5> :buffers<CR>:buffer<Space>
 nmap <leader>ne :NERDTree<cr>
 nmap <leader>nt :NERDTree<cr>
 
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1 
 let g:NERDTreeChDirMode = 2
 
 hi MBEVisibleActive guifg=#a6db29 guibg=fg
@@ -58,16 +60,23 @@ hi MBEVisibleNormal guifg=#5dc2d6 guibg=fg
 hi MBEChanged guifg=#cd5907 guibg=fg
 hi MBENormal guifg=#808080 guibg=fg
 
+let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_start_level=2
 let g:indent_guides_guide_size=1
-
-hi IndentGuidesOdd ctermbg=darkgrey
-hi IndentGuidesEven ctermbg=lightgrey
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=238
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=236
 
 let g:syntastic_check_on_open = 1
 
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
+
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#bufferline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline_detect_modified=1
+let g:airline_theme="dark"
 
 function! NumberOfWindows()
   let i = 1
