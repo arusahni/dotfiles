@@ -29,7 +29,7 @@ Bundle 'jasoncodes/ctrlp-modified.vim'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 Bundle 'vim-scripts/taglist.vim'
-Bundle 'bling/vim-bufferline'
+Bundle 'fholgado/minibufexpl.vim'
 Bundle 'hail2u/vim-css3-syntax'
 Bundle 'groenewege/vim-less'
 Bundle 'jnurmine/Zenburn'
@@ -48,10 +48,12 @@ filetype plugin indent on
 inoremap jj <Esc>
 nnoremap ,m :w <BAR> !lessc %:t:r.css<CR><space>
 nnoremap <F5> :buffers<CR>:buffer<Space>
+noremap <C-TAB>   :MBEbn<CR>
+noremap <C-S-TAB> :MBEbp<CR>
 nmap <leader>ne :NERDTree<cr>
 nmap <leader>nt :NERDTree<cr>
 
-let g:NERDTreeChDirMode = 2
+let g:NERDTreeChDirMode=2
 
 hi MBEVisibleActive guifg=#a6db29 guibg=fg
 hi MBEVisibleChangedActive guifg=#f1266f guibg=fg
@@ -72,8 +74,6 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 
-"let g:airline#extensions#tabline#enabled = 1
-"let g:airline#extensions#bufferline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_modified=1
 let g:airline_theme="dark"
