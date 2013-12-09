@@ -78,6 +78,8 @@ let g:airline_powerline_fonts = 1
 let g:airline_detect_modified=1
 let g:airline_theme="dark"
 
+let g:ctrlp_working_path_mode = 'ra'
+
 function! NumberOfWindows()
   let i = 1
   while winbufnr(i) != -1
