@@ -10,33 +10,51 @@ set showcmd
 set number
 set hidden
 autocmd Filetype html setlocal ts=4 noet sw=4
-autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
+autocmd Filetype javascript setlocal ts=4 noet sw=4
 autocmd Filetype python setlocal ts=4 sts=4 sw=4
 autocmd Filetype css setlocal ts=4 sts=4 sw=4
 autocmd bufread *.less set ft=less
 
-" call pathogen#infect()
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" Setting up Vundle - the vim plugin bundler
+    let iCanHazVundle=1
+    let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+    if !filereadable(vundle_readme)
+        echo "Installing Vundle.."
+        echo ""
+        silent !mkdir -p ~/.vim/bundle
+        silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+        let iCanHazVundle=0
+    endif
+    set rtp+=~/.vim/bundle/vundle/
+    call vundle#rc()
+    
+    Bundle 'gmaarik/vundle'
+    
+    Bundle 'scrooloose/syntastic'
+    Bundle 'mileszs/ack.vim'
+    Bundle 'scrooloose/nerdtree'
+    Bundle 'kien/ctrlp.vim'
+    Bundle 'jasoncodes/ctrlp-modified.vim'
+    Bundle 'tpope/vim-surround'
+    Bundle 'tpope/vim-fugitive'
+    Bundle 'vim-scripts/taglist.vim'
+    Bundle 'fholgado/minibufexpl.vim'
+    Bundle 'hail2u/vim-css3-syntax'
+    Bundle 'groenewege/vim-less'
+    Bundle 'jnurmine/Zenburn'
+    Bundle 'vim-scripts/L9'
+    Bundle 'vim-scripts/FuzzyFinder'
+    Bundle 'nathanaelkane/vim-indent-guides'
+    Bundle 'docunext/closetag.vim'
+    Bundle 'bling/vim-airline'
+    Bundle 'rstacruz/sparkup'
+    if iCanHazVundle == 0
+        echo "Installing Bundles, please ignore key map error messages"
+        echo ""
+        :BundleInstall
+    endif
+" Setting up Vundle - the vim plugin bundler end
 
-Bundle 'gmaarik/vundle'
-
-Bundle 'scrooloose/syntastic'
-Bundle 'mileszs/ack.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'kien/ctrlp.vim'
-Bundle 'jasoncodes/ctrlp-modified.vim'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-fugitive'
-Bundle 'vim-scripts/taglist.vim'
-Bundle 'fholgado/minibufexpl.vim'
-Bundle 'hail2u/vim-css3-syntax'
-Bundle 'groenewege/vim-less'
-Bundle 'jnurmine/Zenburn'
-Bundle 'vim-scripts/L9'
-Bundle 'vim-scripts/FuzzyFinder'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'bling/vim-airline'
 "set rtp+=~/code/dotfiles/powerline/powerline/bindings/vim
 set laststatus=2
 
@@ -46,7 +64,8 @@ let g:zenburn_force_dark_Background=1
 filetype plugin indent on
 
 inoremap jj <Esc>
-nnoremap ,m :w <BAR> !lessc %:t:r.css<CR><space>
+let mapleader=","
+nnoremap <leader>m :w <BAR> !lessc %:t:r.css<CR><space>
 nnoremap <F5> :buffers<CR>:buffer<Space>
 noremap <C-TAB>   :MBEbn<CR>
 noremap <C-S-TAB> :MBEbp<CR>
@@ -80,6 +99,11 @@ let g:airline_theme="dark"
 
 let g:ctrlp_working_path_mode = 'ra'
 
+let g:airline#extensions#default#layout = [
+      \ [ 'a', 'b', 'c' ],
+      \ [ 'x', 'z' ]
+      \ ]
+
 function! NumberOfWindows()
   let i = 1
   while winbufnr(i) != -1
@@ -87,7 +111,6 @@ function! NumberOfWindows()
   endwhile
   return i - 1
 endfunction
-
 
 function! DonotQuitLastWindow()
   if NumberOfWindows() != 1
