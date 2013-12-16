@@ -9,18 +9,19 @@ set clipboard=unnamedplus
 set showcmd
 set number
 set hidden
+let mapleader=","
 autocmd Filetype html setlocal ts=4 noet sw=4
 autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
 autocmd Filetype python setlocal ts=4 sts=4 sw=4
 autocmd Filetype css setlocal ts=4 sts=4 sw=4
 autocmd bufread *.less set ft=less
 
-" call pathogen#infect()
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmaarik/vundle'
 
+Bundle 'myusuf3/numbers.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'mileszs/ack.vim'
 Bundle 'scrooloose/nerdtree'
@@ -37,7 +38,7 @@ Bundle 'vim-scripts/L9'
 Bundle 'vim-scripts/FuzzyFinder'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'bling/vim-airline'
-"set rtp+=~/code/dotfiles/powerline/powerline/bindings/vim
+
 set laststatus=2
 
 let g:zenburn_alternate_Visual=1
@@ -46,12 +47,14 @@ let g:zenburn_force_dark_Background=1
 filetype plugin indent on
 
 inoremap jj <Esc>
-nnoremap ,m :w <BAR> !lessc %:t:r.css<CR><space>
+nnoremap <leader>m :w <BAR> !lessc %:t:r.css<CR><space>
 nnoremap <F5> :buffers<CR>:buffer<Space>
-noremap <C-TAB>   :MBEbn<CR>
-noremap <C-S-TAB> :MBEbp<CR>
 nmap <leader>ne :NERDTree<cr>
 nmap <leader>nt :NERDTree<cr>
+map <leader>n :bn<cr>
+map <leader>p :bp<cr>
+
+let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree']
 
 let g:NERDTreeChDirMode=2
 
@@ -77,8 +80,18 @@ let g:syntastic_warning_symbol = '⚠'
 let g:airline_powerline_fonts = 1
 let g:airline_detect_modified=1
 let g:airline_theme="dark"
+let g:airline#extensions#whitespace#enabled=0
+let g:airline#extensions#default#layout = [
+    \ [ 'a', 'b', 'c' ],
+    \ [ 'x', 'z', 'warning' ]
+    \ ]
 
 let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/](\.(git|hg|svn)|site-packages)$',
+    \ 'file': '\v\.(exe|so|dll|pyc|debug\.js|simple\.js)$',
+    \ 'link': 'some_bad_symbolic_links',
+    \ }
 
 function! NumberOfWindows()
   let i = 1
