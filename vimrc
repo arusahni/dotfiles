@@ -47,7 +47,6 @@ autocmd bufread *.less set ft=less
     Bundle 'vim-scripts/L9'
     Bundle 'vim-scripts/FuzzyFinder'
     Bundle 'nathanaelkane/vim-indent-guides'
-    Bundle 'docunext/closetag.vim'
     Bundle 'bling/vim-airline'
     Bundle 'rstacruz/sparkup'
     if iCanHazVundle == 0
