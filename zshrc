@@ -178,6 +178,8 @@ alias vim='nocorrect vim '
 alias ssh='nocorrect ssh '
 if (( $+commands[git] )); then
   alias git='nocorrect git '
+  alias gst='nocorrect git status'
+  alias gco='nocorrect git commit'
 fi
 if (( $+commands[aptitude] )); then
   alias aptitude='nocorrect aptitude '

@@ -13,7 +13,7 @@ let mapleader=","
 autocmd Filetype html setlocal ts=4 noet sw=4
 autocmd Filetype javascript setlocal ts=4 noet sw=4
 autocmd Filetype python setlocal ts=4 sts=4 sw=4
-autocmd Filetype css setlocal ts=4 sts=4 sw=4
+autocmd Filetype css setlocal ts=4 noet sw=4
 autocmd bufread *.less set ft=less
 
 " Setting up Vundle - the vim plugin bundler
@@ -49,6 +49,7 @@ autocmd bufread *.less set ft=less
     Bundle 'nathanaelkane/vim-indent-guides'
     Bundle 'bling/vim-airline'
     Bundle 'rstacruz/sparkup'
+    Bundle 'tomtom/tcomment_vim'
     if iCanHazVundle == 0
         echo "Installing Bundles, please ignore key map error messages"
         echo ""
@@ -92,6 +93,7 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=236
 
 let g:syntastic_check_on_open = 1
 
+let g:syntastic_python_checkers=['pylint']
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 
