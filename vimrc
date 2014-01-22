@@ -6,6 +6,7 @@ set shiftwidth=4
 set expandtab
 set mouse=a
 set clipboard=unnamedplus
+set cursorline
 set showcmd
 set number
 set hidden
@@ -50,6 +51,7 @@ autocmd bufread *.less set ft=less
     Bundle 'bling/vim-airline'
     Bundle 'rstacruz/sparkup'
     Bundle 'tomtom/tcomment_vim'
+    Bundle 'SirVer/ultisnips'
     if iCanHazVundle == 0
         echo "Installing Bundles, please ignore key map error messages"
         echo ""
