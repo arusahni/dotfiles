@@ -52,6 +52,8 @@ autocmd bufread *.less set ft=less
     Bundle 'rstacruz/sparkup'
     Bundle 'tomtom/tcomment_vim'
     Bundle 'SirVer/ultisnips'
+    Bundle 'vim-scripts/argtextobj.vim'
+    Bundle 'Rip-Rip/clang_complete'
     if iCanHazVundle == 0
         echo "Installing Bundles, please ignore key map error messages"
         echo ""
@@ -74,6 +76,9 @@ nmap <leader>ne :NERDTree<cr>
 nmap <leader>nt :NERDTree<cr>
 map <leader>n :bn<cr>
 map <leader>p :bp<cr>
+nmap <leader>l :set list!<CR>
+
+set listchars=tab:▸\ ,eol:¬
 
 let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree']
 
