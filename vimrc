@@ -74,6 +74,7 @@ nnoremap <leader>m :w <BAR> !lessc %:t:r.css<CR><space>
 nnoremap <F5> :buffers<CR>:buffer<Space>
 nmap <leader>ne :NERDTree<cr>
 nmap <leader>nt :NERDTree<cr>
+nmap <leader>nq :NERDTreeClose<cr>
 map <leader>n :bn<cr>
 map <leader>p :bp<cr>
 nmap <leader>l :set list!<CR>
