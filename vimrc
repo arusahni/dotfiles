@@ -54,6 +54,7 @@ autocmd bufread *.less set ft=less
     Bundle 'SirVer/ultisnips'
     Bundle 'vim-scripts/argtextobj.vim'
     Bundle 'Rip-Rip/clang_complete'
+    Bundle 'tpope/vim-dispatch'
     if iCanHazVundle == 0
         echo "Installing Bundles, please ignore key map error messages"
         echo ""
@@ -120,6 +121,8 @@ let g:ctrlp_custom_ignore = {
     \ 'file': '\v\.(exe|so|dll|pyc|debug\.js|simple\.js)$',
     \ 'link': 'some_bad_symbolic_links',
     \ }
+
+let g:clang_library_path = '/usr/lib/llvm-3.2/lib/'
 
 let g:airline#extensions#default#layout = [
       \ [ 'a', 'b', 'c' ],
