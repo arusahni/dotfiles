@@ -10,6 +10,7 @@ set cursorline
 set showcmd
 set number
 set hidden
+set hlsearch
 let mapleader=","
 autocmd Filetype html setlocal ts=4 noet sw=4
 autocmd Filetype javascript setlocal ts=4 noet sw=4
@@ -31,15 +32,17 @@ autocmd bufread *.less set ft=less
     call vundle#rc()
     
     Bundle 'gmaarik/vundle'
-    
+    Bundle 'mhinz/vim-startify'    
     Bundle 'myusuf3/numbers.vim'
     Bundle 'scrooloose/syntastic'
     Bundle 'mileszs/ack.vim'
     Bundle 'scrooloose/nerdtree'
     Bundle 'kien/ctrlp.vim'
+    Bundle 'JazzCore/ctrlp-cmatcher'
     Bundle 'jasoncodes/ctrlp-modified.vim'
     Bundle 'tpope/vim-surround'
     Bundle 'tpope/vim-fugitive'
+    Bundle 'tpope/vim-eunuch'
     Bundle 'vim-scripts/taglist.vim'
     Bundle 'fholgado/minibufexpl.vim'
     Bundle 'hail2u/vim-css3-syntax'
@@ -54,6 +57,7 @@ autocmd bufread *.less set ft=less
     Bundle 'SirVer/ultisnips'
     Bundle 'vim-scripts/argtextobj.vim'
     Bundle 'Rip-Rip/clang_complete'
+    Bundle 'tpope/vim-dispatch'
     if iCanHazVundle == 0
         echo "Installing Bundles, please ignore key map error messages"
         echo ""
@@ -67,6 +71,9 @@ set laststatus=2
 let g:zenburn_alternate_Visual=1
 let g:zenburn_force_dark_Background=1
 
+hi Search ctermfg=237 ctermbg=13
+hi MatchParen cterm=underline
+
 filetype plugin indent on
 
 inoremap jj <Esc>
@@ -78,6 +85,8 @@ nmap <leader>nq :NERDTreeClose<cr>
 map <leader>n :bn<cr>
 map <leader>p :bp<cr>
 nmap <leader>l :set list!<CR>
+" map <silent> <leader>/ :set hls!<CR>
+map <silent> <leader>/ :let @/ = ""<CR>
 
 set listchars=tab:▸\ ,eol:¬
 
@@ -120,6 +129,8 @@ let g:ctrlp_custom_ignore = {
     \ 'file': '\v\.(exe|so|dll|pyc|debug\.js|simple\.js)$',
     \ 'link': 'some_bad_symbolic_links',
     \ }
+
+let g:clang_library_path = '/usr/lib/llvm-3.2/lib/'
 
 let g:airline#extensions#default#layout = [
       \ [ 'a', 'b', 'c' ],
