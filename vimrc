@@ -115,7 +115,7 @@ let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 
 let g:airline_powerline_fonts = 1
-let g:airline_detect_modified=1
+let g:airline_detect_modified = 1
 let g:airline_theme="dark"
 let g:airline#extensions#whitespace#enabled=0
 let g:airline#extensions#default#layout = [
@@ -129,6 +129,7 @@ let g:ctrlp_custom_ignore = {
     \ 'file': '\v\.(exe|so|dll|pyc|debug\.js|simple\.js)$',
     \ 'link': 'some_bad_symbolic_links',
     \ }
+let g:ctrlp_reuse_window = 'startify'
 
 let g:clang_library_path = '/usr/lib/llvm-3.2/lib/'
 
