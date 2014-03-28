@@ -31,7 +31,7 @@ autocmd bufread *.less set ft=less
     set rtp+=~/.vim/bundle/vundle/
     call vundle#rc()
     
-    Bundle 'gmaarik/vundle'
+    Bundle 'gmarik/vundle.vim'
     Bundle 'mhinz/vim-startify'    
     Bundle 'myusuf3/numbers.vim'
     Bundle 'scrooloose/syntastic'
