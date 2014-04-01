@@ -39,7 +39,9 @@ zmodload -a zsh/zpty zpty
 zmodload -a zsh/zprof zprof
 zmodload -ap zsh/mapfile mapfile
 
-eval $(dircolors ~/.dircolors)
+if (( $+commands[dircolors] )); then
+    eval $(dircolors ~/.dircolors)
+fi
 
 PATH="/usr/local/bin:/usr/local/sbin/:/bin:/sbin:/usr/bin:/usr/sbin:$PATH"
 TZ="America/New_York"
@@ -79,7 +81,7 @@ unsetopt ALL_EXPORT
 alias sudo='nocorrect sudo'
 alias man='LC_ALL=C LANG=C man'
 alias ll='ls -al'
-alias ls='ls --color=auto '
+alias ls='ls -Gpf '
 autoload -U compinit
 compinit
 bindkey ";5C" forward-word
@@ -199,7 +201,9 @@ SCRIPT_SOURCE=/home/aru/"$RELPATH"
 function virtualenv_info {
     [ $VIRTUAL_ENV ] && echo '['`basename $VIRTUAL_ENV`'] '
 } 
-source $SCRIPT_SOURCE/blur-console/blur_console.sh
+if [[ -e "$SCRIPT_SOURCE/blur-console/blur_console.sh" ]]; then
+    source $SCRIPT_SOURCE/blur-console/blur_console.sh
+fi
 if [[ -e "$SCRIPT_SOURCE/local.sh" ]]; then
     source $SCRIPT_SOURCE/local.sh
 fi
