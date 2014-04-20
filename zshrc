@@ -33,13 +33,25 @@ setopt   autoresume histignoredups pushdsilent
 setopt   autopushd pushdminus extendedglob rcquotes mailwarning
 unsetopt bgnice autoparamslash
 
+platform='unknown'
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+    platform='linux'
+elif [[ "$unamestr" == 'FreeBSD' ]]; then
+    platform='freebsd'
+elif [[ "$unamestr" == 'Darwin' ]]; then
+    platform='osx'
+fi
+
 # Autoload zsh modules when they are referenced
 zmodload -a zsh/stat stat
 zmodload -a zsh/zpty zpty
 zmodload -a zsh/zprof zprof
 zmodload -ap zsh/mapfile mapfile
 
-eval $(dircolors ~/.dircolors)
+if (( $+commands[dircolors] )); then
+    eval $(dircolors ~/.dircolors)
+fi
 
 PATH="/usr/local/bin:/usr/local/sbin/:/bin:/sbin:/usr/bin:/usr/sbin:$PATH"
 TZ="America/New_York"
@@ -79,7 +91,7 @@ unsetopt ALL_EXPORT
 alias sudo='nocorrect sudo'
 alias man='LC_ALL=C LANG=C man'
 alias ll='ls -al'
-alias ls='ls --color=auto '
+alias ls='ls -Gpf '
 autoload -U compinit
 compinit
 bindkey ";5C" forward-word
@@ -193,13 +205,19 @@ fi
 SCRIPT_SOURCE=${0%/*}
 #if [[ $SCRIPT_SOURCE -eq 'zsh' ]]; then
 RELPATH="code/dotfiles"
-SCRIPT_SOURCE=/home/aru/"$RELPATH"
+if [[ $platform == 'linux' ]]; then
+    SCRIPT_SOURCE=/home/aru/"$RELPATH"
+elif [[ $platform == 'osx' ]]; then
+    SCRIPT_SOURCE=/Users/aru/"$RELPATH"
+fi
 #fi
 ### PLUGINS
 function virtualenv_info {
     [ $VIRTUAL_ENV ] && echo '['`basename $VIRTUAL_ENV`'] '
 } 
-source $SCRIPT_SOURCE/blur-console/blur_console.sh
+if [[ -e "$SCRIPT_SOURCE/blur-console/blur_console.sh" ]]; then
+    source $SCRIPT_SOURCE/blur-console/blur_console.sh
+fi
 if [[ -e "$SCRIPT_SOURCE/local.sh" ]]; then
     source $SCRIPT_SOURCE/local.sh
 fi

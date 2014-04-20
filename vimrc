@@ -1,4 +1,6 @@
 set t_Co=256
+syntax on
+set bg=dark
 colorscheme zenburn
 set smartindent
 set tabstop=4
@@ -55,6 +57,7 @@ autocmd bufread *.less set ft=less
     Bundle 'rstacruz/sparkup'
     Bundle 'tomtom/tcomment_vim'
     Bundle 'SirVer/ultisnips'
+    Bundle 'honza/vim-snippets'
     Bundle 'vim-scripts/argtextobj.vim'
     Bundle 'Rip-Rip/clang_complete'
     Bundle 'tpope/vim-dispatch'
@@ -138,6 +141,10 @@ let g:airline#extensions#default#layout = [
       \ [ 'x', 'z' ]
       \ ]
 
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
 function! NumberOfWindows()
   let i = 1
   while winbufnr(i) != -1
@@ -164,3 +171,5 @@ if has("gui_running")
     cnoreabbrev <expr> q getcmdtype() == ":" && getcmdline() == 'q' ? 'call DonotQuitLastWindow()' : 'q'
     cnoreabbrev <expr> qa getcmdtype() == ":" && getcmdline() == 'qa' ? 'call DonotQuitLastWindow()' : 'qa'
 endif
+
+colorscheme zenburn
