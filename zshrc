@@ -91,7 +91,11 @@ unsetopt ALL_EXPORT
 alias sudo='nocorrect sudo'
 alias man='LC_ALL=C LANG=C man'
 alias ll='ls -al'
-alias ls='ls -Gpf '
+if [[ $platform == 'linux' ]]; then
+    alias ls='ls --color=auto -Gp '
+elif [[ $platform == 'osx' ]]; then
+    alias ls='ls -Gpf '
+fi
 autoload -U compinit
 compinit
 bindkey ";5C" forward-word

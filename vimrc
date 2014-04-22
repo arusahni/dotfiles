@@ -1,7 +1,5 @@
 set t_Co=256
 syntax on
-set bg=dark
-colorscheme zenburn
 set smartindent
 set tabstop=4
 set shiftwidth=4
@@ -61,6 +59,7 @@ autocmd bufread *.less set ft=less
     Bundle 'vim-scripts/argtextobj.vim'
     Bundle 'Rip-Rip/clang_complete'
     Bundle 'tpope/vim-dispatch'
+    Bundle 'jnurmine/Zenburn'
     if iCanHazVundle == 0
         echo "Installing Bundles, please ignore key map error messages"
         echo ""
@@ -70,12 +69,6 @@ autocmd bufread *.less set ft=less
 
 "set rtp+=~/code/dotfiles/powerline/powerline/bindings/vim
 set laststatus=2
-
-let g:zenburn_alternate_Visual=1
-let g:zenburn_force_dark_Background=1
-
-hi Search ctermfg=237 ctermbg=13
-hi MatchParen cterm=underline
 
 filetype plugin indent on
 
@@ -172,4 +165,10 @@ if has("gui_running")
     cnoreabbrev <expr> qa getcmdtype() == ":" && getcmdline() == 'qa' ? 'call DonotQuitLastWindow()' : 'qa'
 endif
 
+set bg=dark
 colorscheme zenburn
+let g:zenburn_alternate_Visual=1
+let g:zenburn_force_dark_Background=1
+
+hi Search ctermfg=237 ctermbg=13
+hi MatchParen cterm=underline
