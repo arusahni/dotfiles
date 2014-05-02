@@ -78,12 +78,6 @@ LC_ALL='en_US.UTF-8'
 LANG='en_US.UTF-8'
 LC_CTYPE=C
 
-if [ $SSH_TTY ]; then
-  MUTT_EDITOR=vim
-else
-  MUTT_EDITOR=emacsclient.emacs-snapshot
-fi
-
 unsetopt ALL_EXPORT
 # # --------------------------------------------------------------------
 # # aliases
@@ -98,6 +92,8 @@ elif [[ $platform == 'osx' ]]; then
 fi
 autoload -U compinit
 compinit
+
+# if [[ $platform == 'linux' ]]; then
 bindkey ";5C" forward-word
 bindkey ";5D" backward-word
 bindkey "^[[3~" delete-char
@@ -108,6 +104,13 @@ bindkey '^[OH' beginning-of-line
 bindkey '^[OF' end-of-line
 bindkey '^[[5~' up-line-or-history
 bindkey '^[[6~' down-line-or-history
+if [[ $platform == 'osx' ]]; then
+    bindkey "^[[1;9C" forward-word
+    bindkey "^[[1;9D" backward-word
+    bindkey "^[[3~" delete-char
+    bindkey "^[[H" beginning-of-line
+    bindkey "^[[F" end-of-line
+fi
 bindkey "^r" history-incremental-search-backward
 bindkey ' ' magic-space    # also do history expansion on space
 bindkey '^I' complete-word # complete on tab, leave expansion to _expand
