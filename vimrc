@@ -80,7 +80,7 @@ nmap <leader>nt :NERDTree<cr>
 nmap <leader>nq :NERDTreeClose<cr>
 map <leader>n :bn<cr>
 map <leader>p :bp<cr>
-nmap <leader>l :set list!<CR>
+nmap <silent> <leader>l :set list!<CR>
 " map <silent> <leader>/ :set hls!<CR>
 map <silent> <leader>/ :let @/ = ""<CR>
 
