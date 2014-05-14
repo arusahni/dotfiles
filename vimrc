@@ -1,6 +1,6 @@
 set t_Co=256
 syntax on
-set smartindent
+" set smartindent
 set tabstop=4
 set shiftwidth=4
 set expandtab
@@ -13,7 +13,7 @@ set hidden
 set hlsearch
 let mapleader=","
 autocmd Filetype html setlocal ts=4 noet sw=4
-autocmd Filetype javascript setlocal ts=4 noet sw=4
+autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
 autocmd Filetype python setlocal ts=4 sts=4 sw=4
 autocmd Filetype css setlocal ts=4 noet sw=4
 autocmd bufread *.less set ft=less
@@ -135,8 +135,10 @@ let g:airline#extensions#default#layout = [
       \ ]
 
 let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsListSnippets="<c-tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsEditSplit="vertical"
 
 function! NumberOfWindows()
   let i = 1
