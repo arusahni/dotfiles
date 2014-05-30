@@ -105,8 +105,8 @@ bindkey '^[OF' end-of-line
 bindkey '^[[5~' up-line-or-history
 bindkey '^[[6~' down-line-or-history
 if [[ $platform == 'osx' ]]; then
-    bindkey "^[[1;9C" forward-word
-    bindkey "^[[1;9D" backward-word
+    bindkey "^[[1;5C" forward-word
+    bindkey "^[[1;5D" backward-word
     bindkey "^A" beginning-of-line
     bindkey "^E" end-of-line
     bindkey "^[[3~" delete-char
