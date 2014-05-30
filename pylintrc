@@ -12,7 +12,7 @@ profile=no
 
 # Add files or directories to the blacklist. They should be base names, not
 # paths.
-ignore=CVS
+ignore=CVS,.git
 
 # Pickle collected data for later comparisons.
 persistent=yes
@@ -38,7 +38,7 @@ load-plugins=
 # --enable=similarities". If you want to run only the classes checker, but have
 # no Warning level messages displayed, use"--disable=all --enable=classes
 # --disable=W"
-disable=I0011
+disable=I0011,attribute-defined-outside-init
 
 
 [REPORTS]
@@ -91,7 +91,7 @@ indent-string='    '
 [MISCELLANEOUS]
 
 # List of note tags to take in consideration, separated by a comma.
-notes=FIXME,XXX,TODO
+notes=FIXME,XXX,TODO,@todo
 
 
 [TYPECHECK]
@@ -217,7 +217,7 @@ valid-metaclass-classmethod-first-arg=mcs
 [DESIGN]
 
 # Maximum number of arguments for function / method
-max-args=6
+max-args=8
 
 # Argument names that match this expression will be ignored. Default to name
 # with leading underscore
