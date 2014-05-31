@@ -57,6 +57,7 @@ autocmd bufread *.less set ft=less
     Bundle 'SirVer/ultisnips'
     Bundle 'honza/vim-snippets'
     Bundle 'vim-scripts/argtextobj.vim'
+    Bundle 'godlygeek/tabular'
     Bundle 'Rip-Rip/clang_complete'
     Bundle 'tpope/vim-dispatch'
     Bundle 'jnurmine/Zenburn'
