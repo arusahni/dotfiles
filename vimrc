@@ -1,16 +1,16 @@
 set t_Co=256
 syntax on
-" set smartindent
 set tabstop=4
 set shiftwidth=4
 set expandtab
 set mouse=a
-set clipboard=unnamedplus
+set clipboard=unnamedplus,unnamed
 set cursorline
 set showcmd
 set number
 set hidden
 set hlsearch
+set backspace=2
 let mapleader=","
 autocmd Filetype html setlocal ts=4 noet sw=4
 autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
@@ -47,7 +47,6 @@ autocmd bufread *.less set ft=less
     Bundle 'fholgado/minibufexpl.vim'
     Bundle 'hail2u/vim-css3-syntax'
     Bundle 'groenewege/vim-less'
-    Bundle 'jnurmine/Zenburn'
     Bundle 'vim-scripts/L9'
     Bundle 'vim-scripts/FuzzyFinder'
     Bundle 'nathanaelkane/vim-indent-guides'
@@ -60,7 +59,8 @@ autocmd bufread *.less set ft=less
     Bundle 'godlygeek/tabular'
     Bundle 'Rip-Rip/clang_complete'
     Bundle 'tpope/vim-dispatch'
-    Bundle 'jnurmine/Zenburn'
+    Bundle 'bronson/vim-trailing-whitespace'
+    Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
     if iCanHazVundle == 0
         echo "Installing Bundles, please ignore key map error messages"
         echo ""
@@ -68,7 +68,6 @@ autocmd bufread *.less set ft=less
     endif
 " Setting up Vundle - the vim plugin bundler end
 
-"set rtp+=~/code/dotfiles/powerline/powerline/bindings/vim
 set laststatus=2
 
 filetype plugin indent on
@@ -82,7 +81,6 @@ nmap <leader>nq :NERDTreeClose<cr>
 map <leader>n :bn<cr>
 map <leader>p :bp<cr>
 nmap <silent> <leader>l :set list!<CR>
-" map <silent> <leader>/ :set hls!<CR>
 map <silent> <leader>/ :let @/ = ""<CR>
 
 set listchars=tab:▸\ ,eol:¬
@@ -111,6 +109,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_python_checkers=['pylint']
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
+
 
 let g:airline_powerline_fonts = 1
 let g:airline_detect_modified = 1
@@ -171,9 +170,11 @@ if has("gui_running")
 endif
 
 set bg=dark
-colorscheme zenburn
-let g:zenburn_alternate_Visual=1
-let g:zenburn_force_dark_Background=1
+colorscheme Tomorrow-Night-Eighties
+" let g:zenburn_alternate_Visual=1
+" let g:zenburn_force_dark_Background=1
 
 hi Search ctermfg=237 ctermbg=13
 hi MatchParen cterm=underline
+hi SyntasticWarning ctermbg=yellow ctermfg=black
+hi SyntasticError ctermbg=red ctermfg=black
