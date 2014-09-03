@@ -4,7 +4,9 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set mouse=a
-set clipboard=unnamedplus,unnamed
+if has('unnamedplus')
+  set clipboard=unnamed,unnamedplus
+endif
 set cursorline
 set showcmd
 set number
@@ -141,6 +143,8 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsListSnippets="<c-l>"
 let g:UltiSnipsEditSplit="vertical"
 let g:ultisnips_python_style="sphinx"
+
+set viminfo='100,n$HOME/.vim/files/info/viminfo
 
 function! NumberOfWindows()
   let i = 1
