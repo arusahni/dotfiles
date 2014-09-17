@@ -5,7 +5,9 @@ set shiftwidth=4
 set expandtab
 set mouse=a
 if has('unnamedplus')
-  set clipboard=unnamed,unnamedplus
+  set clipboard=unnamedplus
+else
+  set clipboard=unnamed
 endif
 set cursorline
 set showcmd
@@ -32,9 +34,9 @@ autocmd bufread *.less set ft=less
     endif
     set rtp+=~/.vim/bundle/vundle/
     call vundle#rc()
-    
+
     Bundle 'gmarik/vundle.vim'
-    Bundle 'mhinz/vim-startify'    
+    Bundle 'szw/vim-ctrlspace'
     Bundle 'myusuf3/numbers.vim'
     Bundle 'scrooloose/syntastic'
     Bundle 'mileszs/ack.vim'
@@ -46,7 +48,7 @@ autocmd bufread *.less set ft=less
     Bundle 'tpope/vim-fugitive'
     Bundle 'tpope/vim-eunuch'
     Bundle 'vim-scripts/taglist.vim'
-    Bundle 'fholgado/minibufexpl.vim'
+    " Bundle 'fholgado/minibufexpl.vim'
     Bundle 'hail2u/vim-css3-syntax'
     Bundle 'groenewege/vim-less'
     Bundle 'vim-scripts/L9'
@@ -124,7 +126,7 @@ let g:airline#extensions#default#layout = [
 
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/](\.(git|hg|svn)|site-packages)$',
+    \ 'dir':  '\v[\/](\.(git|hg|svn)|site-packages|node_modules)$',
     \ 'file': '\v\.(exe|so|dll|pyc|debug\.js|simple\.js)$',
     \ 'link': 'some_bad_symbolic_links',
     \ }
@@ -182,3 +184,9 @@ hi Search ctermfg=237 ctermbg=13
 hi MatchParen cterm=underline
 hi SyntasticWarning ctermbg=yellow ctermfg=black
 hi SyntasticError ctermbg=red ctermfg=black
+
+hi CtrlSpaceSelected term=reverse ctermfg=187  ctermbg=23  cterm=bold
+hi CtrlSpaceNormal   term=NONE    ctermfg=244  ctermbg=232 cterm=NONE
+hi CtrlSpaceSearch   ctermfg=220  ctermbg=NONE cterm=bold
+hi CtrlSpaceStatus   ctermfg=230  ctermbg=234  cterm=NONE
+
