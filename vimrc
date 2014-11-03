@@ -16,10 +16,11 @@ set hidden
 set hlsearch
 set backspace=2
 let mapleader=","
-autocmd Filetype html setlocal ts=4 noet sw=4
+autocmd Filetype html setlocal ts=4 noet sw=4 omnifunc=htmlcomplete#CompleteTags
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
 autocmd Filetype python setlocal ts=4 sts=4 sw=4
-autocmd Filetype css setlocal ts=4 noet sw=4
+autocmd Filetype css setlocal ts=4 noet sw=4 omnifunc=csscomplete#CompleteCSS
 autocmd bufread *.less set ft=less
 
 " Setting up Vundle - the vim plugin bundler
