@@ -209,6 +209,9 @@ fi
 if (( $+commands[ack-grep] )); then
   alias ack='ack-grep'
 fi
+if (( $+commands[xclip] )); then
+  alias xclip='nocorrect xclip -sel clip'
+fi
 
 ### ENV
 SCRIPT_SOURCE=${0%/*}
@@ -308,3 +311,6 @@ REPORTTIME=10
 if [[ $platform == 'linux' ]]; then
     export TERM="xterm-256color"
 fi
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
