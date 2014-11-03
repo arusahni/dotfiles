@@ -11,7 +11,7 @@
     lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
     lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
     lg = !"git lg2"
-    ignore = "!gi() { curl http://www.gitignore.io/api/$@ ;}; gi"
+    ignore = "!gi() { curl https://www.gitignore.io/api/$@ ;}; gi"
 [user]
 	email = arusahni@gmail.com
 	name = Aru Sahni
