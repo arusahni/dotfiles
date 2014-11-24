@@ -12,7 +12,7 @@ local naughty = require("naughty")
 local menubar = require("menubar")
 
 -- Load Debian menu entries
-local debian_menu = require("debian_menu")
+local debian_menu = require("debian.menu")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -51,7 +51,6 @@ editor_cmd = terminal .. " -e " .. editor
 browser = "firefox"
 file = "thunar"
 
-awful.util.spawn_with_shell("xrandr --output VBOX1 --right-of VBOX0")
 awful.util.spawn_with_shell("run_once xfce4-power-manager")
 awful.util.spawn_with_shell("pgrep xfsettings &>/dev/null || /usr/bin/xfsettingsd")
 awful.util.spawn_with_shell("nm-applet --sm-disable")
@@ -82,13 +81,13 @@ local layouts =
 -- {{{ Wallpaper
 if beautiful.wallpaper then
     for s = 1, screen.count() do
-		if s == 1 then
-			gears.wallpaper.tiled("/home/aru/Pictures/Wallpapers/nin-lights.jpg", s)
-		elseif s == 2 then
-			gears.wallpaper.tiled("/home/aru/Pictures/Wallpapers/nin-lights2.jpg", s)
-		else
-	        gears.wallpaper.maximized(beautiful.wallpaper, s, true)
-		end
+		-- if s == 1 then
+		-- 	gears.wallpaper.tiled("/home/aru/Pictures/Wallpapers/nin-lights.jpg", s)
+		-- elseif s == 2 then
+		-- 	gears.wallpaper.tiled("/home/aru/Pictures/Wallpapers/nin-lights2.jpg", s)
+		-- else
+        gears.wallpaper.maximized(beautiful.wallpaper, s, true)
+		-- end
     end
 end
 -- }}}
@@ -115,10 +114,8 @@ myawesomemenu = {
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "Debian", debian_menu.Debian },
-									{ "Firefox", "firefox" },
-									{ "Firefox Dev", "firefox -no-remote -P dev" },
-
+                                    { "Debian", debian.menu.Debian_menu.Debian },
+									{ "Firefox", "firefox" }
                                   }
                         })
 
