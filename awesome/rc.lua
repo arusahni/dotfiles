@@ -41,8 +41,10 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
--- beautiful.init("/home/aru/code/dotfiles/awesome-themes-3.5/zenburn-custom/theme.lua")
-beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
+-- beautiful.init("/home/aru/code/dotfiles/awesome-themes/zenburn-custom/theme.lua")
+-- beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
+beautiful.init(awful.util.getdir("config") .. "/themes/wombat/theme.lua")
+awesome.font = "sans 15"
 
 -- This is used later as the default terminal and editor to run.
 terminal = "x-terminal-emulator"
@@ -53,7 +55,7 @@ file = "thunar"
 
 awful.util.spawn_with_shell("run_once xfce4-power-manager")
 awful.util.spawn_with_shell("pgrep xfsettings &>/dev/null || /usr/bin/xfsettingsd")
-awful.util.spawn_with_shell("nm-applet --sm-disable")
+awful.util.spawn_with_shell("run_once nm-applet --sm-disable")
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
