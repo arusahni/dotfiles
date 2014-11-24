@@ -13,3 +13,6 @@
 [submodule "powerline"]
 	path = powerline
 	url = git://github.com/Lokaltog/powerline
+[submodule "awesome-themes"]
+	path = awesome-themes
+	url = https://github.com/mikar/awesome-themes
