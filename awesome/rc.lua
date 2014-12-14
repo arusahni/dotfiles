@@ -41,8 +41,6 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
--- beautiful.init("/home/aru/code/dotfiles/awesome-themes/zenburn-custom/theme.lua")
--- beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
 beautiful.init(awful.util.getdir("config") .. "/themes/wombat/theme.lua")
 awesome.font = "sans 15"
 
@@ -52,10 +50,6 @@ editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 browser = "firefox"
 file = "thunar"
-
-awful.util.spawn_with_shell("run_once xfce4-power-manager")
-awful.util.spawn_with_shell("pgrep xfsettings &>/dev/null || /usr/bin/xfsettingsd")
-awful.util.spawn_with_shell("run_once nm-applet --sm-disable")
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -271,7 +265,7 @@ globalkeys = awful.util.table.join(
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
     awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
-    awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1)      
+    awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1)
 												naughty.notify({ title="Master", text = tostring(awful.tag.getnmaster()), timeout = 1}) end),
     awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)
 												naughty.notify({ title="Master", text = tostring(awful.tag.getnmaster()), timeout = 1}) end),
@@ -465,6 +459,26 @@ client.connect_signal("manage", function (c, startup)
         awful.titlebar(c):set_widget(layout)
     end
 end)
+
+function run_once(prg,arg_string,pname,screen)
+    if not prg then
+        do return nil end
+    end
+
+    if not pname then
+       pname = prg
+    end
+
+    if not arg_string then
+        awful.util.spawn_with_shell("pgrep -f -u $USER -x '" .. pname .. "' || (" .. prg .. ")",screen)
+    else
+        awful.util.spawn_with_shell("pgrep -f -u $USER -x '" .. pname .. " ".. arg_string .."' || (" .. prg .. " " .. arg_string .. ")",screen)
+    end
+end
+
+run_once("xfce4-power-manager")
+run_once("/usr/bin/xfsettingsd")
+run_once("nm-applet", "--sm-disable")
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
