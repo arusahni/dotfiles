@@ -49,7 +49,6 @@ autocmd bufread *.less set ft=less
     Bundle 'tpope/vim-fugitive'
     Bundle 'tpope/vim-eunuch'
     Bundle 'vim-scripts/taglist.vim'
-    " Bundle 'fholgado/minibufexpl.vim'
     Bundle 'hail2u/vim-css3-syntax'
     Bundle 'groenewege/vim-less'
     Bundle 'vim-scripts/L9'
@@ -62,7 +61,7 @@ autocmd bufread *.less set ft=less
     Bundle 'honza/vim-snippets'
     Bundle 'vim-scripts/argtextobj.vim'
     Bundle 'vim-scripts/pydoc.vim'
-    Bundle 'godlygeek/tabular'
+    Bundle 'junegunn/vim-easy-align'
     Bundle 'Rip-Rip/clang_complete'
     Bundle 'tpope/vim-dispatch'
     Bundle 'bronson/vim-trailing-whitespace'
@@ -120,6 +119,9 @@ let g:syntastic_warning_symbol = '⚠'
 let g:airline_powerline_fonts = 1
 let g:airline_detect_modified = 1
 let g:airline_theme="dark"
+" Required for CtrlSpace integration
+let g:airline_exclude_preview = 1
+" End CtrlSpace integration
 let g:airline#extensions#whitespace#enabled=0
 let g:airline#extensions#default#layout = [
     \ [ 'a', 'b', 'c' ],
@@ -140,6 +142,8 @@ let g:airline#extensions#default#layout = [
       \ [ 'a', 'b', 'c' ],
       \ [ 'x', 'z' ]
       \ ]
+
+let g:ctrlspace_project_root_markers = [".git", ".hg", ".svn", ".bzr", "_darcs", "CVS", "proj.sln"]
 
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
