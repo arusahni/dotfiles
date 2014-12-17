@@ -16,3 +16,9 @@
 [submodule "awesome-themes"]
 	path = awesome-themes
 	url = https://github.com/mikar/awesome-themes
+[submodule "apw"]
+	path = apw
+	url = https://github.com/mokasin/apw.git
+[submodule "screenful"]
+	path = screenful
+	url = https://github.com/dluksza/screenful.git
