@@ -88,7 +88,7 @@ alias ll='ls -al'
 if [[ $platform == 'linux' ]]; then
     alias ls='ls --color=auto -Gp '
 elif [[ $platform == 'osx' ]]; then
-    alias ls='ls -Gpf '
+    alias ls='ls -Gp'
 fi
 autoload -U compinit
 compinit
