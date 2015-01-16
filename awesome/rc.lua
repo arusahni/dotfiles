@@ -42,7 +42,7 @@ end
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
 beautiful.init(awful.util.getdir("config") .. "/themes/wombat/theme.lua")
-awesome.font = "sans 15"
+awesome.font = "sans 8"
 
 -- This is used later as the default terminal and editor to run.
 terminal = "x-terminal-emulator"
@@ -91,8 +91,8 @@ end
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
 tags = {
-  names = { "dev", "terms", "webdev", "www", 5, 6, 7, 8, 9 },
-  layout = { layouts[9], layouts[6], layouts[2], layouts[2], layouts[1], layouts[2], layouts[2], layouts[2], layouts[9] }
+  names = { "1[dev]", "2[terms]", "3[webdev]", "4[www]", "5[social]", 6, 7, 8, 9 },
+  layout = { layouts[9], layouts[6], layouts[2], layouts[2], layouts[8], layouts[2], layouts[2], layouts[2], layouts[9] }
 }
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
@@ -111,7 +111,9 @@ myawesomemenu = {
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "Debian", debian.menu.Debian_menu.Debian },
-									{ "Firefox", "firefox" }
+									{ "Firefox", "firefox" },
+									{ "Slack", "/opt/google/chrome/google-chrome --app=https://humangeo.slack.com/messages/general/" },
+                                    { "Tweetdeck", "/opt/google/chrome/google-chrome --app=https://tweetdeck.twitter.com/" }
                                   }
                         })
 
@@ -277,6 +279,7 @@ globalkeys = awful.util.table.join(
 												naughty.notify({ title = 'Layout', text = awful.layout.getname(), timeout = 1 }) end),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1)
 												naughty.notify({ title = 'Layout', text = awful.layout.getname(), timeout = 1 }) end),
+    awful.key({ modkey, "Control" }, "l", function () awful.util.spawn("dm-tool lock") end),
 
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
@@ -299,8 +302,9 @@ clientkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
-    awful.key({ modkey,           }, "o",      function (c) awful.client.movetoscreen(c, c.screen-1) end),
-    awful.key({ modkey,           }, "p",      function (c) awful.client.movetoscreen(c, c.screen+1) end),
+    awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
+    -- awful.key({ modkey, "Control", "Shift" }, "k",      function (c) awful.client.movetoscreen(c, c.screen-1) end),
+    -- awful.key({ modkey, "Control", "Shift" }, "j",      function (c) awful.client.movetoscreen(c, c.screen+1) end),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
     awful.key({ modkey,           }, "n",
         function (c)
@@ -362,27 +366,30 @@ root.keys(globalkeys)
 -- }}}
 
 -- {{{ Rules
---awful.rules.rules = {
+awful.rules.rules = {
     ---- All clients will match this rule.
-    --{ rule = { },
-      --properties = { border_width = beautiful.border_width,
-                     --border_color = beautiful.border_normal,
-                     --focus = awful.client.focus.filter,
-                     --keys = clientkeys,
-                     --buttons = clientbuttons } },
+    { rule = { },
+      properties = { border_width = beautiful.border_width,
+                     border_color = beautiful.border_normal,
+                     focus = awful.client.focus.filter,
+                     keys = clientkeys,
+                     buttons = clientbuttons } },
     --{ rule = { class = "MPlayer" },
       --properties = { floating = true } },
     --{ rule = { class = "pinentry" },
       --properties = { floating = true } },
-    --{ rule = { class = "gimp" },
-      --properties = { floating = true } },
-	--{ rule = { name = "[ffdev]" },
+    { rule = { class = "gimp" },
+      properties = { floating = true } },
+    { rule = { instance = "plugin-container" },
+        properties = { floating = true },
+        callback = awful.titlebar.hide },
+    --{ rule = { name = "[ffdev]" },
 	  --properties = { tag = tags[2][3] } },
     --{ rule = { class = "Firefox" },
       --properties = { tag = tags[2][4] } },
 	--{ rule = { class = "sublime_text" },
 	  --properties = { tag = tags[1][1] } },
---}
+}
 -- }}}
 
 -- {{{ Signals
@@ -479,6 +486,8 @@ end
 run_once("xfce4-power-manager")
 run_once("/usr/bin/xfsettingsd")
 run_once("nm-applet", "--sm-disable")
+run_once("volti")
+run_once("batti")
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
