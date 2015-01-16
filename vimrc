@@ -93,6 +93,7 @@ set listchars=tab:▸\ ,eol:¬
 let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree']
 
 let g:NERDTreeChDirMode=2
+let g:NERDTreeIgnore = ['\.pyc$']
 
 hi MBEVisibleActive guifg=#a6db29 guibg=fg
 hi MBEVisibleChangedActive guifg=#f1266f guibg=fg
@@ -111,10 +112,10 @@ let &colorcolumn="110,".join(range(116,999),",")
 
 let g:syntastic_check_on_open = 1
 
-let g:syntastic_python_checkers=['pylint']
+let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
-
 
 let g:airline_powerline_fonts = 1
 let g:airline_detect_modified = 1
