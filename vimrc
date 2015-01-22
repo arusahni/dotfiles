@@ -16,12 +16,13 @@ set hidden
 set hlsearch
 set backspace=2
 let mapleader=","
-autocmd FileType html setlocal ts=4 noet sw=4 omnifunc=htmlcomplete#CompleteTags
+autocmd Filetype html setlocal ts=4 sts=4 sw=4 omnifunc=htmlcomplete#CompleteTags
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType javascript setlocal ts=4 sts=4 sw=4
 autocmd FileType python setlocal ts=4 sts=4 sw=4
 autocmd FileType css setlocal ts=4 noet sw=4 omnifunc=csscomplete#CompleteCSS
 autocmd bufread *.less set ft=less
+autocmd bufread *.md set ft=markdown
 
 " Setting up Vundle - the vim plugin bundler
     let iCanHazVundle=1
@@ -49,7 +50,6 @@ autocmd bufread *.less set ft=less
     Bundle 'tpope/vim-fugitive'
     Bundle 'tpope/vim-eunuch'
     Bundle 'vim-scripts/taglist.vim'
-    " Bundle 'fholgado/minibufexpl.vim'
     Bundle 'hail2u/vim-css3-syntax'
     Bundle 'groenewege/vim-less'
     Bundle 'vim-scripts/L9'
@@ -62,7 +62,7 @@ autocmd bufread *.less set ft=less
     Bundle 'honza/vim-snippets'
     Bundle 'vim-scripts/argtextobj.vim'
     Bundle 'vim-scripts/pydoc.vim'
-    Bundle 'godlygeek/tabular'
+    Bundle 'junegunn/vim-easy-align'
     Bundle 'Rip-Rip/clang_complete'
     Bundle 'tpope/vim-dispatch'
     Bundle 'bronson/vim-trailing-whitespace'
@@ -94,6 +94,7 @@ set listchars=tab:▸\ ,eol:¬
 let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree']
 
 let g:NERDTreeChDirMode=2
+let g:NERDTreeIgnore = ['\.pyc$']
 
 hi MBEVisibleActive guifg=#a6db29 guibg=fg
 hi MBEVisibleChangedActive guifg=#f1266f guibg=fg
@@ -112,14 +113,17 @@ let &colorcolumn="110,".join(range(116,999),",")
 
 let g:syntastic_check_on_open = 1
 
-let g:syntastic_python_checkers=['pylint']
+let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
-
 
 let g:airline_powerline_fonts = 1
 let g:airline_detect_modified = 1
 let g:airline_theme="dark"
+" Required for CtrlSpace integration
+let g:airline_exclude_preview = 1
+" End CtrlSpace integration
 let g:airline#extensions#whitespace#enabled=0
 let g:airline#extensions#default#layout = [
     \ [ 'a', 'b', 'c' ],
@@ -140,6 +144,8 @@ let g:airline#extensions#default#layout = [
       \ [ 'a', 'b', 'c' ],
       \ [ 'x', 'z' ]
       \ ]
+
+let g:ctrlspace_project_root_markers = [".git", ".hg", ".svn", ".bzr", "_darcs", "CVS", "proj.sln"]
 
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
