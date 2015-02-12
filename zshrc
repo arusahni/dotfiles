@@ -2,7 +2,7 @@
 #           jdong's zshrc file v0.2.1 , based on:
 #		      mako's zshrc file, v0.1
 #
-# 
+#
 ######################################################################
 # next lets set some enviromental/shell pref stuff up
 # setopt NOHUP
@@ -22,14 +22,14 @@ setopt MENUCOMPLETE
 setopt ALL_EXPORT
 
 # Set/unset  shell options
-setopt   notify #Report the status of background jobs immediately, rather than waiting until just before printing a prompt. 
-#setopt   globdots #Do not require a leading ‘.’ in a filename to be matched explicitly. 
+setopt   notify #Report the status of background jobs immediately, rather than waiting until just before printing a prompt.
+#setopt   globdots #Do not require a leading ‘.’ in a filename to be matched explicitly.
 setopt   correct
 setopt   pushdtohome
 setopt   cdablevars
 setopt   autolist
 setopt   correctall autocd recexact longlistjobs
-setopt   autoresume histignoredups pushdsilent 
+setopt   autoresume histignoredups pushdsilent
 setopt   autopushd pushdminus extendedglob rcquotes mailwarning
 unsetopt bgnice autoparamslash
 
@@ -134,7 +134,7 @@ zstyle ':completion:*::::' completer _expand _complete _ignored _approximate
 # allow one error for every three characters typed in approximate completer
 zstyle -e ':completion:*:approximate:*' max-errors \
     'reply=( $(( ($#PREFIX+$#SUFFIX)/2 )) numeric )'
-    
+
 # insert all expansions for expand completer
 zstyle ':completion:*:expand:*' tag-order all-expansions
 
@@ -161,14 +161,14 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 
 #zstyle ':completion:*:processes' command 'ps ax -o pid,s,nice,stime,args | sed "/ps/d"'
 zstyle ':completion:*:*:kill:*:processes' command 'ps --forest -A -o pid,user,cmd'
-zstyle ':completion:*:processes-names' command 'ps axho command' 
+zstyle ':completion:*:processes-names' command 'ps axho command'
 #zstyle ':completion:*:urls' local 'www' '/var/www/htdocs' 'public_html'
 #
 #NEW completion:
 # 1. All /etc/hosts hostnames are in autocomplete
 # 2. If you have a comment in /etc/hosts like #%foobar.domain,
 #    then foobar.domain will show up in autocomplete!
-zstyle ':completion:*' hosts $(awk '/^[^#]/ {print $2 $3" "$4" "$5}' /etc/hosts | grep -v ip6- && grep "^#%" /etc/hosts | awk -F% '{print $2}') 
+zstyle ':completion:*' hosts $(awk '/^[^#]/ {print $2 $3" "$4" "$5}' /etc/hosts | grep -v ip6- && grep "^#%" /etc/hosts | awk -F% '{print $2}')
 # Filename suffixes to ignore during completion (except after rm command)
 zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~' \
     '*?.old' '*?.pro' '*?.pyc' '*?.py~'
@@ -226,7 +226,7 @@ fi
 ### PLUGINS
 function virtualenv_info {
     [ $VIRTUAL_ENV ] && echo '['`basename $VIRTUAL_ENV`'] '
-} 
+}
 if [[ $platform == 'linux' &&  -e "$SCRIPT_SOURCE/blur-console/blur_console.sh" ]]; then
     source $SCRIPT_SOURCE/blur-console/blur_console.sh
 fi
@@ -312,16 +312,3 @@ if [[ $platform == 'linux' ]]; then
     export TERM="xterm-256color"
 fi
 
-function setjdk() {
-    if [ $# -ne 0 ]; then
-        removeFromPath '/System/Library/Frameworks/JavaVM.framework/Home/bin'
-        if [ -n "${JAVA_HOME+x}" ]; then
-            removeFromPath $JAVA_HOME
-        fi
-        export JAVA_HOME=`/usr/libexec/java_home -v $@`
-        export PATH=$JAVA_HOME/bin:$PATH
-    fi
-}
-function removeFromPath() {
-    export PATH=$(echo $PATH | sed -E -e "s;:$1;;" -e "s;$1:?;;")
-}
