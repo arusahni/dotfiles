@@ -63,8 +63,6 @@ autocmd bufread *.md set ft=markdown
     Bundle 'vim-scripts/argtextobj.vim'
     Bundle 'vim-scripts/pydoc.vim'
     Bundle 'junegunn/vim-easy-align'
-    Bundle 'Rip-Rip/clang_complete'
-    Bundle 'tpope/vim-dispatch'
     Bundle 'bronson/vim-trailing-whitespace'
     Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
     if iCanHazVundle == 0
