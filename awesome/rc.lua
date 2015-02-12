@@ -113,7 +113,8 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
                                     { "Debian", debian.menu.Debian_menu.Debian },
 									{ "Firefox", "firefox" },
 									{ "Slack", "/opt/google/chrome/google-chrome --app=https://humangeo.slack.com/messages/general/" },
-                                    { "Tweetdeck", "/opt/google/chrome/google-chrome --app=https://tweetdeck.twitter.com/" }
+                                    { "Tweetdeck", "/opt/google/chrome/google-chrome --app=https://tweetdeck.twitter.com/" },
+                                    { "SiriusXM", "/opt/google/chrome/google-chrome --app=https://www.siriusxm.com/player/#view=login" }
                                   }
                         })
 
