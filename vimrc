@@ -52,6 +52,7 @@ autocmd bufread *.md set ft=markdown
     Bundle 'tpope/vim-eunuch'
     Bundle 'vim-scripts/taglist.vim'
     Bundle 'hail2u/vim-css3-syntax'
+    Bundle 'thinca/vim-localrc'
     Bundle 'kchmck/vim-coffee-script'
     Bundle 'groenewege/vim-less'
     Bundle 'vim-scripts/L9'
