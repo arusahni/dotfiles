@@ -24,6 +24,7 @@ autocmd FileType css setlocal ts=4 noet sw=4 omnifunc=csscomplete#CompleteCSS
 autocmd bufread *.coffee set ft=coffee
 autocmd bufread *.less set ft=less
 autocmd bufread *.md set ft=markdown
+autocmd bufread Cakefile set ft=coffee
 
 " Setting up Vundle - the vim plugin bundler
     let iCanHazVundle=1
