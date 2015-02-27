@@ -21,8 +21,10 @@ autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType javascript setlocal ts=4 sts=4 sw=4
 autocmd FileType python setlocal ts=4 sts=4 sw=4
 autocmd FileType css setlocal ts=4 noet sw=4 omnifunc=csscomplete#CompleteCSS
+autocmd bufread *.coffee set ft=coffee
 autocmd bufread *.less set ft=less
 autocmd bufread *.md set ft=markdown
+autocmd bufread Cakefile set ft=coffee
 
 " Setting up Vundle - the vim plugin bundler
     let iCanHazVundle=1
@@ -51,6 +53,8 @@ autocmd bufread *.md set ft=markdown
     Bundle 'tpope/vim-eunuch'
     Bundle 'vim-scripts/taglist.vim'
     Bundle 'hail2u/vim-css3-syntax'
+    Bundle 'thinca/vim-localrc'
+    Bundle 'kchmck/vim-coffee-script'
     Bundle 'groenewege/vim-less'
     Bundle 'vim-scripts/L9'
     Bundle 'vim-scripts/FuzzyFinder'
