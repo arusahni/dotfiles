@@ -63,9 +63,8 @@ autocmd bufread *.md set ft=markdown
     Bundle 'vim-scripts/argtextobj.vim'
     Bundle 'vim-scripts/pydoc.vim'
     Bundle 'junegunn/vim-easy-align'
-    Bundle 'Rip-Rip/clang_complete'
-    Bundle 'tpope/vim-dispatch'
     Bundle 'bronson/vim-trailing-whitespace'
+    Bundle 'mbbill/undotree'
     Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
     if iCanHazVundle == 0
         echo "Installing Bundles, please ignore key map error messages"
@@ -95,13 +94,6 @@ let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree']
 
 let g:NERDTreeChDirMode=2
 let g:NERDTreeIgnore = ['\.pyc$']
-
-hi MBEVisibleActive guifg=#a6db29 guibg=fg
-hi MBEVisibleChangedActive guifg=#f1266f guibg=fg
-hi MBEVisibleChanged guifg=#f1266f guibg=fg
-hi MBEVisibleNormal guifg=#5dc2d6 guibg=fg
-hi MBEChanged guifg=#cd5907 guibg=fg
-hi MBENormal guifg=#808080 guibg=fg
 
 let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_start_level=2
