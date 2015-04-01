@@ -25,6 +25,14 @@ autocmd bufread *.coffee set ft=coffee
 autocmd bufread *.less set ft=less
 autocmd bufread *.md set ft=markdown
 
+if has("unix")
+    let s:uname = system("uname")
+    let g:python_host_prog='/usr/bin/python'
+    if s:uname == "Darwin\n"
+        let g:python_host_prog='/usr/local/bin/python'
+    endif
+endif
+
 " Setting up Vundle - the vim plugin bundler
     let iCanHazVundle=1
     let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
