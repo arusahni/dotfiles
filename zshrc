@@ -197,11 +197,15 @@ zstyle '*' single-ignored show
 
 ### ALIASES
 alias vim='nocorrect vim '
+if (( $+commands[nvim] )); then
+    alias vim='nocorrect nvim '
+    alias oldvim='nocorrect vim '
+fi
 alias ssh='nocorrect ssh '
 if (( $+commands[git] )); then
   alias git='nocorrect git '
-  alias gst='nocorrect git status'
-  alias gco='nocorrect git commit'
+  alias gst='nocorrect git status '
+  alias gco='nocorrect git commit '
 fi
 if (( $+commands[aptitude] )); then
   alias aptitude='nocorrect aptitude '
