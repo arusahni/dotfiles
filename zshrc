@@ -196,10 +196,12 @@ zstyle ':completion:*:ssh:*' group-order \
 zstyle '*' single-ignored show
 
 ### ALIASES
+_ORIGINAL_VIM=$(which vim)
+alias oldvim='nocorrect vim '
 alias vim='nocorrect vim '
 if (( $+commands[nvim] )); then
+    alias oldvim='nocorrect $_ORIGINAL_VIM '
     alias vim='nocorrect nvim '
-    alias oldvim='/usr/bin/vim '
 fi
 alias ssh='nocorrect ssh '
 if (( $+commands[git] )); then
