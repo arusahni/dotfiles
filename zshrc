@@ -199,7 +199,7 @@ zstyle '*' single-ignored show
 alias vim='nocorrect vim '
 if (( $+commands[nvim] )); then
     alias vim='nocorrect nvim '
-    alias oldvim='nocorrect vim '
+    alias oldvim='/usr/bin/vim '
 fi
 alias ssh='nocorrect ssh '
 if (( $+commands[git] )); then
