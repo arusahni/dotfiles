@@ -25,7 +25,11 @@ autocmd bufread *.coffee set ft=coffee
 autocmd bufread *.less set ft=less
 autocmd bufread *.md set ft=markdown
 autocmd bufread Cakefile set ft=coffee
-
+if has('nvim')
+    let s:editor_root=expand("~/.nvim")
+else
+    let s:editor_root=expand("~/.vim")
+endif
 if has("unix")
     let s:uname = system("uname")
     let g:python_host_prog='/usr/bin/python'
@@ -35,53 +39,54 @@ if has("unix")
 endif
 
 " Setting up Vundle - the vim plugin bundler
-    let iCanHazVundle=1
-    let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
-    if !filereadable(vundle_readme)
-        echo "Installing Vundle.."
-        echo ""
-        silent !mkdir -p ~/.vim/bundle
-        silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
-        let iCanHazVundle=0
-    endif
-    set rtp+=~/.vim/bundle/vundle/
-    call vundle#rc()
+let vundle_installed=1
+let vundle_readme=s:editor_root . '/bundle/vundle/README.md'
+if !filereadable(vundle_readme)
+    echo "Installing Vundle.."
+    echo ""
+    " silent execute "! mkdir -p ~/." . s:editor_path_name . "/bundle"
+    silent call mkdir(s:editor_root . '/bundle', "p")
+    silent execute "!git clone https://github.com/gmarik/vundle " . s:editor_root . "/bundle/vundle"
+    let vundle_installed=0
+endif
+let &rtp = &rtp . ',' . s:editor_root . '/bundle/vundle/'
+call vundle#rc(s:editor_root . '/bundle')
 
-    Bundle 'gmarik/vundle.vim'
-    Bundle 'szw/vim-ctrlspace'
-    Bundle 'myusuf3/numbers.vim'
-    Bundle 'scrooloose/syntastic'
-    Bundle 'mileszs/ack.vim'
-    Bundle 'scrooloose/nerdtree'
-    Bundle 'kien/ctrlp.vim'
-    Bundle 'JazzCore/ctrlp-cmatcher'
-    Bundle 'jasoncodes/ctrlp-modified.vim'
-    Bundle 'tpope/vim-surround'
-    Bundle 'tpope/vim-fugitive'
-    Bundle 'tpope/vim-eunuch'
-    Bundle 'vim-scripts/taglist.vim'
-    Bundle 'hail2u/vim-css3-syntax'
-    Bundle 'thinca/vim-localrc'
-    Bundle 'kchmck/vim-coffee-script'
-    Bundle 'groenewege/vim-less'
-    Bundle 'vim-scripts/L9'
-    Bundle 'vim-scripts/FuzzyFinder'
-    Bundle 'nathanaelkane/vim-indent-guides'
-    Bundle 'bling/vim-airline'
-    Bundle 'rstacruz/sparkup'
-    Bundle 'tomtom/tcomment_vim'
-    Bundle 'SirVer/ultisnips'
-    Bundle 'honza/vim-snippets'
-    Bundle 'vim-scripts/argtextobj.vim'
-    Bundle 'vim-scripts/pydoc.vim'
-    Bundle 'junegunn/vim-easy-align'
-    Bundle 'bronson/vim-trailing-whitespace'
-    Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
-    if iCanHazVundle == 0
-        echo "Installing Bundles, please ignore key map error messages"
-        echo ""
-        :BundleInstall
-    endif
+Bundle 'gmarik/vundle.vim'
+Bundle 'szw/vim-ctrlspace'
+Bundle 'myusuf3/numbers.vim'
+Bundle 'scrooloose/syntastic'
+Bundle 'mileszs/ack.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'kien/ctrlp.vim'
+Bundle 'JazzCore/ctrlp-cmatcher'
+Bundle 'jasoncodes/ctrlp-modified.vim'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-eunuch'
+Bundle 'vim-scripts/taglist.vim'
+Bundle 'hail2u/vim-css3-syntax'
+Bundle 'thinca/vim-localrc'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'groenewege/vim-less'
+Bundle 'vim-scripts/L9'
+Bundle 'vim-scripts/FuzzyFinder'
+Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'bling/vim-airline'
+Bundle 'rstacruz/sparkup'
+Bundle 'tomtom/tcomment_vim'
+Bundle 'SirVer/ultisnips'
+Bundle 'honza/vim-snippets'
+Bundle 'vim-scripts/argtextobj.vim'
+Bundle 'vim-scripts/pydoc.vim'
+Bundle 'junegunn/vim-easy-align'
+Bundle 'bronson/vim-trailing-whitespace'
+Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+if vundle_installed == 0
+    echo "Installing Bundles, please ignore key map error messages"
+    echo ""
+    :BundleInstall
+endif
 " Setting up Vundle - the vim plugin bundler end
 
 set laststatus=2
@@ -157,6 +162,10 @@ let g:airline#extensions#default#layout = [
 
 let g:ctrlspace_project_root_markers = [".git", ".hg", ".svn", ".bzr", "_darcs", "CVS", "proj.sln"]
 
+" Set up ultisnips - need to symlink vim scripts to be run when files are opened
+if !isdirectory(s:editor_root . "/ftdetect")
+    silent execute "!ln -s " . s:editor_root . "/bundle/ultisnips/ftdetect " . s:editor_root . "/"
+endif
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
@@ -164,7 +173,7 @@ let g:UltiSnipsListSnippets="<c-l>"
 let g:UltiSnipsEditSplit="vertical"
 let g:ultisnips_python_style="sphinx"
 
-set viminfo='100,n$HOME/.vim/files/info/viminfo
+" set viminfo='100,n$HOME/.vim/files/info/viminfo " Change to nvim agnostic path if necessary
 
 function! NumberOfWindows()
   let i = 1
@@ -195,8 +204,6 @@ endif
 
 set bg=dark
 colorscheme Tomorrow-Night-Eighties
-" let g:zenburn_alternate_Visual=1
-" let g:zenburn_force_dark_Background=1
 
 hi Search ctermfg=237 ctermbg=13
 hi MatchParen cterm=underline
