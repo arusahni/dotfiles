@@ -196,12 +196,18 @@ zstyle ':completion:*:ssh:*' group-order \
 zstyle '*' single-ignored show
 
 ### ALIASES
+_ORIGINAL_VIM=$(which vim)
+alias oldvim='nocorrect vim '
 alias vim='nocorrect vim '
+if (( $+commands[nvim] )); then
+    alias oldvim='nocorrect $_ORIGINAL_VIM '
+    alias vim='nocorrect nvim '
+fi
 alias ssh='nocorrect ssh '
 if (( $+commands[git] )); then
   alias git='nocorrect git '
-  alias gst='nocorrect git status'
-  alias gco='nocorrect git commit'
+  alias gst='nocorrect git status '
+  alias gco='nocorrect git commit '
 fi
 if (( $+commands[aptitude] )); then
   alias aptitude='nocorrect aptitude '
@@ -310,5 +316,6 @@ RPS1='$(git_prompt_string) $_BASE_RPS1'
 REPORTTIME=10
 if [[ $platform == 'linux' ]]; then
     export TERM="xterm-256color"
+    stty -ixon
 fi
 
