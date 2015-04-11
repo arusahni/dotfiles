@@ -34,7 +34,7 @@ if has("unix")
     let s:uname = system("uname")
     let g:python_host_prog='/usr/bin/python'
     if s:uname == "Darwin\n"
-        let g:python_host_prog='/usr/local/bin/python'
+        let g:python_host_prog='/usr/bin/python'
     endif
 endif
 
@@ -215,6 +215,7 @@ hi CtrlSpaceNormal   term=NONE    ctermfg=244  ctermbg=232 cterm=NONE
 hi CtrlSpaceSearch   ctermfg=220  ctermbg=NONE cterm=bold
 hi CtrlSpaceStatus   ctermfg=230  ctermbg=234  cterm=NONE
 
+let &titleold=substitute(system("uname"),'\(.*\)\n','%\1%','')
 let &titlestring = expand("%:p")
 if &term == "screen"
   set t_ts=^[k
