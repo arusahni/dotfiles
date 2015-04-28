@@ -80,8 +80,12 @@ Bundle 'honza/vim-snippets'
 Bundle 'vim-scripts/argtextobj.vim'
 Bundle 'vim-scripts/pydoc.vim'
 Bundle 'junegunn/vim-easy-align'
+Bundle 'janko-m/vim-test'
 Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+if has('nvim')
+    Bundle 'kassio/neoterm'
+endif
 if vundle_installed == 0
     echo "Installing Bundles, please ignore key map error messages"
     echo ""
@@ -207,6 +211,18 @@ hi CtrlSpaceSelected term=reverse ctermfg=187  ctermbg=23  cterm=bold
 hi CtrlSpaceNormal   term=NONE    ctermfg=244  ctermbg=232 cterm=NONE
 hi CtrlSpaceSearch   ctermfg=220  ctermbg=NONE cterm=bold
 hi CtrlSpaceStatus   ctermfg=230  ctermbg=234  cterm=NONE
+
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>g :TestVisit<CR>
+
+if has('nvim')
+    let test#strategy = "neoterm"
+    let g:neoterm_position = 'vertical'
+    nnoremap <silent> <leader>qt :call neoterm#close_all()<cr>
+endif
 
 let &titleold=substitute(system("uname"),'\(.*\)\n','%\1%','')
 let &titlestring = expand("%:p")
