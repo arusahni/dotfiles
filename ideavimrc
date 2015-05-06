@@ -1,0 +1,15 @@
+set cursorline
+set number
+set hidden
+set hlsearch
+set backspace=2
+let mapleader=","
+filetype plugin indent on
+inoremap jj <Esc>
+nnoremap <leader>m :w <BAR> !lessc %:t:r.css<CR><space>
+nnoremap <F5> :buffers<CR>:buffer<Space>
+map <leader>n :bn<cr>
+map <leader>p :bp<cr>
+nmap <silent> <leader>l :set list!<CR>
+map <silent> <leader>/ :let @/ = ""<CR>
+set listchars=tab:▸\ ,eol:¬
