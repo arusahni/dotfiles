@@ -46,7 +46,9 @@ if !filereadable(vundle_readme)
     echo "Installing Vundle.."
     echo ""
     " silent execute "! mkdir -p ~/." . s:editor_path_name . "/bundle"
-    silent call mkdir(s:editor_root . '/bundle', "p")
+    if !isdirectory(s:editor_root . '/bundle')
+        silent call mkdir(s:editor_root . '/bundle', "p")
+    endif
     silent execute "!git clone https://github.com/gmarik/vundle " . s:editor_root . "/bundle/vundle"
     let vundle_installed=0
 endif
