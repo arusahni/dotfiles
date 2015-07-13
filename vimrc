@@ -20,6 +20,7 @@ autocmd Filetype html setlocal ts=4 sts=4 sw=4 omnifunc=htmlcomplete#CompleteTag
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType javascript setlocal ts=4 sts=4 sw=4
 autocmd FileType python setlocal ts=4 sts=4 sw=4
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2
 autocmd FileType css setlocal ts=4 noet sw=4 omnifunc=csscomplete#CompleteCSS
 autocmd bufread *.coffee set ft=coffee
 autocmd bufread *.less set ft=less
@@ -45,13 +46,16 @@ if !filereadable(vundle_readme)
     echo "Installing Vundle.."
     echo ""
     " silent execute "! mkdir -p ~/." . s:editor_path_name . "/bundle"
-    silent call mkdir(s:editor_root . '/bundle', "p")
+    if !isdirectory(s:editor_root . '/bundle')
+        silent call mkdir(s:editor_root . '/bundle', "p")
+    endif
     silent execute "!git clone https://github.com/gmarik/vundle " . s:editor_root . "/bundle/vundle"
     let vundle_installed=0
 endif
 let &rtp = &rtp . ',' . s:editor_root . '/bundle/vundle/'
 call vundle#rc(s:editor_root . '/bundle')
 
+Bundle 'tpope/vim-repeat'
 Bundle 'gmarik/vundle.vim'
 Bundle 'szw/vim-ctrlspace'
 Bundle 'myusuf3/numbers.vim'
@@ -78,11 +82,11 @@ Bundle 'rstacruz/sparkup'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'SirVer/ultisnips'
 Bundle 'honza/vim-snippets'
-Bundle 'vim-scripts/argtextobj.vim'
+Bundle 'wellle/targets.vim'
 Bundle 'vim-scripts/pydoc.vim'
 Bundle 'junegunn/vim-easy-align'
-Bundle 'janko-m/vim-test'
 Bundle 'bronson/vim-trailing-whitespace'
+Bundle 'janko-m/vim-test'
 Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 if has('nvim')
     Bundle 'kassio/neoterm'
@@ -108,6 +112,12 @@ map <leader>n :bn<cr>
 map <leader>p :bp<cr>
 nmap <silent> <leader>l :set list!<CR>
 map <silent> <leader>/ :let @/ = ""<CR>
+
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>g :TestVisit<CR>
 
 set listchars=tab:▸\ ,eol:¬
 
@@ -224,6 +234,11 @@ if has('nvim')
     let g:neoterm_position = 'vertical'
     nnoremap <silent> <leader>qt :call neoterm#close_all()<cr>
 endif
+"
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 let &titleold=substitute(system("uname"),'\(.*\)\n','%\1%','')
 let &titlestring = expand("%:p")
