@@ -46,18 +46,19 @@ function! SymlinkSnippets(info)
     endif
 endfunction
 
+function! SetColorscheme(...)
+    try
+        colorscheme Tomorrow-Night-Eighties
+    catch /^Vim\%((\a\+)\)\=:E185/
+        autocmd VimEnter * echom "Color scheme not found. Maybe it's installing?"
+    endtry
+endfunction
 
 " Setting up plugins
-let vimplug_installed=1
-let vimplug_script=s:editor_root . '/autoload/plug.vim'
-if !filereadable(vimplug_script)
-    echo "Installing vim-plug.."
-    echo ""
-    if !isdirectory(s:editor_root . '/autoload')
-        silent call mkdir(s:editor_root . '/autoload', "p")
-    endif
+if empty(glob(s:editor_root . '/autoload/plug.vim'))
+    autocmd VimEnter * echom "Downloading and installing vim-plug..."
     silent execute "!curl -fLo " . s:editor_root . "/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-    let vimplug_installed=0
+    autocmd VimEnter * PlugInstall
 endif
 call plug#begin(s:editor_root . '/plugged')
 
@@ -89,22 +90,14 @@ Plug 'vim-scripts/pydoc.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'janko-m/vim-test'
-Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim/', 'do': function('SetColorscheme') }
 if has('nvim')
     Plug 'kassio/neoterm'
 endif
 call plug#end()
-
-if vimplug_installed == 0
-    echo "Installing plugins, please ignore key map error messages"
-    echo ""
-    :PlugInstall
-endif
 " Setting up plugins - end
 
 set laststatus=2
-
-filetype plugin indent on
 
 inoremap jj <Esc>
 nnoremap <leader>m :w <BAR> !lessc %:t:r.css<CR><space>
@@ -211,7 +204,7 @@ if has("gui_running")
 endif
 
 set bg=dark
-colorscheme Tomorrow-Night-Eighties
+call SetColorscheme()
 
 hi Search ctermfg=237 ctermbg=13
 hi MatchParen cterm=underline
