@@ -13,3 +13,4 @@ map <leader>p :bp<cr>
 nmap <silent> <leader>l :set list!<CR>
 map <silent> <leader>/ :let @/ = ""<CR>
 set listchars=tab:▸\ ,eol:¬
+set clipboard+=unnamed
