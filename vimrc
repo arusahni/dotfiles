@@ -26,6 +26,7 @@ autocmd bufread *.coffee set ft=coffee
 autocmd bufread *.less set ft=less
 autocmd bufread *.md set ft=markdown
 autocmd bufread Cakefile set ft=coffee
+autocmd bufread *.pp set ft=ruby
 if has('nvim')
     let s:editor_root=expand("~/.nvim")
 else
@@ -86,6 +87,7 @@ Bundle 'vim-scripts/pydoc.vim'
 Bundle 'junegunn/vim-easy-align'
 Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'janko-m/vim-test'
+Bundle 'chase/vim-ansible-yaml'
 Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 if has('nvim')
     Bundle 'kassio/neoterm'
