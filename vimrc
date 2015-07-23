@@ -38,65 +38,69 @@ if has("unix")
         let g:python_host_prog='/usr/bin/python'
     endif
 endif
-
-" Setting up Vundle - the vim plugin bundler
-let vundle_installed=1
-let vundle_readme=s:editor_root . '/bundle/vundle/README.md'
-if !filereadable(vundle_readme)
-    echo "Installing Vundle.."
-    echo ""
-    " silent execute "! mkdir -p ~/." . s:editor_path_name . "/bundle"
-    if !isdirectory(s:editor_root . '/bundle')
-        silent call mkdir(s:editor_root . '/bundle', "p")
+"
+" Set up ultisnips - need to symlink vim scripts to be run when files are opened
+function! SymlinkSnippets(info)
+    if a:info.status == 'installed' || a:info.force && !isdirectory(s:editor_root . "/ftdetect")
+        silent execute "!ln -s " . s:editor_root . "/plugged/ultisnips/ftdetect " . s:editor_root . "/"
     endif
-    silent execute "!git clone https://github.com/gmarik/vundle " . s:editor_root . "/bundle/vundle"
-    let vundle_installed=0
-endif
-let &rtp = &rtp . ',' . s:editor_root . '/bundle/vundle/'
-call vundle#rc(s:editor_root . '/bundle')
+endfunction
 
-Bundle 'tpope/vim-repeat'
-Bundle 'gmarik/vundle.vim'
-Bundle 'szw/vim-ctrlspace'
-Bundle 'myusuf3/numbers.vim'
-Bundle 'scrooloose/syntastic'
-Bundle 'mileszs/ack.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'kien/ctrlp.vim'
-Bundle 'JazzCore/ctrlp-cmatcher'
-Bundle 'jasoncodes/ctrlp-modified.vim'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-eunuch'
-Bundle 'vim-scripts/taglist.vim'
-Bundle 'hail2u/vim-css3-syntax'
-Bundle 'thinca/vim-localrc'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'groenewege/vim-less'
-Bundle 'vim-scripts/L9'
-Plugin 'sjl/gundo.vim'
-Bundle 'vim-scripts/FuzzyFinder'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'bling/vim-airline'
-Bundle 'rstacruz/sparkup'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'SirVer/ultisnips'
-Bundle 'honza/vim-snippets'
-Bundle 'wellle/targets.vim'
-Bundle 'vim-scripts/pydoc.vim'
-Bundle 'junegunn/vim-easy-align'
-Bundle 'bronson/vim-trailing-whitespace'
-Bundle 'janko-m/vim-test'
-Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
-if has('nvim')
-    Bundle 'kassio/neoterm'
-endif
-if vundle_installed == 0
-    echo "Installing Bundles, please ignore key map error messages"
+
+" Setting up plugins
+let vimplug_installed=1
+let vimplug_script=s:editor_root . '/autoload/plug.vim'
+if !filereadable(vimplug_script)
+    echo "Installing vim-plug.."
     echo ""
-    :BundleInstall
+    if !isdirectory(s:editor_root . '/autoload')
+        silent call mkdir(s:editor_root . '/autoload', "p")
+    endif
+    silent execute "!curl -fLo " . s:editor_root . "/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+    let vimplug_installed=0
 endif
-" Setting up Vundle - the vim plugin bundler end
+call plug#begin(s:editor_root . '/plugged')
+
+Plug 'tpope/vim-repeat'
+Plug 'szw/vim-ctrlspace'
+Plug 'myusuf3/numbers.vim'
+Plug 'scrooloose/syntastic'
+Plug 'mileszs/ack.vim'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'kien/ctrlp.vim' | Plug 'JazzCore/ctrlp-cmatcher' | Plug 'jasoncodes/ctrlp-modified.vim'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-eunuch'
+Plug 'vim-scripts/taglist.vim'
+Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
+Plug 'thinca/vim-localrc'
+Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
+Plug 'groenewege/vim-less', { 'for': 'less' }
+Plug 'vim-scripts/L9'
+Plug 'sjl/gundo.vim'
+Plug 'vim-scripts/FuzzyFinder'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'bling/vim-airline'
+Plug 'rstacruz/sparkup', { 'for': 'html' }
+Plug 'tomtom/tcomment_vim'
+Plug 'SirVer/ultisnips', { 'do': function('SymlinkSnippets') } | Plug 'honza/vim-snippets'
+Plug 'wellle/targets.vim'
+Plug 'vim-scripts/pydoc.vim'
+Plug 'junegunn/vim-easy-align'
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'janko-m/vim-test'
+Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+if has('nvim')
+    Plug 'kassio/neoterm'
+endif
+call plug#end()
+
+if vimplug_installed == 0
+    echo "Installing plugins, please ignore key map error messages"
+    echo ""
+    :PlugInstall
+endif
+" Setting up plugins - end
 
 set laststatus=2
 
@@ -170,10 +174,6 @@ let g:airline#extensions#default#layout = [
 
 let g:ctrlspace_project_root_markers = [".git", ".hg", ".svn", ".bzr", "_darcs", "CVS", "proj.sln"]
 
-" Set up ultisnips - need to symlink vim scripts to be run when files are opened
-if !isdirectory(s:editor_root . "/ftdetect")
-    silent execute "!ln -s " . s:editor_root . "/bundle/ultisnips/ftdetect " . s:editor_root . "/"
-endif
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
