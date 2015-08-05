@@ -27,6 +27,7 @@ autocmd bufread *.less set ft=less
 autocmd bufread *.md set ft=markdown
 autocmd bufread Cakefile set ft=coffee
 autocmd bufread *.pp set ft=ruby
+autocmd bufread *.conf set ft=dosini
 if has('nvim')
     let s:editor_root=expand("~/.nvim")
 else
