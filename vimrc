@@ -70,7 +70,7 @@ Plug 'myusuf3/numbers.vim'
 Plug 'scrooloose/syntastic'
 Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'kien/ctrlp.vim' | Plug 'JazzCore/ctrlp-cmatcher' | Plug 'jasoncodes/ctrlp-modified.vim'
+Plug 'ctrlpvim/ctrlp.vim' | Plug 'JazzCore/ctrlp-cmatcher' | Plug 'jasoncodes/ctrlp-modified.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-eunuch'
