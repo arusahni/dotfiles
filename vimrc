@@ -80,7 +80,7 @@ Plug 'thinca/vim-localrc'
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'vim-scripts/L9'
-Plug 'sjl/gundo.vim'
+Plug 'simnalamburt/vim-mundo'
 Plug 'vim-scripts/FuzzyFinder'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'bling/vim-airline'
