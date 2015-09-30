@@ -78,6 +78,8 @@ LC_ALL='en_US.UTF-8'
 LANG='en_US.UTF-8'
 LC_CTYPE=C
 
+REPORTTIME=10 # Display the `time` command output for a command if takes longer than this number of seconds
+
 unsetopt ALL_EXPORT
 # # --------------------------------------------------------------------
 # # aliases
