@@ -28,19 +28,27 @@ autocmd bufread *.md set ft=markdown
 autocmd bufread Cakefile set ft=coffee
 autocmd bufread *.pp set ft=ruby
 autocmd bufread *.conf set ft=dosini
-if has('nvim')
-    let s:editor_root=expand("~/.nvim")
-else
-    let s:editor_root=expand("~/.vim")
-endif
+
 if has("unix")
     let s:uname = system("uname")
+    let s:os_type = "linux"
     let g:python_host_prog='/usr/bin/python'
     if s:uname == "Darwin\n"
+        let s:os_type = "mac"
         let g:python_host_prog='/usr/bin/python'
     endif
 endif
-"
+
+if has('nvim')
+    if s:os_type == "linux"
+        let s:editor_root=expand("~/.config/nvim")
+    else
+        let s:editor_root=expand("~/.nvim")
+    endif
+else
+    let s:editor_root=expand("~/.vim")
+endif
+
 " Set up ultisnips - need to symlink vim scripts to be run when files are opened
 function! SymlinkSnippets(info)
     if a:info.status == 'installed' || a:info.force && !isdirectory(s:editor_root . "/ftdetect")
