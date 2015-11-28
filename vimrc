@@ -40,11 +40,7 @@ if has("unix")
 endif
 
 if has('nvim')
-    if s:os_type == "linux"
-        let s:editor_root=expand("~/.config/nvim")
-    else
-        let s:editor_root=expand("~/.nvim")
-    endif
+    let s:editor_root=expand("~/.config/nvim")
 else
     let s:editor_root=expand("~/.vim")
 endif
