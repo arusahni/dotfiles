@@ -232,7 +232,7 @@ nmap <silent> <leader>g :TestVisit<CR>
 if has('nvim')
     let test#strategy = "neoterm"
     let g:neoterm_position = 'vertical'
-    nnoremap <silent> <leader>qt :call neoterm#close_all()<cr>
+    nnoremap <silent> <leader>qt :call neoterm#close()<cr>
 endif
 "
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
