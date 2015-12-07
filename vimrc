@@ -4,10 +4,10 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set mouse=a
-if has('unnamedplus')
-  set clipboard=unnamedplus
+if has('unnamedplus') || has('nvim')
+  set clipboard+=unnamedplus
 else
-  set clipboard=unnamed
+  set clipboard+=unnamed
 endif
 set cursorline
 set showcmd
