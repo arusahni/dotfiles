@@ -241,9 +241,13 @@ fi
 if [[ -e "$SCRIPT_SOURCE/local.sh" ]]; then
     source $SCRIPT_SOURCE/local.sh
 fi
-if (( $+commands[virtualenvwrapper.sh] )); then
+if [[ $+commands[virtualenvwrapper.sh] || -e "/usr/share/virtualenvwrapper/virtualenvwrapper.sh" ]]; then
     export WORKON_HOME=$HOME/.virtualenvs
-    source /usr/local/bin/virtualenvwrapper.sh
+    if [[ -e "/usr/share/virtualenvwrapper/virtualenvwrapper.sh" ]]; then
+        source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+    else
+        source /usr/local/bin/virtualenvwrapper.sh
+    fi
     export PIP_VIRTUALENV_BASE=$WORKON_HOME
     export PIP_RESPECT_VIRTUALENV=true
 fi
