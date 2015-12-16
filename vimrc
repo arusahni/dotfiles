@@ -4,10 +4,10 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set mouse=a
-if has('unnamedplus')
-  set clipboard=unnamedplus
+if has('unnamedplus') || has('nvim')
+  set clipboard+=unnamedplus
 else
-  set clipboard=unnamed
+  set clipboard+=unnamed
 endif
 set cursorline
 set showcmd
@@ -60,6 +60,11 @@ function! SetColorscheme(...)
     endtry
 endfunction
 
+function! CompileCMatcher(...)
+    autocmd VimEnter * echom "Building CMatcher"
+    silent execute "!cd " . s:editor_root . "/plugged/ctrlp-cmatcher/ && ./install.sh"
+endfunction
+
 " Setting up plugins
 if empty(glob(s:editor_root . '/autoload/plug.vim'))
     autocmd VimEnter * echom "Downloading and installing vim-plug..."
@@ -74,7 +79,7 @@ Plug 'myusuf3/numbers.vim'
 Plug 'scrooloose/syntastic'
 Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'ctrlpvim/ctrlp.vim' | Plug 'JazzCore/ctrlp-cmatcher' | Plug 'jasoncodes/ctrlp-modified.vim'
+Plug 'ctrlpvim/ctrlp.vim' | Plug 'JazzCore/ctrlp-cmatcher', { 'do': function('CompileCMatcher')} | Plug 'jasoncodes/ctrlp-modified.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-eunuch'
