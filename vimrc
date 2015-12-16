@@ -92,7 +92,7 @@ Plug 'rstacruz/sparkup', { 'for': 'html' }
 Plug 'tomtom/tcomment_vim'
 Plug 'SirVer/ultisnips', { 'do': function('SymlinkSnippets') } | Plug 'honza/vim-snippets'
 Plug 'wellle/targets.vim'
-Plug 'vim-scripts/pydoc.vim'
+Plug 'fs111/pydoc.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'janko-m/vim-test'
@@ -128,7 +128,7 @@ set listchars=tab:▸\ ,eol:¬
 let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree']
 
 let g:NERDTreeChDirMode=2
-let g:NERDTreeIgnore = ['\.pyc$']
+let g:NERDTreeIgnore = ['\.pyc$', '__pycache__']
 
 let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_start_level=2
