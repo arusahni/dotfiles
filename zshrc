@@ -241,7 +241,7 @@ fi
 if [[ -e "$SCRIPT_SOURCE/local.sh" ]]; then
     source $SCRIPT_SOURCE/local.sh
 fi
-if [[ $+commands[virtualenvwrapper.sh] || -e "/usr/share/virtualenvwrapper/virtualenvwrapper.sh" ]]; then
+if [[ -n $+commands[virtualenvwrapper.sh] || -e "/usr/share/virtualenvwrapper/virtualenvwrapper.sh" ]]; then
     export WORKON_HOME=$HOME/.virtualenvs
     if [[ -e "/usr/share/virtualenvwrapper/virtualenvwrapper.sh" ]]; then
         source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
