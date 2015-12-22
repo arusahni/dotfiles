@@ -76,7 +76,7 @@ call plug#begin(s:editor_root . '/plugged')
 Plug 'tpope/vim-repeat'
 Plug 'szw/vim-ctrlspace'
 Plug 'myusuf3/numbers.vim'
-Plug 'benekastah/neomake'
+Plug 'scrooloose/syntastic'
 Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'ctrlpvim/ctrlp.vim' | Plug 'JazzCore/ctrlp-cmatcher', { 'do': function('CompileCMatcher')} | Plug 'jasoncodes/ctrlp-modified.vim'
@@ -143,16 +143,12 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=238
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=236
 let &colorcolumn="110,".join(range(116,999),",")
 
-let g:neomake_warning_sign = { 'texthl': 'NeomakeWarning' }
-let g:neomake_error_sign = { 'texthl': 'NeomakeError' }
-let g:neomake_python_enabled_makers = ['pylint']
-let g:neomake_javascript_enabled_makers = ['jshint']
+let g:syntastic_check_on_open = 1
 
-" Run Neomake at save and when reading a file
-if has("autocmd")
-  au bufwritepost * Neomake
-  au bufread * Neomake
-endif
+let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
 
 let g:airline_powerline_fonts = 1
 let g:airline_detect_modified = 1
@@ -224,8 +220,9 @@ call SetColorscheme()
 
 hi Search ctermfg=237 ctermbg=13
 hi MatchParen cterm=underline
-hi NeomakeWarning ctermbg=yellow ctermfg=black
-hi NeomakeError ctermbg=red ctermfg=black
+hi SyntasticWarning ctermbg=yellow ctermfg=black
+hi SyntasticError ctermbg=red ctermfg=black
+
 hi CtrlSpaceSelected term=reverse ctermfg=187  ctermbg=23  cterm=bold
 hi CtrlSpaceNormal   term=NONE    ctermfg=244  ctermbg=232 cterm=NONE
 hi CtrlSpaceSearch   ctermfg=220  ctermbg=NONE cterm=bold
