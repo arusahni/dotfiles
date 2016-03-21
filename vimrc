@@ -93,7 +93,8 @@ Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 Plug 'vim-scripts/L9'
 Plug 'simnalamburt/vim-mundo'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'rstacruz/sparkup', { 'for': 'html' }
 Plug 'tomtom/tcomment_vim'
 Plug 'SirVer/ultisnips', { 'do': function('SymlinkSnippets') } | Plug 'honza/vim-snippets'
@@ -154,7 +155,7 @@ let g:syntastic_warning_symbol = '⚠'
 
 let g:airline_powerline_fonts = 1
 let g:airline_detect_modified = 1
-let g:airline_theme="dark"
+let g:airline_theme="tomorrow"
 " Required for CtrlSpace integration
 let g:airline_exclude_preview = 1
 " End CtrlSpace integration
@@ -197,6 +198,7 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsListSnippets="<c-l>"
 let g:UltiSnipsEditSplit="vertical"
 let g:ultisnips_python_style="sphinx"
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "angular_snippets"]
 
 " set viminfo='100,n$HOME/.vim/files/info/viminfo " Change to nvim agnostic path if necessary
 
