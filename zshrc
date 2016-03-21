@@ -217,6 +217,9 @@ fi
 if (( $+commands[ack-grep] )); then
   alias ack='ack-grep'
 fi
+if (( $+commands[ag] )); then
+  alias ag='ag --pager="less -FRSX"'
+fi
 if (( $+commands[xclip] )); then
   alias xclip='nocorrect xclip -sel clip'
 fi
@@ -325,3 +328,5 @@ if [[ $platform == 'linux' ]]; then
     stty -ixon
 fi
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
