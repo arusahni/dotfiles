@@ -79,7 +79,8 @@ Plug 'myusuf3/numbers.vim'
 Plug 'scrooloose/syntastic'
 Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'ctrlpvim/ctrlp.vim' | Plug 'JazzCore/ctrlp-cmatcher', { 'do': function('CompileCMatcher')} | Plug 'jasoncodes/ctrlp-modified.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-eunuch'
@@ -169,6 +170,16 @@ let g:ctrlp_custom_ignore = {
     \ 'link': 'some_bad_symbolic_links',
     \ }
 let g:ctrlp_reuse_window = 'startify'
+
+nnoremap <c-p> :FZF<cr>
+" function! s:fzf_statusline()
+"   " Override statusline as you like
+"   highlight fzf1 ctermfg=161 ctermbg=251
+"   highlight fzf2 ctermfg=23 ctermbg=251
+"   highlight fzf3 ctermfg=237 ctermbg=251
+"   setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
+" endfunction
+" autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
 let g:clang_library_path = '/usr/lib/llvm-3.2/lib/'
 
