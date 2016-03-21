@@ -1,5 +1,6 @@
 #!/bin/zsh
 # This hook is run after every virtualenv is activated.
 PS1="$_OLD_VIRTUAL_PS1"
-_OLD_RPROMPT="$RPROMPT"
-RPROMPT="$PR_RED$(virtualenv_info)$PR_NO_COLOR $RPROMPT"
+_OLD_RPROMPT=${RPROMPT-${RPS1-default}}
+# _OLD_RPROMPT="$RPROMPT"
+RPROMPT="$PR_RED$(virtualenv_info)$PR_NO_COLOR $_OLD_RPROMPT"
