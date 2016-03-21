@@ -89,9 +89,9 @@ Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
 Plug 'thinca/vim-localrc'
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'groenewege/vim-less', { 'for': 'less' }
+Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 Plug 'vim-scripts/L9'
 Plug 'simnalamburt/vim-mundo'
-Plug 'vim-scripts/FuzzyFinder'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'bling/vim-airline'
 Plug 'rstacruz/sparkup', { 'for': 'html' }
@@ -104,6 +104,7 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'janko-m/vim-test'
 Plug 'chase/vim-ansible-yaml'
 Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim/', 'do': function('SetColorscheme') }
+Plug 'ap/vim-css-color'
 if has('nvim')
     Plug 'kassio/neoterm'
 endif
