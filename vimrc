@@ -124,6 +124,9 @@ map <leader>n :bn<cr>
 map <leader>p :bp<cr>
 nmap <silent> <leader>l :set list!<CR>
 map <silent> <leader>/ :let @/ = ""<CR>
+if has('nvim')
+    tnoremap <Esc> <C-\><C-n>
+endif
 
 nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
