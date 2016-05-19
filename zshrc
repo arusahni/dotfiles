@@ -53,7 +53,7 @@ if (( $+commands[dircolors] )); then
     eval $(dircolors ~/.dircolors)
 fi
 
-PATH="/usr/local/bin:/usr/local/sbin/:/bin:/sbin:/usr/bin:/usr/sbin:$PATH"
+PATH="$HOME/bin:/usr/local/bin:/usr/local/sbin/:/bin:/sbin:/usr/bin:/usr/sbin:$PATH"
 TZ="America/New_York"
 HISTFILE=$HOME/.zhistory
 HISTSIZE=1000
