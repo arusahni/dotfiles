@@ -87,7 +87,9 @@ Plug 'tpope/vim-eunuch'
 Plug 'vim-scripts/taglist.vim'
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
 Plug 'thinca/vim-localrc'
-Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'mxw/vim-jsx', { 'for': 'jsx' }
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 Plug 'vim-scripts/L9'
@@ -152,7 +154,7 @@ let &colorcolumn="110,".join(range(116,999),",")
 let g:syntastic_check_on_open = 1
 
 let g:syntastic_python_checkers = ['pylint']
-let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 
