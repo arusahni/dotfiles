@@ -328,5 +328,6 @@ if [[ $platform == 'linux' ]]; then
     stty -ixon
 fi
 
+export FZF_DEFAULT_COMMAND='ack -g ""'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
