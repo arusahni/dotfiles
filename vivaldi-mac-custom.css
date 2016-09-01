@@ -1,0 +1,13 @@
+.home {
+	display: none !important;
+}
+
+/* Move the tab close button to the right */
+.tab .close {
+	order: 1 !important;
+}
+
+/* Keep the favicon */
+.tab:hover.tab:not(.button-off) .favicon {
+	display: block !important;
+}
