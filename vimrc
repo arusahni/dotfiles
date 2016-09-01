@@ -90,6 +90,7 @@ Plug 'thinca/vim-localrc'
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx', { 'for': 'jsx' }
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+Plug 'mtscout6/syntastic-local-eslint.vim'
 Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 Plug 'vim-scripts/L9'
