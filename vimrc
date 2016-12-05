@@ -76,7 +76,6 @@ call plug#begin(s:editor_root . '/plugged')
 Plug 'tpope/vim-repeat'
 Plug 'szw/vim-ctrlspace'
 Plug 'myusuf3/numbers.vim'
-Plug 'scrooloose/syntastic'
 Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -111,6 +110,9 @@ Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim/', 'do': function('SetColorsch
 Plug 'ap/vim-css-color'
 if has('nvim')
     Plug 'kassio/neoterm'
+    Plug 'w0rp/ale'
+else
+    Plug 'scrooloose/syntastic'
 endif
 call plug#end()
 " Setting up plugins - end
@@ -153,11 +155,23 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=236
 let &colorcolumn="110,".join(range(116,999),",")
 
 let g:syntastic_check_on_open = 1
-
 let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
+
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚠'
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_enter = 0
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'python': ['pylint'],
+\}
 
 let g:airline_powerline_fonts = 1
 let g:airline_detect_modified = 1
@@ -165,10 +179,14 @@ let g:airline_theme="tomorrow"
 " Required for CtrlSpace integration
 let g:airline_exclude_preview = 1
 " End CtrlSpace integration
+" ALE (linting) integration
+let g:airline#extensions#ale#error_symbol = 'E:'
+let g:airline#extensions#ale#warning_symbol = 'W:'
+" End ALE integration
 let g:airline#extensions#whitespace#enabled=0
 let g:airline#extensions#default#layout = [
     \ [ 'a', 'b', 'c' ],
-    \ [ 'x', 'z', 'warning' ]
+    \ [ 'x', 'z', 'warning', 'error' ]
     \ ]
 
 let g:ctrlp_working_path_mode = 'ra'
@@ -190,11 +208,6 @@ nnoremap <c-p> :FZF<cr>
 " autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
 let g:clang_library_path = '/usr/lib/llvm-3.2/lib/'
-
-let g:airline#extensions#default#layout = [
-      \ [ 'a', 'b', 'c' ],
-      \ [ 'x', 'z' ]
-      \ ]
 
 let g:ctrlspace_project_root_markers = [".git", ".hg", ".svn", ".bzr", "_darcs", "CVS", "proj.sln"]
 
