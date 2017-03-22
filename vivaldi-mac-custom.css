@@ -5,6 +5,7 @@
 /* Move the tab close button to the right */
 .tab .close {
 	order: 1 !important;
+	margin-right: 5px;
 }
 
 /* Keep the favicon */

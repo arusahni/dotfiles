@@ -198,11 +198,8 @@ zstyle ':completion:*:ssh:*' group-order \
 zstyle '*' single-ignored show
 
 ### ALIASES
-_ORIGINAL_VIM=$(which vim)
-alias oldvim='nocorrect vim '
 alias vim='nocorrect vim '
 if (( $+commands[nvim] )); then
-    alias oldvim='nocorrect $_ORIGINAL_VIM '
     alias vim='nocorrect nvim '
 fi
 alias ssh='nocorrect ssh '
@@ -222,6 +219,11 @@ if (( $+commands[ag] )); then
 fi
 if (( $+commands[xclip] )); then
   alias xclip='nocorrect xclip -sel clip'
+fi
+
+if (( $+commands[yarn] )); then
+  alias npm='nocorrect yarn '
+  alias oldnpm='nocorrect npm '
 fi
 
 ### ENV
@@ -328,6 +330,6 @@ if [[ $platform == 'linux' ]]; then
     stty -ixon
 fi
 
-export FZF_DEFAULT_COMMAND='ack -g ""'
+export FZF_DEFAULT_COMMAND='ag -g ""'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
