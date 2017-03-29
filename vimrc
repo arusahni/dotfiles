@@ -87,7 +87,7 @@ Plug 'vim-scripts/taglist.vim'
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
 Plug 'thinca/vim-localrc'
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'mxw/vim-jsx', { 'for': 'jsx' }
+Plug 'maxmellon/vim-jsx-pretty', { 'for': ['jsx', 'javascript.jsx'] }
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'mtscout6/syntastic-local-eslint.vim'
 Plug 'groenewege/vim-less', { 'for': 'less' }
@@ -168,7 +168,7 @@ let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '⚠'
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
-let g:ale_lint_on_enter = 0
+let g:ale_lint_on_enter = 1
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'python': ['pylint'],
