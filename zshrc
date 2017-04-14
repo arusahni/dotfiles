@@ -324,7 +324,7 @@ git_prompt_string() {
 # Set the right-hand prompt
 _BASE_RPS1="$RPS1"
 RPS1='$(git_prompt_string) $_BASE_RPS1'
-REPORTTIME=10
+
 if [[ $platform == 'linux' ]]; then
     export TERM="xterm-256color"
     stty -ixon
