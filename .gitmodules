@@ -1,6 +1,3 @@
-[submodule "blur-console"]
-	path = blur-console
-	url = https://github.com/flying-sheep/dotfiles.git
 [submodule "awesome-themes-3.5"]
 	path = awesome-themes-3.5
 	url = https://github.com/Morley93/awesome-themes-3.5.git
