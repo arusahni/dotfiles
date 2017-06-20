@@ -46,7 +46,7 @@ fi
 # Autoload zsh modules when they are referenced
 zmodload -a zsh/stat stat
 zmodload -a zsh/zpty zpty
-zmodload -a zsh/zprof zprof
+zmodload zsh/zprof
 zmodload -ap zsh/mapfile mapfile
 
 if (( $+commands[dircolors] )); then
@@ -65,10 +65,11 @@ autoload colors zsh/terminfo
 if [[ "$terminfo[colors]" -ge 8 ]]; then
    colors
 fi
-for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
-   eval PR_$color='%{$terminfo[bold]$fg[${(L)color}]%}'
-   eval PR_LIGHT_$color='%{$fg[${(L)color}]%}'
-   (( count = $count + 1 ))
+for COLOR in RED GREEN YELLOW BLUE MAGENTA CYAN BLACK WHITE; do
+    eval PR_$COLOR='%{$fg_no_bold[${(L)COLOR}]%}'
+    eval PR_BOLD_$COLOR='%{$fg_bold[${(L)COLOR}]%}'
+    eval PR_LIGHT_$COLOR='%{$fg[${(L)COLOR}]%}'
+    export PR_$COLOR PR_BOLD_$COLOR PR_LIGHT_$COLOR
 done
 PR_NO_COLOR="%{$terminfo[sgr0]%}"
 PS1="[$PR_BLUE%n$PR_WHITE@$PR_GREEN%m$PR_NO_COLOR:$PR_RED%2c$PR_NO_COLOR]%(!.#.$) "
@@ -219,11 +220,6 @@ if (( $+commands[ag] )); then
 fi
 if (( $+commands[xclip] )); then
   alias xclip='nocorrect xclip -sel clip'
-fi
-
-if (( $+commands[yarn] )); then
-  alias npm='nocorrect yarn '
-  alias oldnpm='nocorrect npm '
 fi
 
 ### ENV
