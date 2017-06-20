@@ -236,8 +236,8 @@ fi
 function virtualenv_info {
     [ $VIRTUAL_ENV ] && echo '['`basename $VIRTUAL_ENV`'] '
 }
-if [[ $platform == 'linux' &&  -e "$SCRIPT_SOURCE/blur-console/blur_console.sh" ]]; then
-    source $SCRIPT_SOURCE/blur-console/blur_console.sh
+if [[ $platform == 'linux' &&  -e "$SCRIPT_SOURCE/blur_console.sh" ]]; then
+    source $SCRIPT_SOURCE/blur_console.sh
 fi
 if [[ -e "$SCRIPT_SOURCE/local.sh" ]]; then
     source $SCRIPT_SOURCE/local.sh
