@@ -16,7 +16,11 @@ bindkey ' ' magic-space
 # complete on tab, leave expansion to _expand
 bindkey '^I' complete-word
 
+# Default to standard emacs bindings, regardless of editor string
+bindkey -e
+
 if [[ "$platform" == 'osx' ]]; then
+    echo "BINDING OSX"
     bindkey "^[[1;5C" forward-word
     bindkey "^[[1;5D" backward-word
     bindkey "^A" beginning-of-line
@@ -25,8 +29,6 @@ if [[ "$platform" == 'osx' ]]; then
     bindkey "^[[H" beginning-of-line
     bindkey "^[[F" end-of-line
 fi
-# Default to standard emacs bindings, regardless of editor string
-bindkey -e
 
 # Disable ^S suspensio
 stty -ixon
