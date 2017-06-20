@@ -20,7 +20,6 @@ bindkey '^I' complete-word
 bindkey -e
 
 if [[ "$platform" == 'osx' ]]; then
-    echo "BINDING OSX"
     bindkey "^[[1;5C" forward-word
     bindkey "^[[1;5D" backward-word
     bindkey "^A" beginning-of-line
