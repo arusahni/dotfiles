@@ -92,6 +92,7 @@ Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'mtscout6/syntastic-local-eslint.vim'
 Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
+Plug 'wavded/vim-stylus', { 'for': 'stylus' }
 Plug 'vim-scripts/L9'
 Plug 'simnalamburt/vim-mundo'
 Plug 'nathanaelkane/vim-indent-guides'
