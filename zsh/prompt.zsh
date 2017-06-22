@@ -1,5 +1,5 @@
 export PR_NO_COLOR="%{$terminfo[sgr0]%}"
-export PS1="[$PR_BLUE%n$PR_WHITE@$PR_GREEN%m$PR_NO_COLOR:$PR_RED%2c$PR_NO_COLOR]%(!.#.$) "
+export PS1="${PR_BLUE}%n${PR_WHITE}@${PR_GREEN}%m${PR_NO_COLOR}[${PR_RED}%2c${PR_NO_COLOR}]%(!.#.$) "
 export RPS1="$PR_LIGHT_YELLOW(%D{%m-%d %H:%M})$PR_NO_COLOR"
 
 # Git prompt colors and symbols
