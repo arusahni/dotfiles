@@ -1,3 +1,4 @@
-local.sh
+local.zsh
 *.swp
 *.save
+zsh/cache/
