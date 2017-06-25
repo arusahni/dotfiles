@@ -85,6 +85,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-eunuch'
 Plug 'vim-scripts/taglist.vim'
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
+Plug 'vim-python/python-syntax', { 'for': 'python' }
 Plug 'thinca/vim-localrc'
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'maxmellon/vim-jsx-pretty', { 'for': ['jsx', 'javascript.jsx'] }
@@ -146,6 +147,8 @@ let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree']
 
 let g:NERDTreeChDirMode=2
 let g:NERDTreeIgnore = ['\.pyc$', '__pycache__']
+
+let g:python_highlight_all = 1
 
 let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_start_level=2
