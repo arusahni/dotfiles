@@ -90,6 +90,7 @@ Plug 'thinca/vim-localrc'
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'maxmellon/vim-jsx-pretty', { 'for': ['jsx', 'javascript.jsx'] }
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
 Plug 'mtscout6/syntastic-local-eslint.vim'
 Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
@@ -113,6 +114,7 @@ Plug 'ap/vim-css-color'
 if has('nvim')
     Plug 'kassio/neoterm'
     Plug 'w0rp/ale'
+    Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 else
     Plug 'scrooloose/syntastic'
 endif
@@ -176,6 +178,7 @@ let g:ale_lint_on_enter = 1
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'python': ['pylint'],
+\   'typescript': ['tslint', 'tsserver', 'typecheck'],
 \}
 
 let g:airline_powerline_fonts = 1
