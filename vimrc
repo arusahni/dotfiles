@@ -144,6 +144,7 @@ nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
 nnoremap <unique><silent> <C-Space> :CtrlSpace<CR>
 
+set inccommand=split
 set listchars=tab:▸\ ,eol:¬
 
 let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree']
