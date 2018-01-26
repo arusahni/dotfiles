@@ -84,17 +84,18 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-eunuch'
 Plug 'vim-scripts/taglist.vim'
-Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
+Plug 'sheerun/vim-polyglot'
+" Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
 Plug 'vim-python/python-syntax', { 'for': 'python' }
 Plug 'thinca/vim-localrc'
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+" Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'maxmellon/vim-jsx-pretty', { 'for': ['jsx', 'javascript.jsx'] }
-Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+" Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
 Plug 'mtscout6/syntastic-local-eslint.vim'
-Plug 'groenewege/vim-less', { 'for': 'less' }
-Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
-Plug 'wavded/vim-stylus', { 'for': 'stylus' }
+" Plug 'groenewege/vim-less', { 'for': 'less' }
+" Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
+" Plug 'wavded/vim-stylus', { 'for': 'stylus' }
 Plug 'vim-scripts/L9'
 Plug 'simnalamburt/vim-mundo'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -108,7 +109,7 @@ Plug 'fs111/pydoc.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'janko-m/vim-test'
-Plug 'chase/vim-ansible-yaml'
+" Plug 'chase/vim-ansible-yaml'
 Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim/', 'do': function('SetColorscheme') }
 Plug 'ap/vim-css-color'
 if has('nvim')
@@ -146,6 +147,8 @@ nnoremap <unique><silent> <C-Space> :CtrlSpace<CR>
 
 set inccommand=split
 set listchars=tab:▸\ ,eol:¬
+
+let g:polyglot_disabled=['python', 'jsx']
 
 let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree']
 
@@ -197,6 +200,8 @@ let g:airline#extensions#default#layout = [
     \ [ 'a', 'b', 'c' ],
     \ [ 'x', 'z', 'warning', 'error' ]
     \ ]
+
+let g:ackprg = 'rg --vimgrep --no-heading'
 
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = {
