@@ -6,7 +6,7 @@
 setopt APPEND_HISTORY
 
 # Add to the history as commands are executed (i.e., not just at session exit)
-setopt INC_APPEND_HISTORY
+# setopt INC_APPEND_HISTORY
 
 # Reload the history
 setopt SHARE_HISTORY

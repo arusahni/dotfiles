@@ -268,7 +268,9 @@ call SetColorscheme()
 hi Search ctermfg=237 ctermbg=13
 hi MatchParen cterm=underline
 hi SyntasticWarning ctermbg=yellow ctermfg=black
+hi ALEWarning ctermbg=yellow ctermfg=black
 hi SyntasticError ctermbg=red ctermfg=black
+hi ALEError ctermbg=red ctermfg=black
 
 hi CtrlSpaceSelected term=reverse ctermfg=187  ctermbg=23  cterm=bold
 hi CtrlSpaceNormal   term=NONE    ctermfg=244  ctermbg=232 cterm=NONE
