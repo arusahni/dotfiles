@@ -203,7 +203,9 @@ let g:airline#extensions#default#layout = [
     \ [ 'x', 'z', 'warning', 'error' ]
     \ ]
 
-let g:ackprg = 'rg --vimgrep --no-heading'
+if executable('rg')
+    let g:ackprg = 'rg --vimgrep --no-heading'
+endif
 
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = {
