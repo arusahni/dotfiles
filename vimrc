@@ -195,6 +195,8 @@ let g:airline_exclude_preview = 1
 let g:airline#extensions#ale#error_symbol = 'E:'
 let g:airline#extensions#ale#warning_symbol = 'W:'
 " End ALE integration
+let g:airline#extensions#branch#format = 1
+let g:airline#extensions#branch#displayed_head_limit = 10
 let g:airline#extensions#whitespace#enabled=0
 let g:airline#extensions#default#layout = [
     \ [ 'a', 'b', 'c' ],
