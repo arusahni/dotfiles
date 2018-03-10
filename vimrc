@@ -28,6 +28,7 @@ autocmd bufread *.md set ft=markdown
 autocmd bufread Cakefile set ft=coffee
 autocmd bufread *.pp set ft=ruby
 autocmd bufread *.conf set ft=dosini
+autocmd bufread *.tsx set ft=typescript.tsx
 
 if has("unix")
     let s:uname = system("uname")
