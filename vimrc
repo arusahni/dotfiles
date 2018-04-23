@@ -107,6 +107,7 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'janko-m/vim-test'
 Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim/', 'do': function('SetColorscheme') }
 Plug 'ap/vim-css-color'
+Plug 'junegunn/goyo.vim'
 if has('nvim')
     Plug 'kassio/neoterm'
     Plug 'w0rp/ale'
