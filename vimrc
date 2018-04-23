@@ -108,6 +108,7 @@ Plug 'janko-m/vim-test'
 Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim/', 'do': function('SetColorscheme') }
 Plug 'ap/vim-css-color'
 Plug 'junegunn/goyo.vim'
+Plug 'racer-rust/vim-racer'
 if has('nvim')
     Plug 'kassio/neoterm'
     Plug 'w0rp/ale'
@@ -150,6 +151,10 @@ let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree']
 
 let g:NERDTreeChDirMode=2
 let g:NERDTreeIgnore = ['\.pyc$', '__pycache__']
+
+if s:os_type == 'linux'
+    let g:racer_cmd = '/home/aru/.cargo/bin/racer'
+endif
 
 let g:python_highlight_all = 1
 
