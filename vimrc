@@ -134,6 +134,8 @@ map <silent> <leader>/ :let @/ = ""<CR>
 if has('nvim')
     tnoremap <Esc> <C-\><C-n>
 endif
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
@@ -298,6 +300,8 @@ endif
 vmap <Enter> <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+com! FormatJSON %!python -m json.tool
 
 let &titleold=substitute(system("uname"),'\(.*\)\n','%\1%','')
 let &titlestring = expand("%:p")
