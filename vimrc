@@ -292,7 +292,7 @@ nmap <silent> <leader>g :TestVisit<CR>
 
 if has('nvim')
     let test#strategy = "neoterm"
-    let g:neoterm_position = 'vertical'
+    let g:neoterm_default_mod = 'vertical'
     nnoremap <silent> <leader>qt :call neoterm#close()<cr>
 endif
 "
