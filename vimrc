@@ -154,8 +154,9 @@ let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree']
 let g:NERDTreeChDirMode=2
 let g:NERDTreeIgnore = ['\.pyc$', '__pycache__']
 
-if s:os_type == 'linux'
+if s:os_type == 'linux' && executable('/home/aru/.cargo/bin/racer')
     let g:racer_cmd = '/home/aru/.cargo/bin/racer'
+    let g:racer_experimental_completer = 1
 endif
 
 let g:python_highlight_all = 1
