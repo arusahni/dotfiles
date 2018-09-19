@@ -112,6 +112,12 @@ Plug 'racer-rust/vim-racer'
 if has('nvim')
     Plug 'kassio/neoterm'
     Plug 'w0rp/ale'
+    Plug 'autozimu/LanguageClient-neovim', {
+                \ 'branch': 'next',
+                \ 'do': 'bash install.sh',
+                \ }
+
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 else
     Plug 'scrooloose/syntastic'
@@ -159,6 +165,17 @@ if s:os_type == 'linux' && executable('/home/aru/.cargo/bin/racer')
     let g:racer_experimental_completer = 1
 endif
 
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+    \ 'python': ['~/.local/bin/pyls'],
+    \ }
+
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+let g:LanguageClient_hoverPreview = 'Never'
+
 let g:python_highlight_all = 1
 
 let g:indent_guides_enable_on_vim_startup=1
@@ -185,7 +202,7 @@ let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_enter = 1
 let g:ale_linters = {
 \   'javascript': ['eslint'],
-\   'python': ['pylint'],
+\   'python': ['pylint', 'flake8'],
 \   'typescript': ['tslint', 'tsserver', 'typecheck'],
 \}
 
