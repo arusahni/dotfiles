@@ -73,3 +73,6 @@ unsetopt BG_NICE
 
 # Expand/substitute/eval prompts
 setopt PROMPT_SUBST
+
+# Function like Bash/other POSIX shells when exiting functions
+setopt POSIX_TRAPS
