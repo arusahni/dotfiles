@@ -311,7 +311,8 @@ nmap <silent> <leader>g :TestVisit<CR>
 if has('nvim')
     let test#strategy = "neoterm"
     let g:neoterm_default_mod = 'vertical'
-    nnoremap <silent> <leader>qt :Tclose<cr>
+    let g:neoterm_autoscroll = 1
+    nnoremap <silent> <leader>qt :Tclose!<cr>
 endif
 "
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
