@@ -99,7 +99,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'rstacruz/sparkup', { 'for': 'html' }
 Plug 'tomtom/tcomment_vim'
-Plug 'SirVer/ultisnips', { 'do': function('SymlinkSnippets') } | Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips', { 'do': function('SymlinkSnippets') } | Plug 'honza/vim-snippets'
 Plug 'wellle/targets.vim'
 Plug 'fs111/pydoc.vim'
 Plug 'junegunn/vim-easy-align'
