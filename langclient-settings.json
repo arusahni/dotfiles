@@ -1,0 +1,5 @@
+{
+  "pyls": {
+    "configurationSources": ["flake8"]
+  }
+}

@@ -175,6 +175,7 @@ nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 let g:LanguageClient_hoverPreview = 'Never'
+let g:LanguageClient_settingsPath = s:editor_root . '/langclient-settings.json'
 
 let g:python_highlight_all = 1
 
