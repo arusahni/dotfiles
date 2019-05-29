@@ -37,7 +37,8 @@ if has("unix")
     let g:python_host_prog='/usr/bin/python'
     if s:uname == "Darwin\n"
         let s:os_type = "mac"
-        let g:python_host_prog='/usr/bin/python'
+        let g:python_host_prog='/usr/local/bin/python'
+        let g:python3_host_prog='/usr/local/bin/python3'
     endif
 endif
 
@@ -155,6 +156,7 @@ set listchars=tab:▸\ ,eol:¬
 
 let g:polyglot_disabled=['python', 'jsx']
 
+let g:extra_whitespace_ignored_filetypes = ['Mundo']
 let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree']
 
 let g:NERDTreeChDirMode=2
@@ -238,14 +240,6 @@ let g:ctrlp_custom_ignore = {
 let g:ctrlp_reuse_window = 'startify'
 
 nnoremap <c-p> :FZF<cr>
-" function! s:fzf_statusline()
-"   " Override statusline as you like
-"   highlight fzf1 ctermfg=161 ctermbg=251
-"   highlight fzf2 ctermfg=23 ctermbg=251
-"   highlight fzf3 ctermfg=237 ctermbg=251
-"   setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
-" endfunction
-" autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
 let g:clang_library_path = '/usr/lib/llvm-3.2/lib/'
 
