@@ -88,7 +88,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-eunuch'
-Plug 'vim-scripts/taglist.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-python/python-syntax', { 'for': 'python' }
 Plug 'thinca/vim-localrc'
