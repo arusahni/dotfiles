@@ -1,3 +1,7 @@
+# Default to standard emacs bindings, regardless of editor string
+bindkey -e
+
+# Selectively override escape sequences
 bindkey ";5C" forward-word
 bindkey ";5D" backward-word
 bindkey "^[[3~" delete-char
@@ -16,9 +20,6 @@ bindkey ' ' magic-space
 # complete on tab, leave expansion to _expand
 bindkey '^I' complete-word
 
-# Default to standard emacs bindings, regardless of editor string
-bindkey -e
-
 if [[ "$platform" == 'osx' ]]; then
     bindkey "^[[1;5C" forward-word
     bindkey "^[[1;5D" backward-word
@@ -29,5 +30,5 @@ if [[ "$platform" == 'osx' ]]; then
     bindkey "^[[F" end-of-line
 fi
 
-# Disable ^S suspensio
+# Disable ^S suspension
 stty -ixon
