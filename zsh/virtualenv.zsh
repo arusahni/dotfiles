@@ -6,6 +6,8 @@ if [[ -n $+commands[virtualenvwrapper.sh] || -e "/usr/share/virtualenvwrapper/vi
     export WORKON_HOME=$HOME/.virtualenvs
     if [[ -e "/usr/share/virtualenvwrapper/virtualenvwrapper.sh" ]]; then
         source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+    elif [[ -e "/usr/bin/virtualenvwrapper.sh" ]]; then
+        source /usr/bin/virtualenvwrapper.sh
     else
         source /usr/local/bin/virtualenvwrapper.sh
     fi
