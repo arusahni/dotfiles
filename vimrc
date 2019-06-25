@@ -200,19 +200,6 @@ if s:os_type == 'linux' && executable('/home/aru/.cargo/bin/racer')
     let g:racer_experimental_completer = 1
 endif
 
-" let g:LanguageClient_serverCommands = {
-"     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-"     \ 'python': ['pyls'],
-"     \ 'vue': ['vls']
-"     \ }
-
-" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-" nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-" nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-" let g:LanguageClient_hoverPreview = "Never"
-" let g:LanguageClient_settingsPath = s:editor_root . '/langclient-settings.json'
-
 let g:python_highlight_all = 1
 
 let g:indent_guides_enable_on_vim_startup=1
@@ -264,14 +251,6 @@ let g:airline#extensions#default#layout = [
 if executable('rg')
     let g:ackprg = 'rg --vimgrep --no-heading'
 endif
-
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/](\.(git|hg|svn)|site-packages|node_modules)$',
-    \ 'file': '\v\.(exe|so|dll|pyc|debug\.js|simple\.js)$',
-    \ 'link': 'some_bad_symbolic_links',
-    \ }
-let g:ctrlp_reuse_window = 'startify'
 
 nnoremap <c-p> :FZF<cr>
 
