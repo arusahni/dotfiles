@@ -91,9 +91,8 @@ Plug 'tpope/vim-eunuch'
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-python/python-syntax', { 'for': 'python' }
 Plug 'thinca/vim-localrc'
-Plug 'maxmellon/vim-jsx-pretty', { 'for': ['jsx', 'javascript.jsx'] }
-Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
-Plug 'mtscout6/syntastic-local-eslint.vim'
+" Plug 'maxmellon/vim-jsx-pretty', { 'for': ['jsx', 'javascript.jsx'] } " Now in polyglot
+" Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
 Plug 'vim-scripts/L9'
 Plug 'simnalamburt/vim-mundo'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -124,6 +123,7 @@ if has('nvim')
     Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 else
     Plug 'scrooloose/syntastic'
+    Plug 'mtscout6/syntastic-local-eslint.vim'
 endif
 call plug#end()
 " Setting up plugins - end
@@ -187,7 +187,7 @@ nnoremap <unique><silent> <C-Space> :CtrlSpace<CR>
 set inccommand=split
 set listchars=tab:▸\ ,eol:¬
 
-let g:polyglot_disabled=['python', 'jsx']
+let g:polyglot_disabled=['python']
 
 let g:extra_whitespace_ignored_filetypes = ['Mundo']
 let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree']
