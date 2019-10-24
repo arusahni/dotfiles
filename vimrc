@@ -20,7 +20,7 @@ autocmd Filetype html setlocal ts=4 sts=4 sw=4 omnifunc=htmlcomplete#CompleteTag
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType javascript setlocal ts=4 sts=4 sw=4
 autocmd FileType typescript setlocal ts=4 sts=4 sw=4
-autocmd FileType python setlocal ts=4 sts=4 sw=4
+autocmd FileType python setlocal ts=4 sts=4 sw=4 formatprg=black\ -q\ -
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2
 autocmd FileType css setlocal ts=4 noet sw=4 omnifunc=csscomplete#CompleteCSS
 autocmd bufread *.coffee set ft=coffee
