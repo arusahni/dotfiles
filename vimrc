@@ -115,7 +115,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'racer-rust/vim-racer'
 if has('nvim')
     Plug 'kassio/neoterm'
-    Plug 'w0rp/ale'
+    " Plug 'w0rp/ale'
     " Plug 'autozimu/LanguageClient-neovim', {
     "             \ 'branch': 'next',
     "             \ 'do': 'bash install.sh',
