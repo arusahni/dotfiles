@@ -1,0 +1,10 @@
+{
+    "diagnostic.errorSign": "✗",
+    "diagnostic.virtualText": true,
+    "diagnostic.warningSign": "⚠",
+    "python.linting.mypyEnabled": false,
+    "python.linting.pylintEnabled": true,
+    "python.sortImports.path": "isort",
+    "python.sortImports.args": ["-y"],
+    "suggest.autoTrigger": "trigger"
+}
