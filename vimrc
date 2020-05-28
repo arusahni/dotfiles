@@ -106,7 +106,6 @@ Plug 'rstacruz/sparkup', { 'for': 'html' }
 Plug 'tomtom/tcomment_vim'
 " Plug 'SirVer/ultisnips', { 'do': function('SymlinkSnippets') } | Plug 'honza/vim-snippets'
 Plug 'wellle/targets.vim'
-Plug 'fs111/pydoc.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'janko-m/vim-test'
@@ -126,6 +125,7 @@ if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 else
+    Plug 'fs111/pydoc.vim' " Vim-only since this was conflicting with coc's hover tooltip shortcut
     Plug 'scrooloose/syntastic'
     Plug 'mtscout6/syntastic-local-eslint.vim'
 endif
