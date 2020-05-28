@@ -95,8 +95,6 @@ Plug 'tpope/vim-eunuch'
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-python/python-syntax', { 'for': 'python' }
 Plug 'thinca/vim-localrc'
-" Plug 'maxmellon/vim-jsx-pretty', { 'for': ['jsx', 'javascript.jsx'] } " Now in polyglot
-" Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
 Plug 'vim-scripts/L9'
 Plug 'simnalamburt/vim-mundo'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -112,16 +110,9 @@ Plug 'janko-m/vim-test'
 Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim/', 'do': function('SetColorscheme') }
 Plug 'ap/vim-css-color'
 Plug 'junegunn/goyo.vim'
-Plug 'racer-rust/vim-racer'
 if has('nvim')
     Plug 'kassio/neoterm'
-    " Plug 'w0rp/ale'
-    " Plug 'autozimu/LanguageClient-neovim', {
-    "             \ 'branch': 'next',
-    "             \ 'do': 'bash install.sh',
-    "             \ }
     Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': function('InitializeCoc') }
-
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 else
@@ -201,10 +192,10 @@ let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree']
 let g:NERDTreeChDirMode=2
 let g:NERDTreeIgnore = ['\.pyc$', '__pycache__']
 
-if s:os_type == 'linux' && executable('/home/aru/.cargo/bin/racer')
-    let g:racer_cmd = '/home/aru/.cargo/bin/racer'
-    let g:racer_experimental_completer = 1
-endif
+" if s:os_type == 'linux' && executable('/home/aru/.cargo/bin/racer')
+"     let g:racer_cmd = '/home/aru/.cargo/bin/racer'
+"     let g:racer_experimental_completer = 1
+" endif
 
 let g:python_highlight_all = 1
 
@@ -338,7 +329,6 @@ vmap <Enter> <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 com! FormatJSON %!python -m json.tool
-
 let &titleold=substitute(system("uname"),'\(.*\)\n','%\1%','')
 let &titlestring = expand("%:p")
 if &term == "screen"
