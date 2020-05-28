@@ -65,6 +65,10 @@ function! SetColorscheme(...)
     endtry
 endfunction
 
+function! InitializeCoc(...)
+    CocInstall coc-json coc-yaml coc-snippets coc-ultisnips coc-css coc-eslint coc-prettier coc-tsserver coc-vetur coc-python coc-rust-analyzer
+endfunction
+
 function! CompileCMatcher(...)
     autocmd VimEnter * echom "Building CMatcher"
     silent execute "!cd " . s:editor_root . "/plugged/ctrlp-cmatcher/ && ./install.sh"
@@ -117,7 +121,7 @@ if has('nvim')
     "             \ 'branch': 'next',
     "             \ 'do': 'bash install.sh',
     "             \ }
-    Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install() } }
+    Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': function('InitializeCoc') }
 
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'Shougo/vimproc.vim', {'do' : 'make'}
@@ -143,6 +147,7 @@ function! s:show_documentation()
     endif
 endfunction
 
+
 inoremap jj <Esc>
 nnoremap <leader>m :w <BAR> !lessc %:t:r.css<CR><space>
 nnoremap <F5> :buffers<CR>:buffer<Space>
@@ -163,16 +168,17 @@ if has('nvim')
           \ coc#refresh()
     inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
     inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
     " Remap keys for gotos
     nmap <silent> gd <Plug>(coc-definition)
     nmap <silent> gy <Plug>(coc-type-definition)
     nmap <silent> gi <Plug>(coc-implementation)
     nmap <silent> gr <Plug>(coc-references)
+    nmap <silent> [g <Plug>(coc-diagnostic-prev)
+    nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
     " Use K for show documentation in preview window
     nnoremap <silent> K :call <SID>show_documentation()<CR>
-    " autocmd CursorHold * silent call CocActionAsync('highlight')
+    autocmd CursorHold * silent call CocActionAsync('highlight')
 endif
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
