@@ -4,7 +4,36 @@
     "diagnostic.warningSign": "⚠",
     "python.linting.mypyEnabled": false,
     "python.linting.pylintEnabled": true,
+    "python.linting.flake8Enabled": false,
     "python.sortImports.path": "isort",
     "python.sortImports.args": ["-y"],
-    "suggest.autoTrigger": "trigger"
+    "suggest.autoTrigger": "trigger",
+    "coc.preferences.colorSupport": true,
+    "languageserver": {
+        "apexcode": {
+            "command": "docker",
+            "args": ["run", "--rm", "-i", "arusahni/apex-lsp:latest"],
+            "filetypes": [
+                "apex",
+                "apexcode",
+                "cls"
+            ]
+        },
+        "pylance": {
+            "enable": false,
+            "filetypes": ["python"],
+            "command": "node",
+            "args": ["/Users/aru/.vscode/extensions/ms-python.vscode-pylance-2020.7.3/server/server.bundle.js", "--stdio"],
+            "initializationOptions": {},
+            "settings": {
+                "python.analysis.typeCheckingMode": "basic",
+                "python.analysis.diagnosticMode": "openFilesOnly",
+                "python.analysis.stubPath": "./typings",
+                "python.analysis.autoSearchPaths": true,
+                "python.analysis.extraPaths": [],
+                "python.analysis.diagnosticSeverityOverrides": {},
+                "python.analysis.useLibraryCodeForTypes": true
+            }
+        }
+    }
 }
