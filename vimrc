@@ -178,6 +178,12 @@ nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
 nnoremap <unique><silent> <C-Space> :CtrlSpace<CR>
 
+if s:os_type == 'linux'
+    nmap gx <Cmd>call jobstart(["xdg-open", expand("<cfile>")])<CR>
+elseif s:os_type == 'mac'
+    nmap gx <Cmd>call jobstart(["open", expand("<cfile>")])<CR>
+endif
+
 set inccommand=split
 set listchars=tab:▸\ ,eol:¬
 
