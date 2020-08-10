@@ -71,11 +71,6 @@ function! InitializeCoc(...)
     CocInstall coc-json coc-yaml coc-snippets coc-ultisnips coc-css coc-eslint coc-prettier coc-tsserver coc-vetur coc-python coc-rust-analyzer
 endfunction
 
-function! CompileCMatcher(...)
-    autocmd VimEnter * echom "Building CMatcher"
-    silent execute "!cd " . s:editor_root . "/plugged/ctrlp-cmatcher/ && ./install.sh"
-endfunction
-
 " Setting up plugins
 if empty(glob(s:editor_root . '/autoload/plug.vim'))
     autocmd VimEnter * echom "Downloading and installing vim-plug..."
