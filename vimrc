@@ -30,6 +30,8 @@ autocmd bufread Cakefile set ft=coffee
 autocmd bufread *.pp set ft=ruby
 autocmd bufread *.conf set ft=dosini
 autocmd bufread *.tsx set ft=typescript.tsx
+autocmd bufread *.cls set ft=apex syntax=java
+autocmd bufread *.trigger set ft=apex syntax=java
 autocmd FileType vue syntax sync fromstart
 " autocmd BufRead,BufNewFile *.vue setlocal filetype=vue
 
