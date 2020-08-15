@@ -6,5 +6,6 @@
     "python.linting.pylintEnabled": true,
     "python.sortImports.path": "isort",
     "python.sortImports.args": ["-y"],
-    "suggest.autoTrigger": "trigger"
+    "suggest.autoTrigger": "trigger",
+    "elixir.pathToElixirLS": "~/.elixir-ls/release/language_server.sh"
 }

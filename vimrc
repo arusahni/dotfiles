@@ -31,6 +31,7 @@ autocmd bufread *.pp set ft=ruby
 autocmd bufread *.conf set ft=dosini
 autocmd bufread *.tsx set ft=typescript.tsx
 autocmd FileType vue syntax sync fromstart
+autocmd FileType elixir setlocal formatprg=mix\ format\ -
 " autocmd BufRead,BufNewFile *.vue setlocal filetype=vue
 
 if has("unix")
@@ -66,7 +67,7 @@ function! SetColorscheme(...)
 endfunction
 
 function! InitializeCoc(...)
-    CocInstall coc-json coc-yaml coc-snippets coc-ultisnips coc-css coc-eslint coc-prettier coc-tsserver coc-vetur coc-python coc-rust-analyzer
+    CocInstall coc-json coc-yaml coc-snippets coc-ultisnips coc-css coc-eslint coc-prettier coc-tsserver coc-vetur coc-python coc-rust-analyzer coc-elixir
 endfunction
 
 function! CompileCMatcher(...)
