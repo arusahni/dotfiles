@@ -30,6 +30,8 @@ autocmd bufread Cakefile set ft=coffee
 autocmd bufread *.pp set ft=ruby
 autocmd bufread *.conf set ft=dosini
 autocmd bufread *.tsx set ft=typescript.tsx
+autocmd bufread *.cls set ft=apex syntax=java
+autocmd bufread *.trigger set ft=apex syntax=java
 autocmd FileType vue syntax sync fromstart
 autocmd FileType elixir setlocal formatprg=mix\ format\ -
 " autocmd BufRead,BufNewFile *.vue setlocal filetype=vue
@@ -68,11 +70,6 @@ endfunction
 
 function! InitializeCoc(...)
     CocInstall coc-json coc-yaml coc-snippets coc-ultisnips coc-css coc-eslint coc-prettier coc-tsserver coc-vetur coc-python coc-rust-analyzer coc-elixir
-endfunction
-
-function! CompileCMatcher(...)
-    autocmd VimEnter * echom "Building CMatcher"
-    silent execute "!cd " . s:editor_root . "/plugged/ctrlp-cmatcher/ && ./install.sh"
 endfunction
 
 " Setting up plugins
@@ -185,6 +182,12 @@ nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
 nnoremap <unique><silent> <C-Space> :CtrlSpace<CR>
+
+if s:os_type == 'linux'
+    nmap gx <Cmd>call jobstart(["xdg-open", expand("<cfile>")])<CR>
+elseif s:os_type == 'mac'
+    nmap gx <Cmd>call jobstart(["open", expand("<cfile>")])<CR>
+endif
 
 set inccommand=split
 set listchars=tab:▸\ ,eol:¬

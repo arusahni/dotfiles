@@ -14,3 +14,10 @@ if [[ -n $+commands[virtualenvwrapper.sh] || -e "/usr/share/virtualenvwrapper/vi
     export PIP_VIRTUALENV_BASE=$WORKON_HOME
     export PIP_RESPECT_VIRTUALENV=true
 fi
+
+if [[ -n $+commands[virtualenvwrapper.sh] ]]; then
+    if [[ -n $+commands[pyenv] ]]; then
+        export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+        eval "$(pyenv init -)"
+    fi
+fi
