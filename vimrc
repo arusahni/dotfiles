@@ -22,7 +22,8 @@ autocmd FileType javascript setlocal ts=4 sts=4 sw=4
 autocmd FileType typescript setlocal ts=4 sts=4 sw=4
 autocmd FileType python setlocal ts=4 sts=4 sw=4 formatprg=black\ -q\ -
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2
-autocmd FileType css setlocal ts=4 noet sw=4 omnifunc=csscomplete#CompleteCSS
+autocmd FileType css setlocal ts=4 noet sw=4
+autocmd FileType scss setlocal ts=4 noet sw=4 omnifunc=csscomplete#CompleteCSS
 autocmd bufread *.coffee set ft=coffee
 autocmd bufread *.less set ft=less
 autocmd bufread *.md set ft=markdown
@@ -63,16 +64,19 @@ endfunction
 function! SetColorscheme(...)
     try
         colorscheme Tomorrow-Night-Eighties
+        " colorscheme base16-default-dark
     catch /^Vim\%((\a\+)\)\=:E185/
         autocmd VimEnter * echom "Color scheme not found. Maybe it's installing?"
     endtry
 endfunction
 
 function! InitializeCoc(...)
-    CocInstall coc-json coc-yaml coc-snippets coc-ultisnips coc-css coc-eslint coc-prettier coc-tsserver coc-vetur coc-python coc-rust-analyzer coc-elixir
+    CocInstall coc-json coc-yaml coc-snippets coc-ultisnips coc-css coc-eslint coc-prettier coc-tsserver coc-vetur coc-python coc-rust-analyzer coc-elixir coc-stylelint
 endfunction
 
 " Setting up plugins
+let g:polyglot_disabled=['python']
+let base16colorspace=256  " Access colors present in 256 colorspace
 if empty(glob(s:editor_root . '/autoload/plug.vim'))
     autocmd VimEnter * echom "Downloading and installing vim-plug..."
     silent execute "!curl -fLo " . s:editor_root . "/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
@@ -106,6 +110,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'janko-m/vim-test'
 Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim/', 'do': function('SetColorscheme') }
+Plug 'danilo-augusto/vim-afterglow'
 Plug 'ap/vim-css-color'
 Plug 'junegunn/goyo.vim'
 if has('nvim')
@@ -168,7 +173,8 @@ if has('nvim')
     " Formatting selected code.
     xmap <leader>f  <Plug>(coc-format-selected)
     nmap <leader>f  <Plug>(coc-format-selected)
-
+    " Add `:Format` command to format current buffer.
+    command! -nargs=0 Format :call CocAction('format')
     " Use K for show documentation in preview window
     nnoremap <silent> K :call <SID>show_documentation()<CR>
     autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -191,8 +197,6 @@ endif
 
 set inccommand=split
 set listchars=tab:▸\ ,eol:¬
-
-let g:polyglot_disabled=['python']
 
 let g:extra_whitespace_ignored_filetypes = ['Mundo']
 let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree']
