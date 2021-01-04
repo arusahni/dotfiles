@@ -78,8 +78,10 @@ if empty(glob(s:editor_root . '/autoload/plug.vim'))
     silent execute "!curl -fLo " . s:editor_root . "/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
     autocmd VimEnter * PlugInstall
 endif
-call plug#begin(s:editor_root . '/plugged')
 
+let g:polyglot_disabled=['python']
+
+call plug#begin(s:editor_root . '/plugged')
 Plug 'tpope/vim-repeat'
 Plug 'szw/vim-ctrlspace'
 Plug 'myusuf3/numbers.vim'
@@ -191,8 +193,6 @@ endif
 
 set inccommand=split
 set listchars=tab:▸\ ,eol:¬
-
-let g:polyglot_disabled=['python']
 
 let g:extra_whitespace_ignored_filetypes = ['Mundo']
 let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree']
