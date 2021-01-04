@@ -24,6 +24,8 @@ if (( $+commands[git] )); then
   alias git='nocorrect git '
   alias gst='nocorrect git status '
   alias gco='nocorrect git commit '
+  # Auto clone a repo URL
+  alias -s git="git clone"
 fi
 
 if (( $+commands[aptitude] )); then

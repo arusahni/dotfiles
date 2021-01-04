@@ -10,6 +10,9 @@
     "suggest.autoTrigger": "trigger",
     "elixir.pathToElixirLS": "~/.elixir-ls/release/language_server.sh",
     "coc.preferences.colorSupport": true,
+    "diagnostic-languageserver.filetypes": {
+        "sh": "shellcheck"
+    },
     "languageserver": {
         "apexcode": {
             "command": "docker",
