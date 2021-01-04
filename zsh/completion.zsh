@@ -1,3 +1,8 @@
+# git-req
+# zstyle ':completion:*:*:git:*' user-commands req ~/.zsh/git-req-completion.zsh
+#
+fpath=(~/.zfunc $fpath)
+
 # Load the base completions plugin
 autoload -U compinit && compinit
 
