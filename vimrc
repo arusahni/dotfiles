@@ -170,7 +170,7 @@ if has('nvim')
     " Formatting selected code.
     xmap <leader>f  <Plug>(coc-format-selected)
     nmap <leader>f  <Plug>(coc-format-selected)
-
+    command! -nargs=0 Format :call CocAction('format')
     " Use K for show documentation in preview window
     nnoremap <silent> K :call <SID>show_documentation()<CR>
     autocmd CursorHold * silent call CocActionAsync('highlight')
