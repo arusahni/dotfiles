@@ -63,7 +63,11 @@ endfunction
 
 function! SetColorscheme(...)
     try
-        colorscheme Tomorrow-Night-Eighties
+        " colorscheme Tomorrow-Night-Eighties
+        " let g:tokyonight_style = "night"
+        let g:edge_style = 'aura'
+        colorscheme edge
+        " colorscheme tokyonight
         " colorscheme base16-default-dark
     catch /^Vim\%((\a\+)\)\=:E185/
         autocmd VimEnter * echom "Color scheme not found. Maybe it's installing?"
@@ -120,6 +124,9 @@ if has('nvim')
     Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': function('InitializeCoc') }
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+    Plug 'nvim-treesitter/nvim-treesitter'  " We recommend updating the parsers on update
+    Plug 'folke/tokyonight.nvim'
+    Plug 'sainnhe/edge'
 else
     Plug 'fs111/pydoc.vim' " Vim-only since this was conflicting with coc's hover tooltip shortcut
     Plug 'scrooloose/syntastic'
@@ -143,6 +150,17 @@ function! s:show_documentation()
     endif
 endfunction
 
+
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ignore_install = {}, -- List of parsers to ignore installing
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    disable = {},  -- list of language that will be disabled
+  },
+}
+EOF
 
 inoremap jj <Esc>
 nnoremap <leader>m :w <BAR> !lessc %:t:r.css<CR><space>
@@ -244,7 +262,7 @@ let g:ale_linters = {
 
 let g:airline_powerline_fonts = 1
 let g:airline_detect_modified = 1
-let g:airline_theme="tomorrow"
+let g:airline_theme="edge"
 " Required for CtrlSpace integration
 let g:airline_exclude_preview = 1
 " End CtrlSpace integration
