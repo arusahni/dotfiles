@@ -171,7 +171,7 @@ nmap <leader>nq :NERDTreeClose<cr>
 map <leader>n :bn<cr>
 map <leader>p :bp<cr>
 nmap <silent> <leader>l :set list!<CR>
-map <silent> <leader>/ :let @/ = ""<CR>
+nmap <silent> <leader>/ :nohl<CR>
 if has('nvim')
     set shortmess+=c
     tnoremap <Esc> <C-\><C-n>
