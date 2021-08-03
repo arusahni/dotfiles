@@ -15,7 +15,10 @@
     "python.formatting.provider": "black",
     "suggest.autoTrigger": "trigger",
     "elixir.pathToElixirLS": "~/.elixir-ls/release/language_server.sh",
-    "coc.preferences.colorSupport": true,
+    "coc.preferences.colorSupport": false,
+    "highlight.colors.enable": false,
+    "highlight.colorNames.enable": false,
+    "highlight.trace.server": "off",
     "diagnostic-languageserver.filetypes": {
         "sh": "shellcheck"
     },
