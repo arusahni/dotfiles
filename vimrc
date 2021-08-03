@@ -201,12 +201,7 @@ if has('nvim')
     " Use K for show documentation in preview window
     nnoremap <silent> K :call <SID>show_documentation()<CR>
     autocmd CursorHold * silent call CocActionAsync('highlight')
-    if has("patch-8.1.1564")
-      " Recently vim can merge signcolumn and number column into one
-      set signcolumn=number
-    else
-      set signcolumn=auto
-    endif
+    set signcolumn=number
 endif
 nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
