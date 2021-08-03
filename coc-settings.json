@@ -12,6 +12,7 @@
     "python.linting.flake8Enabled": false,
     "python.sortImports.path": "isort",
     "python.sortImports.args": ["-y"],
+    "python.formatting.provider": "black",
     "suggest.autoTrigger": "trigger",
     "elixir.pathToElixirLS": "~/.elixir-ls/release/language_server.sh",
     "coc.preferences.colorSupport": true,
