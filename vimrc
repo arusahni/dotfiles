@@ -36,6 +36,7 @@ autocmd bufread *.trigger set ft=apex syntax=java
 autocmd FileType vue syntax sync fromstart
 autocmd FileType elixir setlocal formatprg=mix\ format\ -
 " autocmd BufRead,BufNewFile *.vue setlocal filetype=vue
+autocmd bufread *.nomad.template set ft=hcl
 
 if has("unix")
     let s:uname = system("uname")
