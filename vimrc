@@ -119,6 +119,7 @@ Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim/', 'do': function('SetColorsch
 Plug 'danilo-augusto/vim-afterglow'
 Plug 'ap/vim-css-color'
 Plug 'junegunn/goyo.vim'
+Plug 'osohq/polar.vim'
 if has('nvim')
     Plug 'kassio/neoterm'
     Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': function('InitializeCoc') }
