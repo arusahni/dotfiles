@@ -65,10 +65,10 @@ function! SetColorscheme(...)
     try
         " colorscheme Tomorrow-Night-Eighties
         " let g:tokyonight_style = "night"
-        let g:edge_style = 'aura'
-        colorscheme edge
+        " let g:edge_style = 'aura'
+        " colorscheme edge
         " colorscheme tokyonight
-        " colorscheme base16-default-dark
+        colorscheme base16-tomorrow-night-eighties
     catch /^Vim\%((\a\+)\)\=:E185/
         autocmd VimEnter * echom "Color scheme not found. Maybe it's installing?"
     endtry
@@ -128,6 +128,7 @@ if has('nvim')
     Plug 'nvim-treesitter/nvim-treesitter'  " We recommend updating the parsers on update
     Plug 'folke/tokyonight.nvim'
     Plug 'sainnhe/edge'
+    Plug 'RRethy/nvim-base16'
 else
     Plug 'fs111/pydoc.vim' " Vim-only since this was conflicting with coc's hover tooltip shortcut
     Plug 'scrooloose/syntastic'
@@ -265,7 +266,7 @@ let g:ale_linters = {
 
 let g:airline_powerline_fonts = 1
 let g:airline_detect_modified = 1
-let g:airline_theme="edge"
+let g:airline_theme="base16"
 " Required for CtrlSpace integration
 let g:airline_exclude_preview = 1
 " End CtrlSpace integration
