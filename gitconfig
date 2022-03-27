@@ -36,3 +36,5 @@
     untracked = cyan
 [pull]
 	ff = only
+[init]
+	defaultBranch = main
