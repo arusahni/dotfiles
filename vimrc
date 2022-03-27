@@ -126,7 +126,7 @@ if has('nvim')
     Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': function('InitializeCoc') }
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-    Plug 'nvim-treesitter/nvim-treesitter', { 'branch': '0.5-compat', 'do': ':TSUpdate' }
+    Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
     Plug 'folke/tokyonight.nvim'
     Plug 'sainnhe/edge'
     Plug 'RRethy/nvim-base16'
