@@ -69,7 +69,9 @@ function! SetColorscheme(...)
         " let g:edge_style = 'aura'
         " colorscheme edge
         " colorscheme tokyonight
-        colorscheme base16-tomorrow-night-eighties
+        " colorscheme base16-tomorrow-night-eighties
+        colorscheme base16-onedark
+        " colorscheme kanagawa
     catch /^Vim\%((\a\+)\)\=:E185/
         autocmd VimEnter * echom "Color scheme not found. Maybe it's installing?"
     endtry
@@ -127,11 +129,13 @@ if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'Shougo/vimproc.vim', {'do' : 'make'}
     Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+    Plug 'rose-pine/neovim',
     Plug 'folke/tokyonight.nvim'
     Plug 'sainnhe/edge'
     Plug 'RRethy/nvim-base16'
     Plug 'JoosepAlviste/nvim-ts-context-commentstring'
     Plug 'numToStr/Comment.nvim'
+    Plug 'rebelot/kanagawa.nvim'
 else
     Plug 'fs111/pydoc.vim' " Vim-only since this was conflicting with coc's hover tooltip shortcut
     Plug 'scrooloose/syntastic'
