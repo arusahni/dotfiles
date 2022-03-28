@@ -110,7 +110,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'rstacruz/sparkup', { 'for': 'html' }
-Plug 'tomtom/tcomment_vim'
+" Plug 'tomtom/tcomment_vim'
 " Plug 'SirVer/ultisnips', { 'do': function('SymlinkSnippets') } | Plug 'honza/vim-snippets'
 Plug 'wellle/targets.vim'
 Plug 'junegunn/vim-easy-align'
@@ -130,6 +130,8 @@ if has('nvim')
     Plug 'folke/tokyonight.nvim'
     Plug 'sainnhe/edge'
     Plug 'RRethy/nvim-base16'
+    Plug 'JoosepAlviste/nvim-ts-context-commentstring'
+    Plug 'numToStr/Comment.nvim'
 else
     Plug 'fs111/pydoc.vim' " Vim-only since this was conflicting with coc's hover tooltip shortcut
     Plug 'scrooloose/syntastic'
@@ -157,12 +159,26 @@ endfunction
 lua << EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  ignore_install = {}, -- List of parsers to ignore installing
+  ignore_install = {"css"}, -- List of parsers to ignore installing
   highlight = {
     enable = true,              -- false will disable the whole extension
-    disable = {},  -- list of language that will be disabled
-  },
+    disable = {},  -- list of languages that will be disabled
+  }
 }
+EOF
+
+lua << EOF
+require('Comment').setup({
+    ---@param ctx Ctx
+    pre_hook = function(ctx)
+        -- Only calculate commentstring for tsx filetypes
+        if vim.bo.filetype == 'vue' then
+            -- Detemine whether to use linewise or blockwise commentstring
+            local type = ctx.ctype == require('Comment.utils').ctype.line and '__default' or '__multiline'
+            return require('ts_context_commentstring.internal').calculate_commentstring({ key = type })
+        end
+    end,
+})
 EOF
 
 inoremap jj <Esc>
@@ -177,6 +193,7 @@ nmap <silent> <leader>l :set list!<CR>
 nmap <silent> <leader>/ :nohl<CR>
 if has('nvim')
     set shortmess+=c
+    set signcolumn=number
     tnoremap <Esc> <C-\><C-n>
     inoremap <silent><expr> <c-space> coc#refresh()
     inoremap <silent><expr> <TAB>
@@ -201,7 +218,8 @@ if has('nvim')
     " Use K for show documentation in preview window
     nnoremap <silent> K :call <SID>show_documentation()<CR>
     autocmd CursorHold * silent call CocActionAsync('highlight')
-    set signcolumn=number
+    map <c-_><c-_> gcc
+    vmap <c-_><c-_> gc
 endif
 nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
