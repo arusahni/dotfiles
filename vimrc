@@ -1,5 +1,5 @@
-set t_Co=256
 syntax on
+set termguicolors
 set tabstop=4
 set shiftwidth=4
 set expandtab
@@ -41,7 +41,7 @@ autocmd bufread *.nomad.template set ft=hcl
 if has("unix")
     let s:uname = system("uname")
     let s:os_type = "linux"
-    let g:python_host_prog='/usr/bin/python'
+    let g:python_host_prog='/bin/python'
     if s:uname == "Darwin\n"
         let s:os_type = "mac"
         let g:python_host_prog='/usr/local/bin/python'
