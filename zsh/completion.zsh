@@ -4,10 +4,12 @@
 fpath=(~/.zfunc $fpath)
 
 # Load the base completions plugin
-autoload -U compinit && compinit
+autoload -Uz compinit && compinit -i
 
 # Style completions nicer
 zmodload -i zsh/complist
+
+fpath=( ~/.zsh/completion "${fpath[@]}" )
 
 # Cache completions
 zstyle ':completion::complete:*' use-cache on
