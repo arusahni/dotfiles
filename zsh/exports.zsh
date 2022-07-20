@@ -1,5 +1,5 @@
 export TERM="xterm-256color"
-export PATH="$HOME/bin:$HOME/.local/npm/bin:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:$PATH"
+export PATH="$HOME/bin:$HOME/.local/npm/bin:$HOME/.local/bin:$PATH:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin"
 export NODE_PATH="$HOME/.local/npm/lib/node_modules:$NODE_PATH"
 export N_PREFIX="$HOME/.local/npm"
 export MANPATH="$HOME/.local/npm/share/man:$MANPATH"
