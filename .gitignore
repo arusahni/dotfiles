@@ -2,3 +2,4 @@ local.zsh
 *.swp
 *.save
 zsh/cache/
+nvim/plugin/packer_compiled.lua
