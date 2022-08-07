@@ -129,17 +129,8 @@ if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'Shougo/vimproc.vim', {'do' : 'make'}
     Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-    Plug 'rose-pine/neovim',
-    Plug 'folke/tokyonight.nvim'
-    Plug 'sainnhe/edge'
-    Plug 'RRethy/nvim-base16'
     Plug 'JoosepAlviste/nvim-ts-context-commentstring'
     Plug 'numToStr/Comment.nvim'
-    Plug 'rebelot/kanagawa.nvim'
-else
-    Plug 'fs111/pydoc.vim' " Vim-only since this was conflicting with coc's hover tooltip shortcut
-    Plug 'scrooloose/syntastic'
-    Plug 'mtscout6/syntastic-local-eslint.vim'
 endif
 call plug#end()
 " Setting up plugins - end
