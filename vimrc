@@ -42,6 +42,7 @@ if has("unix")
     let s:uname = system("uname")
     let s:os_type = "linux"
     let g:python_host_prog='/bin/python'
+    let g:python3_host_prog='/bin/python3'
     if s:uname == "Darwin\n"
         let s:os_type = "mac"
         let g:python_host_prog='/usr/local/bin/python'
