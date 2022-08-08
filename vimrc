@@ -113,7 +113,6 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'rstacruz/sparkup', { 'for': 'html' }
-" Plug 'tomtom/tcomment_vim'
 " Plug 'SirVer/ultisnips', { 'do': function('SymlinkSnippets') } | Plug 'honza/vim-snippets'
 Plug 'wellle/targets.vim'
 Plug 'junegunn/vim-easy-align'
@@ -124,6 +123,7 @@ Plug 'danilo-augusto/vim-afterglow'
 Plug 'ap/vim-css-color'
 Plug 'junegunn/goyo.vim'
 Plug 'osohq/polar.vim'
+Plug 'RRethy/nvim-base16'
 if has('nvim')
     Plug 'kassio/neoterm'
     Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': function('InitializeCoc') }
