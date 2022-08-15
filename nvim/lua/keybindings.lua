@@ -37,7 +37,7 @@ inoremap <silent><expr> <TAB>
       \ coc#refresh()
 ]])
 map("i", "<S-TAB>", 'coc#pum#visible() ? "coc#pum#prev(1)" : "<C-h>"', { expr = true })
-map("i", "<CR>", 'coc#pum#visible() ? coc#pum#confirm() : "<C-g>u<CR><C-r>=coc#on_enter()"', { expr = true })
+map("i", "<CR>", 'coc#pum#visible() ? coc#pum#confirm() : "<C-g>u<CR><C-r>=coc#on_enter()<CR>"', { expr = true })
 map("n", "gd", "<Plug>(coc-definition)", { silent = true})
 map("n", "gy", "<Plug>(coc-type-definition)", { silent = true})
 map("n", "gr", "<Plug>(coc-references)", { silent = true})
