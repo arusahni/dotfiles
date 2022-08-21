@@ -60,11 +60,10 @@ return require("packer").startup {
     }
 
     use {
-      'vim-airline/vim-airline-themes',
-      requires = { 'vim-airline/vim-airline' },
-      config = [[ require('plugins/airline') ]]
+      'nvim-lualine/lualine.nvim',
+      requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+      config = [[ require('plugins/lualine') ]]
     }
-
 
     use 'wellle/targets.vim'
 
