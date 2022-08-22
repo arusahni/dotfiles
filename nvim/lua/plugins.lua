@@ -85,15 +85,15 @@ return require("packer").startup {
       run = ':CocInstall coc-json coc-yaml coc-snippets coc-ultisnips coc-css coc-eslint coc-prettier coc-tsserver coc-vetur coc-pyright coc-rust-analyzer coc-elixir coc-diagnostic coc-stylelint coc-flutter'
     }
 
-    use {
-      'Shougo/deoplete.nvim',
-      run = ':UpdateRemotePlugins'
-    }
+    -- use {
+    --   'Shougo/deoplete.nvim',
+    --   run = ':UpdateRemotePlugins'
+    -- }
 
-    use {
-      'Shougo/vimproc.vim',
-      run = 'make'
-    }
+    -- use {
+    --   'Shougo/vimproc.vim',
+    --   run = 'make'
+    -- }
 
     use 'JoosepAlviste/nvim-ts-context-commentstring'
 
