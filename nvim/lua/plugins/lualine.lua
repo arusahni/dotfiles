@@ -10,12 +10,19 @@ local function progress()
   local rowinfo = ' :' .. string.format(linefmtstring, cur) .. '/' .. total
   local colinfo = ' ℅:' .. string.format('%-3s', col)
   local pct = string.format('%3s', math.floor(cur / total * 100))
-  return pct .. '%%' .. rowinfo .. colinfo
+  -- return pct .. '%%' .. rowinfo .. colinfo
+  return rowinfo .. colinfo
 end
 
 require("lualine").setup {
     sections = {
         lualine_b = { 'branch', 'diff' },
+        lualine_c = {
+            {
+                'filename',
+                path = 1,
+            }
+        },
         lualine_y = { progress },
         lualine_z = {
             {
