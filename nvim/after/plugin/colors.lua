@@ -13,6 +13,7 @@ hi ALEError ctermbg=red ctermfg=black
 hi CocUnderline term=undercurl
 hi CocErrorHighlight ctermfg=red term=undercurl
 hi CocWarningHighlight ctermfg=yellow term=undercurl
+hi CocInlayHint guibg=NONE guifg=#6F7378 ctermbg=NONE ctermfg=DarkGray
 
 hi CtrlSpaceSelected term=reverse ctermfg=187  ctermbg=23  cterm=bold
 hi CtrlSpaceNormal   term=NONE    ctermfg=244  ctermbg=232 cterm=NONE
