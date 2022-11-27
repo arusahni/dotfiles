@@ -1,5 +1,3 @@
-local hi = vim.highlight.create
-
 vim.cmd([[
 let base16colorspace=256
 colorscheme base16-onedark
