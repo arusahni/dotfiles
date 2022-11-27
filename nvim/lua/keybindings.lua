@@ -1,7 +1,7 @@
 U = require('utils')
 
 function map(mode, lhs, rhs, opts)
-    local options = { noremap = true }
+    local options = { }
     if opts then
         options = vim.tbl_extend("force", options, opts)
     end
@@ -46,8 +46,8 @@ map("n", "]g", "<Plug>(coc-diagnostic-next)", { silent = true})
 map("x", "<leader>f", "<Plug>(coc-format-selected)")
 map("n", "<leader>f", "<Plug>(coc-format-selected)")
 map("n", "K", show_documentation, { silent = true })
-map("", "<C-_><C-_>", "gcc", { noremap = false, remap = true })
-map("v", "<C-_><C-_>", "gc", { noremap = false, remap = true })
+map("", "<C-_><C-_>", "gcc", { remap = true })
+map("v", "<C-_><C-_>", "gc", { remap = true })
 map("n", "<leader>t", ":TestNearest<CR>", { silent = true })
 map("n", "<leader>T", ":TestFile<CR>", { silent = true })
 map("n", "<leader>a", ":TestSuite<CR>", { silent = true })
@@ -62,6 +62,6 @@ end
 map("n", "<leader>qt", ":Tclose!<CR>", { silent = true })
 
 --  Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
-map("v", "<Enter>", "<Plug>(EasyAlign)", { noremap = false, remap = true })
+map("v", "<Enter>", "<Plug>(EasyAlign)", { remap = true })
 -- Start interactive EasyAlign for a motion/text object (e.g. gaip)
-map("n", "ga", "<Plug>(EasyAlign)", { noremap = false, remap = true })
+map("n", "ga", "<Plug>(EasyAlign)", { remap = true })
