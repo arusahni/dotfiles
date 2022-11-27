@@ -5,7 +5,11 @@ if fn.empty(fn.glob(install_path)) > 0 then
     fn.system({"git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path})
 end
 
-vim.cmd [[packadd packer.nvim]]
+
+vim.api.nvim_cmd({
+    cmd = "packadd",
+    args = {"packer.nvim"},
+}, {})
 
 return require("packer").startup {
   function(use)
