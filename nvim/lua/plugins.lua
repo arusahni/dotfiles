@@ -113,6 +113,8 @@ return require("packer").startup {
       config = [[ require('plugins/nvim-colorizer') ]]
     }
 
+    use 'gpanders/editorconfig.nvim'
+
     if packer_bootstrap then
       require("packer").sync()
     end
