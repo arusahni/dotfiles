@@ -7,6 +7,8 @@
     "diagnostic.enableHighlightLineNumber": true,
     "diagnostic.virtualText": true,
     "diagnostic.virtualTextLines": 3,
+    "flutter.lsp.initialization.onlyAnalyzeProjectsWithOpenFiles": false,
+    "flutter.sdk.flutter-lookup": "asdf which flutter",
     "python.linting.mypyEnabled": false,
     "python.linting.pylintEnabled": true,
     "python.linting.flake8Enabled": false,
@@ -17,6 +19,8 @@
     "elixir.pathToElixirLS": "~/.elixir-ls/release/language_server.sh",
     "eslint.validate": ["vue", "ts", "js", "tsx"],
     "rust-analyzer.diagnostics.disabled": ["unresolved-proc-macro"],
+    "rust-analyzer.checkOnSave.command": "clippy",
+    "svelte.enable-ts-plugin": true,
     "diagnostic-languageserver.filetypes": {
         "sh": "shellcheck"
     },
