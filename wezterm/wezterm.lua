@@ -12,6 +12,7 @@ return {
     },
     cursor_blink_rate = 1000,
     enable_scroll_bar = true,
+    harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' },
     tab_bar_at_bottom = true,
     use_fancy_tab_bar = false,
   }
