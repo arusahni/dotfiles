@@ -8,7 +8,7 @@ function precmd {
 }
 
 function set_running_app {
-  printf "\e]1; $PWD:t:$(history $HISTCMD | cut -b7- ) \a"
+  printf "\e]1; $PWD:t:$(history $HISTCMD | cut -b7- | tr '%' '%%' ) \a" 2> /dev/null
 }
 
 function preexec {
