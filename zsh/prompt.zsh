@@ -1,6 +1,15 @@
+# Add a newline between prompts
+_precmd_newline_between_prompts() {
+  $funcstack[1]() {
+    echo
+  }
+}
+precmd_functions+=(_precmd_newline_between_prompts)
+
 export PR_NO_COLOR="%{$terminfo[sgr0]%}"
-export PS1="${PR_BLUE}%n${PR_WHITE}@${PR_GREEN}%m${PR_NO_COLOR}[${PR_RED}%2c${PR_NO_COLOR}]%(!.#.$) "
-export RPS1="$PR_LIGHT_YELLOW(%D{%m-%d %H:%M})$PR_NO_COLOR"
+_headerline="${PR_BLUE}%n${PR_WHITE}@${PR_GREEN}%m${PR_NO_COLOR}[${PR_RED}%2c${PR_NO_COLOR}]"
+_inputline="%(?..${PR_RED})%(!.#.$) "
+_base_right_prompt="$PR_LIGHT_YELLOW(%D{%m-%d %H:%M})$PR_NO_COLOR"
 
 # Git prompt colors and symbols
 GIT_PROMPT_SYMBOL="%{$fg[blue]%}±"
@@ -62,6 +71,7 @@ git_prompt_string() {
     [ -n "$git_where" ] && echo "$GIT_PROMPT_SYMBOL$(parse_git_state)$GIT_PROMPT_PREFIX%{$fg[yellow]%}${git_where#(refs/heads/|tags/)}$GIT_PROMPT_SUFFIX"
 }
 
+# Set the left-hand prompt
+export PS1=${_headerline}$'\n'${_inputline}
 # Set the right-hand prompt
-export _BASE_RPS1="$RPS1"
-export RPS1='$(git_prompt_string) $_BASE_RPS1'
+export RPS1='%{$(echotc UP 1)%}$(git_prompt_string) $_base_right_prompt%{$(echotc DO 1)%}'
