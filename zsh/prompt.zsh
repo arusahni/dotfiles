@@ -7,9 +7,9 @@ _precmd_newline_between_prompts() {
 precmd_functions+=(_precmd_newline_between_prompts)
 
 export PR_NO_COLOR="%{$terminfo[sgr0]%}"
-_headerline="${PR_BLUE}%n${PR_WHITE}@${PR_GREEN}%m${PR_NO_COLOR}[${PR_RED}%2c${PR_NO_COLOR}]"
-_inputline="%(?..${PR_RED})%(!.#.$) "
-_base_right_prompt="$PR_LIGHT_YELLOW(%D{%m-%d %H:%M})$PR_NO_COLOR"
+_headerline="${FG[006]}%n${PR_WHITE}@${PR_GREEN}%m${PR_NO_COLOR}[${PR_RED}%2c${PR_NO_COLOR}]"
+_inputline="%(?..${FG[009]})%(!.#.$) "
+_base_right_prompt="${FG[240]}%D{%m-%d %H:%M}$PR_NO_COLOR"
 
 # Git prompt colors and symbols
 GIT_PROMPT_SYMBOL="%{$fg[blue]%}±"

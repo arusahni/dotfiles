@@ -1,4 +1,5 @@
 autoload colors; colors
+source ~/.zsh/spectrum.zsh
 
 for COLOR in RED GREEN YELLOW BLUE MAGENTA CYAN BLACK WHITE; do
     eval PR_$COLOR='%{$fg_no_bold[${(L)COLOR}]%}'
