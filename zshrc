@@ -1,3 +1,4 @@
+# zmodload zsh/zprof
 source ~/.zsh/colors.zsh
 source ~/.zsh/setopt.zsh
 source ~/.zsh/exports.zsh
@@ -14,3 +15,4 @@ source ~/.zsh/blur.zsh
 if [[ -e "$HOME/.zsh/local.zsh" ]]; then
     source ~/.zsh/local.zsh
 fi
+# zprof
