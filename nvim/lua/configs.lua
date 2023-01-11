@@ -46,7 +46,7 @@ set.listchars = {
 }
 
 set.titleold = [[ ${substitute(system("uname"),'\(.*\)\n','%\1%','')} ]]
-set.titlestring = [[ %{expand("%:p")} ]]
+set.titlestring = [[ %{expand("%:p:~:.:h")} ]]
 set.title = true
 
 filetype_autocmd("html", "setlocal", "ts=4 sts=4 sw=4 omnifunc=htmlcomplete#CompleteTags")
