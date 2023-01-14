@@ -1,5 +1,4 @@
 function precmd {
-  # vcs_info
   # Put the string "hostname::/full/directory/path" in the title bar:
   echo -ne "\e]2;$PWD\a"
 
