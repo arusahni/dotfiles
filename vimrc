@@ -1,3 +1,4 @@
+" This is no longer used for Neovim. Instead, use ./nvim/init.lua
 syntax on
 set termguicolors
 set tabstop=4
