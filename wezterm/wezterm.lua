@@ -66,5 +66,8 @@ return merge({
     },
     scrollback_lines = 99999,
     tab_bar_at_bottom = true,
+    unix_domains = {
+        { name = "dropdown" },
+    },
     use_fancy_tab_bar = false,
   }, overrides)
