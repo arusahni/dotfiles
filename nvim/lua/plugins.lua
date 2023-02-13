@@ -26,7 +26,7 @@ return require("packer").startup {
 
     use 'tpope/vim-repeat'
 
-    use 'szw/vim-ctrlspace'
+    -- use 'szw/vim-ctrlspace'
 
     use {
       'nkakouros-original/numbers.nvim',
@@ -41,11 +41,24 @@ return require("packer").startup {
       config = [[ require('plugins/nvim-tree') ]]
     }
 
+    -- use {
+    --   'junegunn/fzf.vim',
+    --   requires = {
+    --     { 'junegunn/fzf', run = ":call fzf#install()" }
+    --   }
+    -- }
+
     use {
-      'junegunn/fzf.vim',
+      'nvim-telescope/telescope.nvim',
+      tag = '0.1.1',
       requires = {
-        { 'junegunn/fzf', run = ":call fzf#install()" }
-      }
+        {'nvim-lua/plenary.nvim' },
+        {
+          'nvim-telescope/telescope-fzf-native.nvim',
+          run = 'make'
+        }
+      },
+      config = [[ require('plugins/telescope') ]]
     }
 
     use 'tpope/vim-surround'

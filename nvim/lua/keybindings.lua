@@ -1,4 +1,5 @@
 U = require('utils')
+local telescope = require('telescope.builtin')
 
 function map(mode, lhs, rhs, opts)
     local options = { }
@@ -24,7 +25,7 @@ end
 map("i", "jj", "<Esc>")
 map("n", "<leader>nt", ":NvimTreeToggle<CR>")
 map("n", "<leader>nq", ":NvimTreeClose<CR>")
-map("n", "<C-p>", ":FZF<cr>")
+map("n", "<C-p>", telescope.find_files)
 map("", "<leader>n", ":bn<CR>")
 map("", "<leader>p", ":bp<CR>")
 map("n", "<leader>/", ":nohl<CR>", { silent = true })
@@ -54,7 +55,7 @@ map("n", "<leader>T", ":TestFile<CR>", { silent = true })
 map("n", "<leader>a", ":TestSuite<CR>", { silent = true })
 map("n", "<leader>l", ":TestLast<CR>", { silent = true })
 map("n", "<leader>g", ":TestVisit<CR>", { silent = true })
-map("n", "<C-Space>", ":CtrlSpace<CR>", { silent = true, unique = true })
+map("n", "<C-Space>", telescope.buffers)
 if U.is_linux() then
     map("n", "gx", "<Cmd>call jobstart(['xdg-open', expand('<cfile>')])<CR>")
 elseif U.is_mac() then

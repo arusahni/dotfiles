@@ -3,6 +3,7 @@ require "numbers".setup {
     "tagbar",
     "gundo",
     "minibufexpl",
-    "nerdtree"
+    "nerdtree",
+    "TelescopePrompt",
   }
 }
