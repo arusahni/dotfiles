@@ -16,7 +16,7 @@ zstyle ':vcs_info:git*+set-message:*' hooks set-git-metadata
 
 export PR_NO_COLOR="%{$terminfo[sgr0]%}"
 _headerline="${FG[006]}%n${PR_WHITE}@${PR_GREEN}%m${PR_NO_COLOR}[${PR_RED}%2c${PR_NO_COLOR}]"
-_inputline="%(?..${FG[009]})%(!.#.$) "
+_inputline="%(?..${FG[009]})%(!.#.$)${PR_NO_COLOR} "
 _base_right_prompt="${FG[240]}%D{%m-%d %H:%M}$PR_NO_COLOR"
 
 # Git prompt colors and symbols
