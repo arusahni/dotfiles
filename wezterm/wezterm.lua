@@ -140,6 +140,7 @@ return merge({
     },
     cursor_blink_rate = 1000,
     enable_scroll_bar = true,
+    front_end = "WebGpu",
     hide_tab_bar_if_only_one_tab = true,
     mouse_bindings = {
         -- Disable the default click behavior
