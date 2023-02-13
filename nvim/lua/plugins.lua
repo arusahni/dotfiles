@@ -84,7 +84,10 @@ return require("packer").startup {
 
     use 'wellle/targets.vim'
 
-    use 'bronson/vim-trailing-whitespace'
+    use {
+      'bronson/vim-trailing-whitespace',
+      config = [[ require('plugins/trailing-whitespace') ]]
+    }
 
     use {
       'kassio/neoterm',
