@@ -1,4 +1,4 @@
 require('configs')
-require('plugins')
+require('lazy-config')
 require('keybindings')
 require('functions')

@@ -1,6 +1,5 @@
 vim.cmd([[
 let base16colorspace=256
-colorscheme base16-onedark
 
 hi Search ctermfg=237 ctermbg=13
 hi MatchParen cterm=underline

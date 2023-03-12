@@ -1,4 +1,8 @@
-require "indent_blankline".setup {
-    show_current_context = true,
-    show_current_context_start = false,
+return {
+    'lukas-reineke/indent-blankline.nvim',
+    event = { "BufReadPost", "BufNewFile" },
+    opts = {
+        show_current_context = true,
+        show_current_context_start = false,
+    }
 }
