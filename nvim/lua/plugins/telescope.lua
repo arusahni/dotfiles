@@ -22,8 +22,8 @@ return {
                 },
                 mappings = {
                     i = {
-                            ["<C-j>"] = actions.move_selection_next,
-                            ["<C-k>"] = actions.move_selection_previous,
+                        ["<C-j>"] = actions.move_selection_next,
+                        ["<C-k>"] = actions.move_selection_previous,
                     }
                 },
                 sorting_strategy = 'descending',
@@ -39,6 +39,17 @@ return {
             pickers = {
                 find_files = {
                     -- prompt_prefix = "🔍"
+                },
+                buffers = {
+                    show_all_buffers = true,
+                    mappings = {
+                        i = {
+                            ["<C-d>"] = actions.delete_buffer,
+                        },
+                        n = {
+                            ["d"] = actions.delete_buffer,
+                        },
+                    }
                 }
             },
         }
