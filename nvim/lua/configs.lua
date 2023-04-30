@@ -14,9 +14,6 @@ function buffer_autocmd(pattern, cmd, params)
     autocmd("BufRead", { pattern = pattern, command = cmd .. ' ' .. params })
 end
 
-function hold_autocmd(pattern, cmd)
-    autocmd("CursorHold", { pattern = pattern, command = cmd })
-end
 
 vim.g.mapleader = ","
 set.termguicolors = true
@@ -48,6 +45,7 @@ set.listchars = {
 set.titleold = [[ ${substitute(system("uname"),'\(.*\)\n','%\1%','')} ]]
 set.titlestring = [[ %{expand("%:p:~:.:h")} ]]
 set.title = true
+set.updatetime = 1000
 
 filetype_autocmd("html", "setlocal", "ts=4 sts=4 sw=4 omnifunc=htmlcomplete#CompleteTags")
 filetype_autocmd("xml", "set", "omnifunc=xmlcomplete#CompleteTags")
@@ -69,7 +67,6 @@ buffer_autocmd("*.tsx", "set", "ft=typescript.tsx")
 buffer_autocmd("*.cls", "set", "ft=apex syntax=java")
 buffer_autocmd("*.trigger", "set", "ft=apex syntax=java")
 buffer_autocmd("*.nomad.template", "set", "ft=hcl")
-hold_autocmd("*", "silent call CocActionAsync('highlight')")
 
 if U.is_linux() then
     vim.g.python3_host_prog = "/bin/python"

@@ -40,13 +40,13 @@ return {
         event = { "BufReadPost", "BufNewFile" }
     },
 
-    {
-        "neoclide/coc.nvim",
-        event = "VeryLazy",
-        branch = 'release',
-        build =
-        ':CocInstall coc-json coc-yaml coc-snippets coc-ultisnips coc-css coc-eslint coc-prettier coc-tsserver coc-vetur coc-pyright coc-rust-analyzer coc-elixir coc-diagnostic coc-stylelint coc-flutter'
-    },
+    -- {
+    --     "neoclide/coc.nvim",
+    --     event = "VeryLazy",
+    --     branch = 'release',
+    --     build =
+    --     ':CocInstall coc-json coc-yaml coc-snippets coc-ultisnips coc-css coc-eslint coc-prettier coc-tsserver coc-vetur coc-pyright coc-rust-analyzer coc-elixir coc-diagnostic coc-stylelint coc-flutter'
+    -- },
 
     {
         "JoosepAlviste/nvim-ts-context-commentstring",

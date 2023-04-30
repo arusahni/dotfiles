@@ -1,3 +1,3 @@
 require("functions/format-json")
-require("functions/coc")
+require("functions/lsp")
 require("functions/buffers")
