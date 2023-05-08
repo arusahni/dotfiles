@@ -25,14 +25,10 @@ return {
         { "b0o/schemastore.nvim" },
     },
     config = function(_, _)
-        local ih = require("inlay-hints")
-        ih.setup()
-        local lsp = require('lsp-zero').preset({
-            manage_nvim_cmp = {
-                set_sources = 'recommended',
-            },
-        })
-
+        local lspzero = require("plugins.lspconfig.lsp-zero").setup()
+        local lsp = lspzero["lsp"]
+        local cmp_action = lspzero["cmp_action"]
+        local inlay = require("plugins.lspconfig.inlay").setup()
         lsp.on_attach(function(client, bufnr)
             lsp.default_keymaps({
                 buffer = bufnr,
@@ -58,128 +54,12 @@ return {
             hint = "💡",
             info = "ℹ️",
         })
-        lsp.skip_server_setup({ "rust_analyzer" })
-        local lspconfig = require("lspconfig")
-        -- (Optional) Configure lua language server for neovim
-        lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
-        lspconfig.tsserver.setup({
-            on_attach = function(c, bufnr)
-                ih.on_attach(c, bufnr)
-            end,
-            settings = {
-                javascript = {
-                    inlayHints = {
-                        includeInlayEnumMemberValueHints = true,
-                        includeInlayFunctionLikeReturnTypeHints = true,
-                        includeInlayFunctionParameterTypeHints = true,
-                        includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
-                        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-                        includeInlayPropertyDeclarationTypeHints = true,
-                        includeInlayVariableTypeHints = true,
-                    },
-                },
-                typescript = {
-                    inlayHints = {
-                        includeInlayEnumMemberValueHints = true,
-                        includeInlayFunctionLikeReturnTypeHints = true,
-                        includeInlayFunctionParameterTypeHints = true,
-                        includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
-                        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-                        includeInlayPropertyDeclarationTypeHints = true,
-                        includeInlayVariableTypeHints = true,
-                    },
-                },
-            }
-        })
-        require("fidget").setup({
-            text = {
-                spinner = "bouncing_ball",
-            },
-            window = {
-                border = "rounded"
-            },
-        })
+        require("plugins.lspconfig.fidget")
+        require("plugins.lspconfig.lua").setup({ lsp = lsp })
+        require("plugins.lspconfig.typescript").setup({ inlay = inlay })
+        require("plugins.lspconfig.rust").setup({ inlay = inlay, lsp = lsp })
+        require("plugins.lspconfig.json").setup()
         lsp.setup()
-        local rust_tools = require('rust-tools')
-        rust_tools.setup({
-            tools = {
-                inlay_hints = {
-                    parameter_hints_prefix = "",
-                    other_hints_prefix = "󰞔 ",
-                },
-            },
-        })
-        local cmp = require("cmp")
-        local cmp_action = require("lsp-zero").cmp_action()
-        local lspkind = require("lspkind")
-        local cmp_select_opts = {behavior = cmp.SelectBehavior.Select}
-        cmp.setup({
-            mapping = {
-                -- `Enter` key to confirm completion
-                ['<CR>'] = cmp.mapping.confirm({ select = false }),
-                -- Ctrl+Space to trigger completion menu
-                ['<C-Space>'] = cmp.mapping.complete(),
-                -- Navigate between snippet placeholder
-                ['<C-f>'] = cmp_action.luasnip_jump_forward(),
-                ['<C-b>'] = cmp_action.luasnip_jump_backward(),
-                ['<Tab>'] = cmp.mapping(function()
-                    if cmp.visible() then
-                        cmp.select_next_item(cmp_select_opts)
-                    else
-                        cmp.complete()
-                    end
-                end),
-                ['<S-Tab>'] = cmp.mapping(function()
-                    if cmp.visible() then
-                        cmp.select_prev_item(cmp_select_opts)
-                    else
-                        cmp.complete()
-                    end
-                end)
-            },
-            window = {
-                documentation = cmp.config.window.bordered(),
-            },
-            formatting = {
-                fields = { "menu", "abbr", "kind" },
-                format = lspkind.cmp_format({
-                    mode = "symbol",       -- show only symbol annotations
-                    maxwidth = 50,         -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-                    ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
-                    menu = ({
-                        buffer = "",
-                        nvim_lsp = "λ",
-                        luasnip = "⋗",
-                        nvim_lua = "󰢱",
-                        path = "🖫"
-                    }),
-                })
-            }
-        })
-        local function extend(tab1, tab2)
-          for _, value in ipairs(tab2 or {}) do
-            table.insert(tab1, value)
-          end
-          return tab1
-        end
-        local nlspsettings = require("nlspsettings")
-        local nlsp_schemas = nlspsettings.get_default_schemas()
-        local schema_store = require('schemastore').json.schemas()
-        local schemas = {}
-        schemas = extend(schemas, schema_store)
-        schemas = extend(schemas, nlsp_schemas)
-        nlspsettings.setup({
-          local_settings_dir = ".vim",
-          local_settings_root_markers_fallback = { '.git' },
-          loader = "json",
-        })
-        lspconfig.jsonls.setup({
-            settings = {
-                json = {
-                    schemas = schemas,
-                    validate = { enable = true },
-                },
-            },
-        })
+        require("plugins.lspconfig.cmp").setup({ cmp_action = cmp_action })
     end
 }
