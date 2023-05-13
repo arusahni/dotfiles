@@ -55,6 +55,13 @@ function M.setup(settings)
                     path = "🖫"
                 }),
             })
+        },
+        sources = {
+            { name = 'path' },
+            { name = "nvim_lsp" },
+            { name = "nvim_lsp_signature_help" },
+            { name = 'buffer', keyword_length = 3 },
+            { name = 'luasnip', keyword_length = 2 },
         }
     })
 end

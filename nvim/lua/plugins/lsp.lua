@@ -16,6 +16,7 @@ return {
         -- Autocompletion
         { "hrsh7th/nvim-cmp" },     -- Required
         { "hrsh7th/cmp-nvim-lsp" }, -- Required
+        { "hrsh7th/cmp-nvim-lsp-signature-help" },
         { "L3MON4D3/LuaSnip" },     -- Required
         { "j-hui/fidget.nvim" },
         { "onsails/lspkind.nvim" },
@@ -47,6 +48,10 @@ return {
                     callback = vim.lsp.buf.clear_references,
                 })
             end
+            vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+                vim.lsp.handlers['signature_help'],
+                { border = 'single', close_events = { "CursorMoved", "BufHidden", "InsertCharPre" } }
+            )
         end)
         lsp.set_sign_icons({
             error = "❌",

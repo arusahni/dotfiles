@@ -2,7 +2,7 @@ U = require('utils')
 local telescope = require('telescope.builtin')
 
 local function map(mode, lhs, rhs, opts)
-    local options = { }
+    local options = {}
     if opts then
         options = vim.tbl_extend("force", options, opts)
     end
@@ -18,14 +18,8 @@ map("", "<leader>n", ":bn<CR>")
 map("", "<leader>p", ":bp<CR>")
 map("n", "<leader>/", ":nohl<CR>", { silent = true })
 map("t", "<ESC>", "<C-\\><C-n>")
-map("n", "gd", vim.lsp.buf.definition)
-map("n", "gy", vim.lsp.buf.type_definition)
-map("n", "gr", vim.lsp.buf.references)
-map("n", "[g", vim.diagnostic.goto_prev, { silent = true})
-map("n", "]g", vim.diagnostic.goto_next, { silent = true})
-map({"n", "x"}, "<leader>f", function() vim.lsp.buf.format({async = false, timeout_ms = 10000}) end)
-map({"n", "x"}, "gq", function() vim.lsp.buf.format({async = false, timeout_ms = 10000}) end)
-map("n", "K", vim.lsp.buf.hover)
+map("n", "[g", vim.diagnostic.goto_prev, { silent = true })
+map("n", "]g", vim.diagnostic.goto_next, { silent = true })
 map("", "<C-/><C-/>", "<C-_><C-_>", { remap = true })
 map("", "<C-_><C-_>", "gcc", { remap = true })
 map("v", "<C-_><C-_>", "gc", { remap = true })
@@ -35,6 +29,21 @@ map("n", "<leader>a", ":TestSuite<CR>", { silent = true })
 map("n", "<leader>l", ":TestLast<CR>", { silent = true })
 map("n", "<leader>g", ":TestVisit<CR>", { silent = true })
 map("n", "<C-Space>", telescope.buffers)
+
+vim.api.nvim_create_autocmd('LspAttach', {
+    group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+    callback = function(ev)
+        local opts = { buffer = ev.buf }
+        map("n", "gd", vim.lsp.buf.definition, opts)
+        map("n", "gy", vim.lsp.buf.type_definition, opts)
+        map("n", "gr", vim.lsp.buf.references, opts)
+        map({ "n", "x" }, "<leader>f", function() vim.lsp.buf.format({ async = false, timeout_ms = 10000 }) end, opts)
+        map({ "n", "x" }, "gq", function() vim.lsp.buf.format({ async = false, timeout_ms = 10000 }) end, opts)
+        map("n", "K", vim.lsp.buf.hover, opts)
+        map("i", "<C-k>", vim.lsp.buf.signature_help, opts)
+    end
+})
+
 if U.is_linux() then
     map("n", "gx", "<Cmd>call jobstart(['xdg-open', expand('<cfile>')])<CR>")
 elseif U.is_mac() then
