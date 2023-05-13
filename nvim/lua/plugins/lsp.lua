@@ -3,15 +3,15 @@ return {
     branch = 'v2.x',
     dependencies = {
         -- LSP Support
-        { "neovim/nvim-lspconfig" }, -- Required
+        { "neovim/nvim-lspconfig" },
         {
-            -- Optional
             "williamboman/mason.nvim",
             build = function()
                 pcall(vim.cmd, "MasonUpdate")
             end,
         },
-        { "williamboman/mason-lspconfig.nvim" }, -- Optional
+        { "williamboman/mason-lspconfig.nvim" },
+        { "jose-elias-alvarez/null-ls.nvim" },
 
         -- Autocompletion
         { "hrsh7th/nvim-cmp" },     -- Required
@@ -29,6 +29,22 @@ return {
         local lspzero = require("plugins.lspconfig.lsp-zero").setup()
         local lsp = lspzero["lsp"]
         local cmp_action = lspzero["cmp_action"]
+        lsp.ensure_installed({
+            "tsserver",
+            "lua_ls",
+            "pyright",
+            "bashls",
+            "docker_compose_language_service",
+            "dockerls",
+            "eslint",
+            "html",
+            "marksman",
+            "ruff_lsp",
+            "rust_analyzer",
+            "svelte",
+            "yamlls",
+            "jsonls",
+        })
         local inlay = require("plugins.lspconfig.inlay").setup()
         lsp.on_attach(function(client, bufnr)
             lsp.default_keymaps({
@@ -64,6 +80,8 @@ return {
         require("plugins.lspconfig.typescript").setup({ inlay = inlay })
         require("plugins.lspconfig.rust").setup({ inlay = inlay, lsp = lsp })
         require("plugins.lspconfig.json").setup()
+        require("plugins.lspconfig.null").setup()
+        -- require("plugins.lspconfig.diagnostic").setup()
         lsp.setup()
         require("plugins.lspconfig.cmp").setup({ cmp_action = cmp_action })
     end
