@@ -34,9 +34,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('UserLspConfig', {}),
     callback = function(ev)
         local opts = { buffer = ev.buf }
-        map("n", "gd", vim.lsp.buf.definition, opts)
-        map("n", "gy", vim.lsp.buf.type_definition, opts)
-        map("n", "gr", vim.lsp.buf.references, opts)
+        map("n", "gd", telescope.lsp_definitions, opts)
+        map("n", "gy", telescope.lsp_type_definitions, opts)
+        map("n", "gr", telescope.lsp_references, opts)
         map({ "n", "x" }, "<leader>f", function() vim.lsp.buf.format({ async = false, timeout_ms = 10000 }) end, opts)
         map({ "n", "x" }, "gq", function() vim.lsp.buf.format({ async = false, timeout_ms = 10000 }) end, opts)
         map("n", "K", vim.lsp.buf.hover, opts)
