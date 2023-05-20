@@ -1,6 +1,8 @@
 local M = {}
 local cmp = require("cmp")
 local cmp_api = require("cmp.utils.api")
+local feedkeys = require('cmp.utils.feedkeys')
+local keymap = require('cmp.utils.keymap')
 
 -- Handle the various cases where a tab character may be used
 local function tab_completion(select_item_action)
@@ -23,13 +25,34 @@ local function tab_completion(select_item_action)
     end
 end
 
+local function confirm_completion(fallback)
+    -- from cmp https://github.com/hrsh7th/nvim-cmp/issues/1326
+    if vim.fn.pumvisible() == 1 then
+        -- native pumenu
+        -- workaround for neovim/neovim#22892
+        if vim.fn.complete_info({ "selected" }).selected == -1 then
+            -- nothing selected, insert newline
+            feedkeys.call(keymap.t("<CR>"), "in")
+        else
+            -- something selected, confirm selection by stopping Ctrl-X mode
+            -- :h i_CTRL-X_CTRL-Z*
+            feedkeys.call(keymap.t("<C-X><C-Z>"), "in")
+        end
+    else
+        -- `nvim-cmp` default confirm action
+        -- Accept currently selected item.
+        -- Set `select` to `false` to only confirm explicitly selected items.
+        cmp.mapping.confirm({ select = false })(fallback)
+    end
+end
+
 function M.setup(settings)
     local cmp_action = settings["cmp_action"]
     local lspkind = require("lspkind")
     cmp.setup({
         mapping = {
             -- `Enter` key to confirm completion
-            ['<CR>'] = cmp.mapping.confirm({ select = false }),
+            ['<CR>'] = confirm_completion,
             -- Ctrl+Space to trigger completion menu
             ['<C-Space>'] = cmp.mapping.complete(),
             -- Navigate between snippet placeholder
