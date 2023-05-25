@@ -70,10 +70,10 @@ return {
             )
         end)
         lsp.set_sign_icons({
-            error = "❌",
-            warn = "⚠️",
-            hint = "💡",
-            info = "ℹ️",
+            error = "",
+            warn = "",
+            hint = "",
+            info = "",
         })
         require("plugins.lspconfig.fidget")
         require("plugins.lspconfig.lua").setup({ lsp = lsp })
