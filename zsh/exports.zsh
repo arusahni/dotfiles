@@ -1,4 +1,10 @@
-export TERM="xterm-256color"
+terminal=$(ps -o 'cmd=' -p $(ps -o 'ppid=' -p $$))
+wezterm="wezterm"
+if [[ "$terminal" =~ .*"$wezterm".* ]]; then
+    export TERM=wezterm
+else
+    export TERM="xterm-256color"
+fi
 export PATH="$HOME/bin:$HOME/.local/npm/bin:$HOME/.local/bin:$PATH:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin"
 export NODE_PATH="$HOME/.local/npm/lib/node_modules:$NODE_PATH"
 export N_PREFIX="$HOME/.local/npm"
