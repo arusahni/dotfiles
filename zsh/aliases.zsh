@@ -50,3 +50,7 @@ fi
 if (( $+commands[xclip] )); then
   alias xclip='nocorrect xclip -sel clip'
 fi
+
+if (( $+commands[poetry] )); then
+    alias pvenv='source $(poetry env info --path)/bin/activate'
+fi
