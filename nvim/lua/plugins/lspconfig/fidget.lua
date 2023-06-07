@@ -3,7 +3,8 @@ require("fidget").setup({
         spinner = "bouncing_ball",
     },
     window = {
-        border = "rounded"
+        border = "rounded",
+        blend = 0,
     },
 })
 
