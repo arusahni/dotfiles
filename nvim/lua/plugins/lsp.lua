@@ -14,15 +14,19 @@ return {
         { "jose-elias-alvarez/null-ls.nvim" },
 
         -- Autocompletion
-        { "hrsh7th/nvim-cmp" },     -- Required
-        { "hrsh7th/cmp-nvim-lsp" }, -- Required
+        { "hrsh7th/nvim-cmp" },
+        { "hrsh7th/cmp-nvim-lsp" },
         { "hrsh7th/cmp-nvim-lsp-signature-help" },
-        { "L3MON4D3/LuaSnip" },     -- Required
+        { "L3MON4D3/LuaSnip" },
+
+        -- LSP customizations
         { "j-hui/fidget.nvim" },
         { "onsails/lspkind.nvim" },
-        { "simrat39/rust-tools.nvim" },
         { "simrat39/inlay-hints.nvim" },
         { "tamago324/nlsp-settings.nvim" },
+
+        -- Language customizations
+        { "simrat39/rust-tools.nvim" },
         { "b0o/schemastore.nvim" },
     },
     config = function(_, _)
@@ -81,7 +85,6 @@ return {
         require("plugins.lspconfig.rust").setup({ inlay = inlay, lsp = lsp })
         require("plugins.lspconfig.json").setup()
         require("plugins.lspconfig.null").setup()
-        -- require("plugins.lspconfig.diagnostic").setup()
         lsp.setup()
         require("plugins.lspconfig.cmp").setup({ cmp_action = cmp_action })
     end
