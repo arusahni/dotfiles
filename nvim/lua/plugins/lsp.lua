@@ -20,7 +20,7 @@ return {
         { "L3MON4D3/LuaSnip" },
 
         -- LSP customizations
-        { "j-hui/fidget.nvim" },
+        { "j-hui/fidget.nvim", tag = "legacy" },
         { "onsails/lspkind.nvim" },
         { "simrat39/inlay-hints.nvim" },
         { "tamago324/nlsp-settings.nvim" },
