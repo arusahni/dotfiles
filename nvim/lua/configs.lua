@@ -1,19 +1,16 @@
 local U = require("utils")
 
-local exec = vim.api.nvim_exec -- execute Vimscript
-local api = vim.api -- neovim commands
 local autocmd = vim.api.nvim_create_autocmd -- execute autocommands
-local set = vim.opt -- global options
-local cmd = vim.cmd -- execute Vim commands
+local augroup = vim.api.nvim_create_augroup -- group autocommands
+local set = vim.opt                         -- global options
 
-function filetype_autocmd(filetype, cmd, params)
+local function filetype_autocmd(filetype, cmd, params)
     autocmd("FileType", { pattern = filetype, command = cmd .. ' ' .. params })
 end
 
-function buffer_autocmd(pattern, cmd, params)
+local function buffer_autocmd(pattern, cmd, params)
     autocmd("BufRead", { pattern = pattern, command = cmd .. ' ' .. params })
 end
-
 
 vim.g.mapleader = ","
 set.termguicolors = true
@@ -43,7 +40,22 @@ set.listchars = {
 }
 
 set.titleold = [[ ${substitute(system("uname"),'\(.*\)\n','%\1%','')} ]]
-set.titlestring = [[ %{expand("%:p:~:.:h")} ]]
+
+local group = augroup("on_bufenter", { clear = true })
+autocmd("BufEnter", {
+    callback = function()
+        set.titlestring = [[ %{expand("%:p:~:.:h")} ]]
+    end,
+    desc = "Set the window title",
+    group = group,
+    pattern = "*",
+})
+-- local file = vim.fn.expand("%:p:t")
+-- local cwd = vim.fn.split(vim.fn.expand("%:p:h"):gsub("/", "\\"), "\\")
+--
+-- if file ~= "" and not utils.buff
+
+
 set.title = true
 set.updatetime = 1000
 
