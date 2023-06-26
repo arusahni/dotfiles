@@ -25,7 +25,7 @@ map("", "<C-_><C-_>", "gcc", { remap = true })
 map("v", "<C-_><C-_>", "gc", { remap = true })
 map("n", "<leader>t", ":TestNearest<CR>", { silent = true })
 map("n", "<leader>T", ":TestFile<CR>", { silent = true })
-map("n", "<leader>a", ":TestSuite<CR>", { silent = true })
+map("n", "<leader>A", ":TestSuite<CR>", { silent = true })
 map("n", "<leader>l", ":TestLast<CR>", { silent = true })
 map("n", "<leader>g", ":TestVisit<CR>", { silent = true })
 map("n", "<C-Space>", telescope.buffers)
@@ -34,6 +34,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('UserLspConfig', {}),
     callback = function(ev)
         local opts = { buffer = ev.buf }
+        map("n", "<leader>a", vim.lsp.buf.code_action, opts)
         map("n", "gd", telescope.lsp_definitions, opts)
         map("n", "gy", telescope.lsp_type_definitions, opts)
         map("n", "gr", telescope.lsp_references, opts)
