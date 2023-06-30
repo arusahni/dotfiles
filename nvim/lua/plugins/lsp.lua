@@ -30,6 +30,8 @@ return {
         { "b0o/schemastore.nvim" },
     },
     config = function(_, _)
+        -- Comment this out for debugging
+        vim.lsp.set_log_level("off")
         local lspzero = require("plugins.lspconfig.lsp-zero").setup()
         local lsp = lspzero["lsp"]
         local cmp_action = lspzero["cmp_action"]
