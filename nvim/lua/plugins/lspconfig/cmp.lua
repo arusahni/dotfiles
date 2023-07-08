@@ -56,8 +56,8 @@ function M.setup(settings)
             -- Ctrl+Space to trigger completion menu
             ['<C-Space>'] = cmp.mapping.complete(),
             -- Navigate between snippet placeholder
-            ['<C-f>'] = cmp_action.luasnip_jump_forward(),
-            ['<C-b>'] = cmp_action.luasnip_jump_backward(),
+            ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+            ['<C-f>'] = cmp.mapping.scroll_docs(4),
             ['<Tab>'] = cmp.mapping(tab_completion(cmp.select_next_item)),
             ['<S-Tab>'] = cmp.mapping(tab_completion(cmp.select_prev_item)),
         },
