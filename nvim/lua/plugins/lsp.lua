@@ -25,7 +25,7 @@ return {
     },
     {
         "neovim/nvim-lspconfig",
-        cmd = { "LspInfo", "Mason" },
+        cmd = { "LspInfo" },
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
             -- LSP Support
