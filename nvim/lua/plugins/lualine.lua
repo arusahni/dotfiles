@@ -31,19 +31,27 @@ return {
             lualine_z = {
                 {
                     'diagnostics',
-                    sources = { 'coc' },
+                    sources = { 'nvim_diagnostic' },
                     sections = { 'error', 'warn' },
                     colored = false,
                     update_in_insert = true,
                     always_visible = true,
-                    color = function(section)
-                        local diags = vim.b.coc_diagnostic_info
-                        if diags then
-                            if diags.error > 0 then
-                                return { fg = 'white', bg = 'red' }
-                            elseif diags.warning > 0 then
-                                return { fg = 'black', bg = 'yellow' }
-                            end
+                    diagnostics_color = {
+                        error = "DiagnosticError",
+                        warn = "DiagnosticWarn",
+                    },
+                    on_click = function()
+                        require("telescope.builtin").diagnostics()
+                    end,
+                    color = function(_section)
+                        local error_count = vim.tbl_count(vim.diagnostic.get(0,
+                            { severity = vim.diagnostic.severity.ERROR }))
+                        local warn_count = vim.tbl_count(vim.diagnostic.get(0,
+                            { severity = vim.diagnostic.severity.WARN }))
+                        if error_count > 0 then
+                            return { fg = 'white', bg = 'red' }
+                        elseif warn_count > 0 then
+                            return { fg = 'black', bg = 'yellow' }
                         end
                         return { fg = 'white', bg = "gray" }
                     end,
