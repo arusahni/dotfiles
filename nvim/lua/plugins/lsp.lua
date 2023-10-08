@@ -48,6 +48,7 @@ return {
             -- Language customizations
             { "simrat39/rust-tools.nvim" },
             { "b0o/schemastore.nvim" },
+            { "aznhe21/actions-preview.nvim" },
         },
         config = function(_, _)
             -- Comment this out for debugging
