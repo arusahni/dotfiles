@@ -1,6 +1,5 @@
+vim.cmd.colorscheme "catppuccin"
 vim.cmd([[
-let base16colorspace=256
-
 hi Search ctermfg=237 ctermbg=13
 hi MatchParen cterm=underline
 hi SyntasticWarning ctermbg=yellow ctermfg=black
