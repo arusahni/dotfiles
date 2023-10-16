@@ -3,6 +3,7 @@ return {
     main = "ibl",
     event = { "BufReadPost", "BufNewFile" },
     opts = {
-        scope = { show_start = false },
+        indent = { char = "╎" },
+        scope = { show_start = false, show_end = false },
     }
 }
