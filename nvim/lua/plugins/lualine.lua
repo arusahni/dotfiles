@@ -15,24 +15,24 @@ local function progress()
 end
 
 return {
-    'nvim-lualine/lualine.nvim',
+    "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
-    dependencies = { 'kyazdani42/nvim-web-devicons' },
+    dependencies = { "kyazdani42/nvim-web-devicons" },
     opts = {
         sections = {
-            lualine_b = { 'branch', 'diff' },
+            lualine_b = { "branch", "diff" },
             lualine_c = {
                 {
-                    'filename',
+                    "filename",
                     path = 1,
                 }
             },
             lualine_y = { progress },
             lualine_z = {
                 {
-                    'diagnostics',
-                    sources = { 'nvim_diagnostic' },
-                    sections = { 'error', 'warn' },
+                    "diagnostics",
+                    sources = { "nvim_diagnostic" },
+                    sections = { "error", "warn" },
                     colored = false,
                     update_in_insert = true,
                     always_visible = true,
@@ -49,11 +49,11 @@ return {
                         local warn_count = vim.tbl_count(vim.diagnostic.get(0,
                             { severity = vim.diagnostic.severity.WARN }))
                         if error_count > 0 then
-                            return { fg = 'white', bg = 'red' }
+                            return { fg = "white", bg = "red" }
                         elseif warn_count > 0 then
-                            return { fg = 'black', bg = 'yellow' }
+                            return { fg = "black", bg = "yellow" }
                         end
-                        return { fg = 'white', bg = "gray" }
+                        return { fg = "white", bg = "gray" }
                     end,
                 },
             }
