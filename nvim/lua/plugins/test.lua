@@ -1,5 +1,5 @@
 return {
-    'janko-m/vim-test',
+    "janko-m/vim-test",
     cmd = {
         "TestNearest",
         "TestFile",

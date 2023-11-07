@@ -1,6 +1,6 @@
 return {
     {
-        'kassio/neoterm',
+        "kassio/neoterm",
         event = "VeryLazy",
         config = function()
             vim.cmd([[
