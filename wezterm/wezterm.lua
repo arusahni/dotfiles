@@ -140,6 +140,10 @@ return merge({
     front_end = "WebGpu",
     -- webgpu_power_preference = "LowPower",
     hide_tab_bar_if_only_one_tab = true,
+    keys = {
+        { key = "UpArrow",   mods = "SHIFT", action = wezterm.action.ScrollToPrompt(-1) },
+        { key = "DownArrow", mods = "SHIFT", action = wezterm.action.ScrollToPrompt(1) },
+    },
     mouse_bindings = {
         -- Disable the default click behavior
         {
