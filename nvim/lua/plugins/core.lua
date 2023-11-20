@@ -55,6 +55,4 @@ return {
         event = { "BufReadPost", "BufNewFile" },
         config = true,
     },
-
-    "gpanders/editorconfig.nvim",
 }
