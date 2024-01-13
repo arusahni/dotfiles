@@ -108,6 +108,14 @@ return {
             require("plugins.lspconfig.json").setup()
             require("plugins.lspconfig.null").setup()
             lsp.setup()
+            local nlspsettings = require("nlspsettings")
+            nlspsettings.setup({
+              local_settings_dir = ".vim",
+              local_settings_root_markers_fallback = { ".git" },
+              -- Schemas are extended in plugins.lspconfig.json
+              append_default_schemas = true,
+              loader = "json",
+            })
         end
     }
 }
