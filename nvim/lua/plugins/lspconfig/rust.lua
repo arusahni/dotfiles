@@ -14,6 +14,9 @@ function M.setup(settings)
                     checkOnSave = {
                         command = "clippy",
                     },
+                    rust = {
+                        analyzerTargetDir = "target-ra"
+                    }
                 },
             },
         },
