@@ -14,6 +14,7 @@ return {
         dependencies = {
             { "L3MON4D3/LuaSnip" },
             { "onsails/lspkind.nvim" },
+            { "hrsh7th/cmp-buffer" },
         },
         config = function()
             -- Autocompletion
@@ -110,11 +111,11 @@ return {
             lsp.setup()
             local nlspsettings = require("nlspsettings")
             nlspsettings.setup({
-              local_settings_dir = ".vim",
-              local_settings_root_markers_fallback = { ".git" },
-              -- Schemas are extended in plugins.lspconfig.json
-              append_default_schemas = true,
-              loader = "json",
+                local_settings_dir = ".vim",
+                local_settings_root_markers_fallback = { ".git" },
+                -- Schemas are extended in plugins.lspconfig.json
+                append_default_schemas = true,
+                loader = "json",
             })
         end
     }
