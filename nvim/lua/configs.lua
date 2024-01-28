@@ -29,6 +29,7 @@ set.backspace = "2"
 set.laststatus = 2
 set.shortmess = set.shortmess + "c"
 set.signcolumn = "number"
+set.statuscolumn = '%=%{v:relnum?v:relnum:v:lnum} '
 set.inccommand = "split"
 set.listchars = {
     nbsp = '⦸',
