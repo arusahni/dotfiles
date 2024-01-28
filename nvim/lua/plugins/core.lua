@@ -1,7 +1,7 @@
 return {
     {
         "tpope/vim-repeat",
-        event = "VeryLazy"
+        event = { "InsertEnter", "BufReadPost", "BufNewFile" },
     },
 
     {
@@ -11,11 +11,12 @@ return {
         },
         cmd = "NvimTreeToggle",
         config = true,
+        lazy = true,
     },
 
     {
         "tpope/vim-surround",
-        event = { "BufReadPost", "BufNewFile" }
+        event = { "InsertEnter", "BufReadPost", "BufNewFile" }
     },
 
     {
@@ -32,12 +33,12 @@ return {
 
     {
         "simnalamburt/vim-mundo",
-        event = "VeryLazy"
+        event = { "InsertEnter", "BufReadPost", "BufNewFile" }
     },
 
     {
         "wellle/targets.vim",
-        event = { "BufReadPost", "BufNewFile" }
+        event = { "InsertEnter", "BufReadPost", "BufNewFile" }
     },
 
     {
@@ -52,7 +53,7 @@ return {
 
     {
         "NvChad/nvim-colorizer.lua",
-        event = { "BufReadPost", "BufNewFile" },
+        event = { "InsertEnter", "BufReadPost", "BufNewFile" },
         config = true,
     },
 }
