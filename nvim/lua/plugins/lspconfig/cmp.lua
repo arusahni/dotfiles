@@ -83,7 +83,7 @@ function M.setup(settings)
             { name = "path" },
             { name = "nvim_lsp" },
             { name = "nvim_lsp_signature_help" },
-            { name = "buffer" },
+            { name = "buffer", keyword_length = 5 },
             { name = "luasnip", keyword_length = 2 },
         }
     })
