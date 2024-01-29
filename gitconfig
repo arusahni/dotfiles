@@ -1,6 +1,6 @@
 [core]
     pager = delta
-	excludesfile = /home/aru/.gitignore.global
+    excludesfile = /home/aru/.gitignore.global
 
 [interactive]
     diffFilter = delta --color-only --features=interactive
