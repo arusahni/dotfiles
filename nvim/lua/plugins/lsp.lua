@@ -12,7 +12,8 @@ return {
         "hrsh7th/nvim-cmp",
         event = "InsertEnter",
         dependencies = {
-            { "L3MON4D3/LuaSnip" },
+            { "L3MON4D3/LuaSnip", version = "v2.*" },
+            { "saadparwaiz1/cmp_luasnip" },
             { "onsails/lspkind.nvim" },
             { "hrsh7th/cmp-buffer" },
         },
@@ -22,6 +23,7 @@ return {
             local lsp = lspzero["lsp"]
             local cmp_action = lspzero["cmp_action"]
             require("plugins.lspconfig.cmp").setup({ cmp_action = cmp_action })
+            require("luasnip.loaders.from_snipmate").lazy_load({paths = "~/.config/nvim/snippets"})
         end
     },
     {

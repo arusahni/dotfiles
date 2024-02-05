@@ -3,25 +3,42 @@ local cmp = require("cmp")
 local cmp_api = require("cmp.utils.api")
 local feedkeys = require('cmp.utils.feedkeys')
 local keymap = require('cmp.utils.keymap')
+local luasnip = require("luasnip")
 
--- Handle the various cases where a tab character may be used
-local function tab_completion(select_item_action)
+local has_words_before = function()
+  unpack = unpack or table.unpack
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
+-- Handle the various cases where a tab key may be used
+local function tab_completion_next(fallback)
     local cmp_select_opts = { behavior = cmp.SelectBehavior.Select }
-    return function(fallback)
-        -- tabs should only pass through when there's no text preceding the cursor
-        local _, col = unpack(vim.api.nvim_win_get_cursor(0))
-        local line_prefix = string.sub(vim.api.nvim_get_current_line(), 1, col)
-        local all_whitespace = line_prefix:match("^%s*$") ~= nil
-        if cmp.visible() then
-            -- We're selecting a menu item
-            select_item_action(cmp_select_opts)
-        elseif cmp_api.is_insert_mode() and all_whitespace then
-            -- We're not actively completing, pass through
-            fallback()
-        else
-            -- We're completing a word, load the completions
-            cmp.complete()
-        end
+    -- tabs should only pass through when there's no text preceding the cursor
+    if cmp.visible() then
+        -- We're selecting a menu item
+        cmp.select_next_item(cmp_select_opts)
+    elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+    elseif has_words_before() then
+        -- We're completing a word, load the completions
+        cmp.complete()
+    else
+        fallback()
+    end
+end
+
+-- Handle the various cases where a shift-tab key may be used
+local function tab_completion_prev(fallback)
+    local cmp_select_opts = { behavior = cmp.SelectBehavior.Select }
+    -- tabs should only pass through when there's no text preceding the cursor
+    if cmp.visible() then
+        -- We're selecting a menu item
+        cmp.select_prev_item(cmp_select_opts)
+    elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+    else
+        fallback()
     end
 end
 
@@ -58,8 +75,8 @@ function M.setup(settings)
             -- Navigate between snippet placeholder
             ['<C-b>'] = cmp.mapping.scroll_docs(-4),
             ['<C-f>'] = cmp.mapping.scroll_docs(4),
-            ['<Tab>'] = cmp.mapping(tab_completion(cmp.select_next_item)),
-            ['<S-Tab>'] = cmp.mapping(tab_completion(cmp.select_prev_item)),
+            ['<Tab>'] = cmp.mapping(tab_completion_next, { "i", "s" }),
+            ['<S-Tab>'] = cmp.mapping(tab_completion_prev, { "i", "s" }),
         },
         window = {
             documentation = cmp.config.window.bordered(),
@@ -78,6 +95,11 @@ function M.setup(settings)
                     path = "🖫"
                 }),
             })
+        },
+        snippet = {
+            expand = function(args)
+                require("luasnip").lsp_expand(args.body)
+            end,
         },
         sources = {
             { name = "path" },
