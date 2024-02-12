@@ -1,5 +1,6 @@
 U = require('utils')
 local telescope = require('telescope.builtin')
+local neotest = require("neotest")
 
 local function map(mode, lhs, rhs, opts)
     local options = {}
@@ -25,11 +26,17 @@ map("n", "]e", function() vim.diagnostic.goto_next({ severity = vim.diagnostic.s
 map("", "<C-/><C-/>", "<C-_><C-_>", { remap = true })
 map("", "<C-_><C-_>", "gcc", { remap = true })
 map("v", "<C-_><C-_>", "gc", { remap = true })
-map("n", "<leader>t", ":TestNearest<CR>", { silent = true })
-map("n", "<leader>T", ":TestFile<CR>", { silent = true })
-map("n", "<leader>A", ":TestSuite<CR>", { silent = true })
-map("n", "<leader>l", ":TestLast<CR>", { silent = true })
-map("n", "<leader>g", ":TestVisit<CR>", { silent = true })
+map("n", "<leader>t", function()
+    neotest.summary.open()
+    neotest.run.run()
+end, { silent = true })
+map("n", "<leader>st", neotest.run.stop, { silent = true })
+map("n", "<leader>T", function() neotest.run.run(vim.fn.expand("%")) end, { silent = true })
+map("n", "<leader>A", function()
+    neotest.summary.open()
+    neotest.run.run(vim.fn.getcwd())
+end, { silent = true })
+map("n", "<leader>l", neotest.run.run_last, { silent = true })
 map("n", "<C-Space>", telescope.buffers)
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -53,7 +60,7 @@ if U.is_linux() then
 elseif U.is_mac() then
     map("n", "gx", "<Cmd>call jobstart(['open', expand('<cfile>')])<CR>")
 end
-map("n", "<leader>qt", ":Tclose!<CR>", { silent = true })
+map("n", "<leader>qt", neotest.summary.close, { silent = true })
 
 --  Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
 map("v", "<Enter>", "<Plug>(EasyAlign)", { remap = true })
