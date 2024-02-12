@@ -7,10 +7,12 @@ return {
         {
             'nvim-telescope/telescope-fzf-native.nvim',
             build = 'make'
-        }
+        },
+        { "nvim-telescope/telescope-live-grep-args.nvim" },
     },
     opts = function()
-        local actions = require "telescope.actions"
+        local actions = require("telescope.actions")
+        local lga_actions = require("telescope-live-grep-args.actions")
         return {
             defaults = {
                 layout_strategy = 'horizontal',
@@ -34,7 +36,16 @@ return {
                     override_generic_sorter = true,
                     override_file_sorter = true,
                     case_mode = "smart_case",
-                }
+                },
+                live_grep_args = {
+                    auto_quoting = true,
+                    mappings = {
+                        i = {
+                            ["<C-s>"] = lga_actions.quote_prompt(),
+                            ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+                        },
+                    },
+                },
             },
             pickers = {
                 find_files = {
