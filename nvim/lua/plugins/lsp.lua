@@ -41,7 +41,7 @@ return {
                 end,
             },
             { "williamboman/mason-lspconfig.nvim" },
-            { "jose-elias-alvarez/null-ls.nvim" },
+            { "nvimtools/none-ls.nvim" },
 
             -- LSP customizations
             { "j-hui/fidget.nvim",                tag = "legacy" },
