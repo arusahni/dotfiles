@@ -8,7 +8,7 @@ source ~/.zsh/aliases.zsh
 source ~/.zsh/bindkeys.zsh
 source ~/.zsh/history.zsh
 source ~/.zsh/hooks.zsh
-source ~/.zsh/virtualenv.zsh
+# source ~/.zsh/virtualenv.zsh
 source ~/.zsh/fzf.zsh
 source ~/.zsh/blur.zsh
 
