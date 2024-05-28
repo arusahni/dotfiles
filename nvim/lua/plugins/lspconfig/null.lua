@@ -7,7 +7,7 @@ function M.setup(settings)
         debug = true,
         sources = {
             null_ls.builtins.formatting.black.with({ prefer_local = true }),
-            null_ls.builtins.formatting.prettier.with({ prefer_local = true }),
+            null_ls.builtins.formatting.prettier.with({ prefer_local = "node_modules/.bin" }),
         },
     })
 end
