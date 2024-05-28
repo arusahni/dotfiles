@@ -60,14 +60,14 @@ autocmd("BufEnter", {
 set.title = true
 set.updatetime = 1000
 
-filetype_autocmd("html", "setlocal", "ts=4 sts=4 sw=4 omnifunc=htmlcomplete#CompleteTags")
+filetype_autocmd("html", "setlocal", "ts=2 sts=2 sw=2 omnifunc=htmlcomplete#CompleteTags")
 filetype_autocmd("xml", "set", "omnifunc=xmlcomplete#CompleteTags")
-filetype_autocmd("javascript", "setlocal", "ts=4 sts=4 sw=4")
-filetype_autocmd("typescript", "setlocal", "ts=4 sts=4 sw=4")
+filetype_autocmd("javascript", "setlocal", "ts=2 sts=2 sw=2")
+filetype_autocmd("typescript", "setlocal", "ts=2 sts=2 sw=2")
 filetype_autocmd("python", "setlocal", "ts=4 sts=4 sw=4 formatprg=black\\ -q\\ -")
 filetype_autocmd("yaml", "setlocal", "ts=2 sts=2 sw=2")
-filetype_autocmd("css", "setlocal", "ts=4 noet sw=4")
-filetype_autocmd("scss", "setlocal", "ts=4 noet sw=4 omnifunc=csscomplete#CompleteCSS")
+filetype_autocmd("css", "setlocal", "ts=2 noet sw=2")
+filetype_autocmd("scss", "setlocal", "ts=2 noet sw=2 omnifunc=csscomplete#CompleteCSS")
 filetype_autocmd("vue", "syntax", "sync fromstart")
 filetype_autocmd("elixir", "setlocal", "formatprg=mix\\ format\\ -")
 buffer_autocmd("*.coffee", "set", "ft=coffee")
