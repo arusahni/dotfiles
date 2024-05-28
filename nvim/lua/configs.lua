@@ -80,6 +80,7 @@ buffer_autocmd("*.tsx", "set", "ft=typescriptreact")
 buffer_autocmd("*.cls", "set", "ft=apex syntax=java")
 buffer_autocmd("*.trigger", "set", "ft=apex syntax=java")
 buffer_autocmd("*.nomad.template", "set", "ft=hcl")
+buffer_autocmd("*.webc", "set", "ft=html")
 
 if U.is_linux() then
     vim.g.python3_host_prog = "/bin/python"
