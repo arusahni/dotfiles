@@ -1,8 +1,10 @@
 U = require('utils')
 local telescope = require("telescope")
 local telescope_builtin = require("telescope.builtin")
+local telescope_conf = require("telescope.config").values
 local lga_shortcuts = require("telescope-live-grep-args.shortcuts")
 local neotest = require("neotest")
+local harpoon = require("harpoon")
 
 local function map(mode, lhs, rhs, opts)
     local options = {}
@@ -40,7 +42,7 @@ map("n", "<leader>A", function()
     neotest.run.run(vim.fn.getcwd())
 end, { silent = true })
 map("n", "<leader>l", neotest.run.run_last, { silent = true })
-map("n", "<C-Space>", telescope_builtin.buffers)
+-- map("n", "<C-Space>", telescope_builtin.buffers)
 
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('UserLspConfig', {}),
@@ -69,3 +71,31 @@ map("n", "<leader>qt", neotest.summary.close, { silent = true })
 map("v", "<Enter>", "<Plug>(EasyAlign)", { remap = true })
 -- Start interactive EasyAlign for a motion/text object (e.g. gaip)
 map("n", "ga", "<Plug>(EasyAlign)", { remap = true })
+
+
+-- Harpoon
+local function toggle_telescope(harpoon_files)
+    local file_paths = {}
+    for _, item in ipairs(harpoon_files.items) do
+        table.insert(file_paths, item.value)
+    end
+
+    require("telescope.pickers").new({}, {
+        prompt_title = "Harpoon",
+        finder = require("telescope.finders").new_table({
+            results = file_paths,
+        }),
+        previewer = telescope_conf.file_previewer({}),
+        sorter = telescope_conf.generic_sorter({}),
+    }):find()
+end
+
+vim.keymap.set("n", "<leader>h", function() harpoon:list():add() end)
+vim.keymap.set("n", "<C-Space>", function() toggle_telescope(harpoon:list()) end,
+    { desc = "Open harpoon window" })
+vim.keymap.set("n", "<C-h>", function() harpoon:list():select(1) end)
+vim.keymap.set("n", "<C-t>", function() harpoon:list():select(2) end)
+vim.keymap.set("n", "<C-n>", function() harpoon:list():select(3) end)
+vim.keymap.set("n", "<C-s>", function() harpoon:list():select(4) end)
+vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
+vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
