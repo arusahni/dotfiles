@@ -20,7 +20,7 @@ return {
     dependencies = { "kyazdani42/nvim-web-devicons" },
     opts = {
         sections = {
-            lualine_b = { "branch", "diff" },
+            lualine_b = { "diff" },
             lualine_c = {
                 {
                     "filename",
