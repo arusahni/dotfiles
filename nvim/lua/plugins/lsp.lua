@@ -44,7 +44,7 @@ return {
             { "nvimtools/none-ls.nvim" },
 
             -- LSP customizations
-            { "j-hui/fidget.nvim",                tag = "legacy" },
+            { "j-hui/fidget.nvim",                tag = "v1.4.5" },
             { "simrat39/inlay-hints.nvim" },
             { "tamago324/nlsp-settings.nvim" },
 
