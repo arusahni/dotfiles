@@ -12,6 +12,11 @@ return {
         cmd = "NvimTreeToggle",
         config = true,
         lazy = true,
+        opts = {
+            view = {
+                side = "right",
+            },
+        },
     },
 
     {
