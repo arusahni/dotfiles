@@ -123,6 +123,7 @@ wezterm.on("format-tab-title", function(tab)
 end)
 
 return merge({
+    adjust_window_size_when_changing_font_size = false,
     color_scheme = "midnight-in-mojave",
     colors = {
         -- Overrides the cell background color when the current cell is occupied by the
