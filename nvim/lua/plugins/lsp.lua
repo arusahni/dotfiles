@@ -49,7 +49,12 @@ return {
             { "tamago324/nlsp-settings.nvim" },
 
             -- Language customizations
-            { "simrat39/rust-tools.nvim" },
+            -- { "simrat39/rust-tools.nvim" },
+            {
+                "mrcjkb/rustaceanvim",
+                version = '^4', -- Recommended
+                lazy = false, -- This plugin is already lazy
+            },
             { "b0o/schemastore.nvim" },
             { "aznhe21/actions-preview.nvim" },
         },
@@ -58,6 +63,12 @@ return {
             vim.lsp.set_log_level("off")
             local lspzero = require("plugins.lspconfig.lsp-zero").setup()
             local lsp = lspzero["lsp"]
+            require("mason-lspconfig").setup_handlers({
+                -- Force no-op for r-a so Meson can't install it
+                rust_analyzer = function()
+                  return true
+                end,
+            })
             lsp.ensure_installed({
                 "tsserver",
                 "lua_ls",
@@ -69,7 +80,7 @@ return {
                 "html",
                 "marksman",
                 "ruff_lsp",
-                "rust_analyzer",
+                -- "rust_analyzer",
                 "svelte",
                 "yamlls",
                 "jsonls",

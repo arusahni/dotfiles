@@ -1,15 +1,14 @@
 local M = {}
 
 function M.setup(settings)
-    settings["lsp"].skip_server_setup({ "rust_analyzer" })
-    local rust_tools = require('rust-tools')
-    rust_tools.setup({
+    vim.g.rustaceanvim = {
         server = {
-            on_attach = function(client, _bufnr)
+            on_attach = function(client, bufnr)
+                vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
                 -- Disable LSP syntax highlighting
                 client.server_capabilities.semanticTokensProvider = nil
             end,
-            settings = {
+            default_settings = {
                 ["rust-analyzer"] = {
                     checkOnSave = {
                         command = "clippy",
@@ -19,15 +18,8 @@ function M.setup(settings)
                     }
                 },
             },
-        },
-        tools = {
-            inlay_hints = {
-                parameter_hints_prefix = "",
-                other_hints_prefix = "󰞔 ",
-                highlight = "CocInlayHint",
-            },
-        },
-    })
+        }
+    }
 end
 
 return M
