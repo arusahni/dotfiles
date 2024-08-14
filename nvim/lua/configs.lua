@@ -23,13 +23,14 @@ set.clipboard = set.clipboard + "unnamedplus"
 set.cursorline = true
 set.showcmd = true
 set.number = true
+set.relativenumber = true
 set.hidden = true
 set.hlsearch = true
 set.backspace = "2"
 set.laststatus = 2
 set.shortmess = set.shortmess + "c"
 set.signcolumn = "number"
-set.statuscolumn = '%=%{v:relnum?v:relnum:v:lnum} '
+-- set.statuscolumn = '%=%{v:relnum?v:relnum:v:lnum} '
 set.inccommand = "split"
 set.listchars = {
     nbsp = '⦸',
