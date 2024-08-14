@@ -63,8 +63,7 @@ local function confirm_completion(fallback)
     end
 end
 
-function M.setup(settings)
-    local cmp_action = settings["cmp_action"]
+function M.setup()
     local lspkind = require("lspkind")
     cmp.setup({
         mapping = {

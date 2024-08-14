@@ -57,6 +57,19 @@ autocmd("BufEnter", {
 --
 -- if file ~= "" and not utils.buff
 
+vim.diagnostic.config({
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = "",
+            [vim.diagnostic.severity.WARN] = "",
+            [vim.diagnostic.severity.INFO] = "",
+            [vim.diagnostic.severity.HINT] = "",
+        }
+    },
+    float = {
+        border = "rounded",
+    },
+})
 
 set.title = true
 set.updatetime = 1000

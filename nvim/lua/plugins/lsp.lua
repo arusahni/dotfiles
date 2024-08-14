@@ -2,11 +2,8 @@ return {
 
     {
         "VonHeikemen/lsp-zero.nvim",
-        branch = "v2.x",
+        branch = "v4.x",
         lazy = true,
-        config = function()
-            require("lsp-zero.settings").preset({})
-        end
     },
     {
         "hrsh7th/nvim-cmp",
@@ -19,10 +16,7 @@ return {
         },
         config = function()
             -- Autocompletion
-            local lspzero = require("plugins.lspconfig.lsp-zero").setup()
-            local lsp = lspzero["lsp"]
-            local cmp_action = lspzero["cmp_action"]
-            require("plugins.lspconfig.cmp").setup({ cmp_action = cmp_action })
+            require("plugins.lspconfig.cmp").setup()
             require("luasnip.loaders.from_snipmate").lazy_load({paths = "~/.config/nvim/snippets"})
         end
     },
@@ -61,15 +55,11 @@ return {
         config = function(_, _)
             -- Comment this out for debugging
             vim.lsp.set_log_level("off")
-            local lspzero = require("plugins.lspconfig.lsp-zero").setup()
-            local lsp = lspzero["lsp"]
-            require("mason-lspconfig").setup_handlers({
-                -- Force no-op for r-a so Meson can't install it
-                rust_analyzer = function()
-                  return true
-                end,
-            })
-            lsp.ensure_installed({
+            local inlay = require("plugins.lspconfig.inlay").setup()
+            local lsp = require("plugins.lspconfig.lsp-zero").setup()
+            require("mason").setup({})
+            require("mason-lspconfig").setup({
+              ensure_installed = {
                 "tsserver",
                 "lua_ls",
                 "pyright",
@@ -80,40 +70,20 @@ return {
                 "html",
                 "marksman",
                 "ruff_lsp",
-                -- "rust_analyzer",
                 "svelte",
                 "yamlls",
                 "jsonls",
+              }
             })
-            local inlay = require("plugins.lspconfig.inlay").setup()
-            lsp.on_attach(function(client, bufnr)
-                lsp.default_keymaps({
-                    buffer = bufnr,
-                    preserve_mappings = false,
-                })
-                if client.supports_method "textDocument/documentHighlight" then
-                    local group = vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
-                    vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-                        group = group,
-                        buffer = bufnr,
-                        callback = vim.lsp.buf.document_highlight,
-                    })
-                    vim.api.nvim_create_autocmd("CursorMoved", {
-                        group = group,
-                        buffer = bufnr,
-                        callback = vim.lsp.buf.clear_references,
-                    })
-                end
-                vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
-                    vim.lsp.handlers['signature_help'],
-                    { border = 'single', close_events = { "CursorMoved", "BufHidden", "InsertCharPre" } }
-                )
-            end)
-            lsp.set_sign_icons({
-                error = "",
-                warn = "",
-                hint = "",
-                info = "",
+            require("mason-lspconfig").setup_handlers({
+                function(server_name)
+                    -- Autoconfigure the LSP for installed Mason servers
+                    require("lspconfig")[server_name].setup({})
+                end,
+                -- Force no-op for r-a so Meson can't install it
+                rust_analyzer = function()
+                  return true
+                end,
             })
             require("plugins.lspconfig.fidget")
             require("plugins.lspconfig.lua").setup({ lsp = lsp })
