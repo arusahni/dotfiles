@@ -2,7 +2,7 @@ local M = {}
 
 function M.setup(settings)
     local lspconfig = require("lspconfig")
-    lspconfig.tsserver.setup({
+    lspconfig.ts_ls.setup({
         on_attach = function(c, bufnr)
             settings["inlay"].on_attach(c, bufnr)
         end,

@@ -60,7 +60,7 @@ return {
             require("mason").setup({})
             require("mason-lspconfig").setup({
               ensure_installed = {
-                "tsserver",
+                "ts_ls",
                 "lua_ls",
                 "pyright",
                 "bashls",
