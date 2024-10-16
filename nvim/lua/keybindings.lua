@@ -57,6 +57,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         map("n", "K", vim.lsp.buf.hover, opts)
         map("i", "<C-k>", vim.lsp.buf.signature_help, opts)
         map("n", "<leader>r", vim.lsp.buf.rename, opts)
+        map({ "v", "i", "n" }, "<F3>", require("inlay-hints.utils").toggle_inlay_hints, opts)
     end
 })
 

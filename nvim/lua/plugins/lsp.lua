@@ -39,7 +39,7 @@ return {
 
             -- LSP customizations
             { "j-hui/fidget.nvim",                tag = "v1.4.5" },
-            { "simrat39/inlay-hints.nvim" },
+            { "MysticalDevil/inlay-hints.nvim" },
             { "tamago324/nlsp-settings.nvim" },
 
             -- Language customizations

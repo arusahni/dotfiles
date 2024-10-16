@@ -4,7 +4,7 @@ function M.setup(settings)
     vim.g.rustaceanvim = {
         server = {
             on_attach = function(client, bufnr)
-                vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+                settings["inlay"].on_attach(client, bufnr)
                 -- Disable LSP syntax highlighting
                 client.server_capabilities.semanticTokensProvider = nil
             end,
