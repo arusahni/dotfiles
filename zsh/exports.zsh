@@ -5,7 +5,7 @@ if [[ "$terminal" =~ .*"$wezterm".* ]]; then
 else
     export TERM="xterm-256color"
 fi
-export PATH="$HOME/bin:$HOME/.local/npm/bin:$HOME/.local/bin:$PATH:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin"
+export PATH="$HOME/.cargo/bin:$HOME/.local/npm/bin:$HOME/.local/bin:$PATH:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin"
 export NODE_PATH="$HOME/.local/npm/lib/node_modules:$NODE_PATH"
 export N_PREFIX="$HOME/.local/npm"
 export MANPATH="$HOME/.local/npm/share/man:$MANPATH"
