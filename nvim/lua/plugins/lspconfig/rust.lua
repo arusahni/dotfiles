@@ -10,8 +10,11 @@ function M.setup(settings)
             end,
             default_settings = {
                 ["rust-analyzer"] = {
-                    checkOnSave = {
-                        command = "clippy",
+                    -- checkOnSave = {
+                    --     command = "clippy",
+                    -- },
+                    cargo = {
+                        features = "all",
                     },
                     rust = {
                         analyzerTargetDir = "target-ra"

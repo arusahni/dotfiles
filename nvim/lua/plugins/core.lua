@@ -66,4 +66,9 @@ return {
         event = { "InsertEnter", "BufReadPost", "BufNewFile" },
         config = true,
     },
+
+    {
+        "weihanglo/polar.vim" ,
+        event = { "InsertEnter", "BufReadPost", "BufNewFile" },
+    }
 }
