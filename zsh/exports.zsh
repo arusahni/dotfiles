@@ -11,7 +11,8 @@ export N_PREFIX="$HOME/.local/npm"
 export MANPATH="$HOME/.local/npm/share/man:$MANPATH"
 export TZ="America/New_York"
 export HOSTNAME="$(hostname)"
-export PAGER=less
+# Render escape sequences in paged output (e.g., bolding in man-style help pages)
+export PAGER="less -R"
 export EDITOR=nvim
 
 export LC_ALL="en_US.UTF-8"
