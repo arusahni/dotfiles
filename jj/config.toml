@@ -1,0 +1,9 @@
+[ui]
+pager = "delta"
+
+[diff]
+format = "git"
+
+[user]
+name = "Aru Sahni"
+email = "aru@arusahni.net"
