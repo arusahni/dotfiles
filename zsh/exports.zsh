@@ -2,6 +2,8 @@ terminal=$(ps -o 'cmd=' -p $(ps -o 'ppid=' -p $$))
 wezterm="wezterm"
 if [[ "$terminal" =~ .*"$wezterm".* ]]; then
     export TERM=wezterm
+elif [[ "$TERM" == "xterm-ghostty" ]]; then
+    # Do nothing, pass it through
 else
     export TERM="xterm-256color"
 fi
