@@ -101,3 +101,7 @@ if U.is_linux() then
 elseif U.is_mac() then
     vim.g.python3_host_prog = "/usr/local/bin/python3"
 end
+--
+-- Hack: disable async tree-sitter parsing. This should be fixed with v0.11.1
+-- See: https://github.com/neovim/neovim/pull/33145
+vim.g._ts_force_sync_parsing = true
