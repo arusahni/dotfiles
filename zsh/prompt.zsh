@@ -67,8 +67,19 @@ function +vi-set-git-metadata() {
     hook_com[misc]+="${(j: :)gitstatus} "
 }
 
+get_jujutsu_bookmark() {
+    jj log --ignore-working-copy -n 1 --no-graph --color never \
+        -r "ancestors(present(@)) & bookmarks()" \
+        -T 'bookmarks.join(" ")'
+}
+
 git_prompt() {
-    echo "${vcs_info_msg_0_}"
+    jj_bookmark=$(get_jujutsu_bookmark 2> /dev/null)
+    if [[ -n "$jj_bookmark" ]]; then
+        echo "${_git_symbol}${_gprefix}%F{003}${jj_bookmark}${_gsuffix}"
+    else
+        echo "${vcs_info_msg_0_}"
+    fi
 }
 
 # Set the left-hand prompt
