@@ -1,8 +1,7 @@
 [ui]
 pager = "delta"
-
-[diff]
-format = "git"
+conflict-marker-style = "git"
+diff.format = "git"
 
 [user]
 name = "Aru Sahni"
