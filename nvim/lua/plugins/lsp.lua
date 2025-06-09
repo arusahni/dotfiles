@@ -30,11 +30,12 @@ return {
             { "hrsh7th/cmp-nvim-lsp-signature-help" },
             {
                 "williamboman/mason.nvim",
+                version = "1.11.0",
                 build = function()
                     pcall(vim.cmd, "MasonUpdate")
                 end,
             },
-            { "williamboman/mason-lspconfig.nvim" },
+            { "williamboman/mason-lspconfig.nvim", version = "1.32.0" },
             { "nvimtools/none-ls.nvim" },
 
             -- LSP customizations
