@@ -21,7 +21,10 @@ function M.setup(settings)
                     }
                 },
             },
-        }
+        },
+        tools = {
+            enable_clippy = false,
+        },
     }
 end
 
