@@ -16,11 +16,9 @@ function M.setup()
     local schemas = {}
     schemas = extend(schemas, schema_store)
     schemas = extend(schemas, nlsp_schemas)
-    nlspsettings.setup({
-      local_settings_dir = ".vim",
-      local_settings_root_markers_fallback = { '.git' },
-      loader = "json",
-    })
+    local global_capabilities = vim.lsp.protocol.make_client_capabilities()
+    global_capabilities.textDocument.completion.completionItem.snippetSupport = true
+    lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, { capabilities = global_capabilities })
     lspconfig.jsonls.setup({
         settings = {
             json = {

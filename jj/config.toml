@@ -1,0 +1,8 @@
+[ui]
+pager = "delta"
+conflict-marker-style = "git"
+diff.format = "git"
+
+[user]
+name = "Aru Sahni"
+email = "aru@arusahni.net"
