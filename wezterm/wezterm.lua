@@ -144,6 +144,17 @@ return merge({
     keys = {
         { key = "UpArrow",   mods = "SHIFT", action = wezterm.action.ScrollToPrompt(-1) },
         { key = "DownArrow", mods = "SHIFT", action = wezterm.action.ScrollToPrompt(1) },
+
+        { key = "v", mods = "CTRL|ALT", action = wezterm.action.SplitHorizontal({domain="CurrentPaneDomain"}) },
+        { key = "x", mods = "CTRL|ALT", action = wezterm.action.SplitVertical({domain="CurrentPaneDomain"}) },
+        { key = "UpArrow", mods = "CTRL|ALT", action = wezterm.action.ActivatePaneDirection("Up") },
+        { key = "k", mods = "CTRL|ALT", action = wezterm.action.ActivatePaneDirection("Up") },
+        { key = "DownArrow", mods = "CTRL|ALT", action = wezterm.action.ActivatePaneDirection("Down") },
+        { key = "j", mods = "CTRL|ALT", action = wezterm.action.ActivatePaneDirection("Down") },
+        { key = "LeftArrow", mods = "CTRL|ALT", action = wezterm.action.ActivatePaneDirection("Left") },
+        { key = "h", mods = "CTRL|ALT", action = wezterm.action.ActivatePaneDirection("Left") },
+        { key = "RightArrow", mods = "CTRL|ALT", action = wezterm.action.ActivatePaneDirection("Right") },
+        { key = "l", mods = "CTRL|ALT", action = wezterm.action.ActivatePaneDirection("Right") },
     },
     mouse_bindings = {
         -- Disable the default click behavior
