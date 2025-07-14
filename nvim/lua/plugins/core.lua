@@ -30,6 +30,11 @@ return {
     },
 
     {
+        "almo7aya/openingh.nvim",
+        event = "VeryLazy",
+    },
+
+    {
         "tpope/vim-rhubarb",
         event = "VeryLazy"
     },
