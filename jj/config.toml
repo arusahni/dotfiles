@@ -7,3 +7,6 @@ diff-editor = ":builtin"
 [user]
 name = "Aru Sahni"
 email = "aru@arusahni.net"
+
+[aliases]
+tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
