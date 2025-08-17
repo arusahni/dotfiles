@@ -249,12 +249,17 @@ layout {
     }
 }
 
+cursor {
+    xcursor-theme "breeze_cursors"
+}
+
 // Add lines like this to spawn processes at startup.
 // Note that running niri as a session supports xdg-desktop-autostart,
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 
 spawn-at-startup "swaync"
+spawn-at-startup "swayidle -w"
 spawn-at-startup "waybar"
 spawn-at-startup "nm-applet" "--indicator"
 spawn-at-startup "sh" "-c" "wlsunset -t 3500 -T 6500 -S 05:00 -s 20:00"
@@ -349,7 +354,7 @@ binds {
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+T hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
     Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
-    Alt+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+    Alt+Space { spawn "fuzzel"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
@@ -595,8 +600,7 @@ binds {
 }
 
 switch-events {
-    lid-close { spawn "swaylock"; }
-    lid-open { spawn "notify-send" "The laptop lid is open!"; }
+    lid-close { spawn "swaylock -f"; }
 }
 
 environment {
