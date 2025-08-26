@@ -7,7 +7,11 @@ return {
             enable = false
         },
         ensure_installed = "all", -- one of "all", "maintained", or a list of languages
-        ignore_install = { "css" }, -- List of parsers to ignore installing
+        -- List of parsers to ignore installing
+        ignore_install = {
+            "css",
+            "systemverilog",
+        },
         highlight = {
             enable = true,  -- enable = true (false will disable the whole extension)
             disable = {},   -- list of language that will be disabled

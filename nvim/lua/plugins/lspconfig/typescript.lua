@@ -1,11 +1,8 @@
 local M = {}
 
-function M.setup(settings)
+function M.setup(_settings)
     local lspconfig = require("lspconfig")
-    lspconfig.tsserver.setup({
-        on_attach = function(c, bufnr)
-            settings["inlay"].on_attach(c, bufnr)
-        end,
+    lspconfig.ts_ls.setup({
         settings = {
             javascript = {
                 inlayHints = {

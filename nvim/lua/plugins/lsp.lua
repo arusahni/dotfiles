@@ -1,91 +1,126 @@
 return {
-    "VonHeikemen/lsp-zero.nvim",
-    branch = 'v2.x',
-    dependencies = {
-        -- LSP Support
-        { "neovim/nvim-lspconfig" },
-        {
-            "williamboman/mason.nvim",
-            build = function()
-                pcall(vim.cmd, "MasonUpdate")
-            end,
-        },
-        { "williamboman/mason-lspconfig.nvim" },
-        { "jose-elias-alvarez/null-ls.nvim" },
 
-        -- Autocompletion
-        { "hrsh7th/nvim-cmp" },
-        { "hrsh7th/cmp-nvim-lsp" },
-        { "hrsh7th/cmp-nvim-lsp-signature-help" },
-        { "L3MON4D3/LuaSnip" },
-
-        -- LSP customizations
-        { "j-hui/fidget.nvim" },
-        { "onsails/lspkind.nvim" },
-        { "simrat39/inlay-hints.nvim" },
-        { "tamago324/nlsp-settings.nvim" },
-
-        -- Language customizations
-        { "simrat39/rust-tools.nvim" },
-        { "b0o/schemastore.nvim" },
+    {
+        "VonHeikemen/lsp-zero.nvim",
+        branch = "v4.x",
+        lazy = true,
     },
-    config = function(_, _)
-        local lspzero = require("plugins.lspconfig.lsp-zero").setup()
-        local lsp = lspzero["lsp"]
-        local cmp_action = lspzero["cmp_action"]
-        lsp.ensure_installed({
-            "tsserver",
-            "lua_ls",
-            "pyright",
-            "bashls",
-            "docker_compose_language_service",
-            "dockerls",
-            "eslint",
-            "html",
-            "marksman",
-            "ruff_lsp",
-            "rust_analyzer",
-            "svelte",
-            "yamlls",
-            "jsonls",
-        })
-        local inlay = require("plugins.lspconfig.inlay").setup()
-        lsp.on_attach(function(client, bufnr)
-            lsp.default_keymaps({
-                buffer = bufnr,
-                preserve_mappings = false,
+    {
+        "hrsh7th/nvim-cmp",
+        event = "InsertEnter",
+        dependencies = {
+            { "L3MON4D3/LuaSnip",        version = "v2.*" },
+            { "saadparwaiz1/cmp_luasnip" },
+            { "onsails/lspkind.nvim" },
+            { "hrsh7th/cmp-buffer" },
+        },
+        config = function()
+            -- Autocompletion
+            require("plugins.lspconfig.cmp").setup()
+            require("luasnip.loaders.from_snipmate").lazy_load({ paths = "~/.config/nvim/snippets" })
+        end
+    },
+    {
+        "neovim/nvim-lspconfig",
+        cmd = { "LspInfo" },
+        event = { "BufReadPre", "BufNewFile" },
+        dependencies = {
+            -- LSP Support
+            { "hrsh7th/cmp-nvim-lsp" },
+            { "hrsh7th/cmp-nvim-lsp-signature-help" },
+            {
+                "williamboman/mason.nvim",
+                version = "1.11.0",
+                build = function()
+                    pcall(vim.cmd, "MasonUpdate")
+                end,
+            },
+            { "williamboman/mason-lspconfig.nvim", version = "1.32.0" },
+            { "nvimtools/none-ls.nvim" },
+
+            -- LSP customizations
+            { "j-hui/fidget.nvim",                tag = "v1.4.5" },
+            { "MysticalDevil/inlay-hints.nvim" },
+            { "tamago324/nlsp-settings.nvim" },
+
+            -- Language customizations
+            -- { "simrat39/rust-tools.nvim" },
+            {
+                "mrcjkb/rustaceanvim",
+                version = '^4', -- Recommended
+                lazy = false,   -- This plugin is already lazy
+            },
+            { "b0o/schemastore.nvim" },
+            { "aznhe21/actions-preview.nvim" },
+        },
+        config = function(_, _)
+            -- Comment this out for debugging
+            vim.lsp.set_log_level("off")
+            local inlay = require("plugins.lspconfig.inlay").setup()
+            local lsp = require("plugins.lspconfig.lsp-zero").setup()
+            require("mason").setup({})
+            require("mason-lspconfig").setup({
+                ensure_installed = {
+                    "ts_ls",
+                    "lua_ls",
+                    "pyright",
+                    "bashls",
+                    "docker_compose_language_service",
+                    "dockerls",
+                    "eslint",
+                    "html",
+                    "marksman",
+                    "ruff",
+                    "svelte",
+                    "yamlls",
+                    "jsonls",
+                }
             })
-            if client.supports_method "textDocument/documentHighlight" then
-                local group = vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
-                vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-                    group = group,
-                    buffer = bufnr,
-                    callback = vim.lsp.buf.document_highlight,
-                })
-                vim.api.nvim_create_autocmd("CursorMoved", {
-                    group = group,
-                    buffer = bufnr,
-                    callback = vim.lsp.buf.clear_references,
-                })
-            end
-            vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
-                vim.lsp.handlers['signature_help'],
-                { border = 'single', close_events = { "CursorMoved", "BufHidden", "InsertCharPre" } }
-            )
-        end)
-        lsp.set_sign_icons({
-            error = "",
-            warn = "",
-            hint = "",
-            info = "",
-        })
-        require("plugins.lspconfig.fidget")
-        require("plugins.lspconfig.lua").setup({ lsp = lsp })
-        require("plugins.lspconfig.typescript").setup({ inlay = inlay })
-        require("plugins.lspconfig.rust").setup({ inlay = inlay, lsp = lsp })
-        require("plugins.lspconfig.json").setup()
-        require("plugins.lspconfig.null").setup()
-        lsp.setup()
-        require("plugins.lspconfig.cmp").setup({ cmp_action = cmp_action })
-    end
+            require("mason-lspconfig").setup_handlers({
+                function(server_name)
+                    -- Autoconfigure the LSP for installed Mason servers
+                    require("lspconfig")[server_name].setup({})
+                end,
+                -- Force no-op for r-a so Meson can't install it
+                rust_analyzer = function()
+                    return true
+                end,
+            })
+            require("plugins.lspconfig.fidget")
+            require("plugins.lspconfig.lua").setup({ lsp = lsp })
+            require("plugins.lspconfig.typescript").setup({ inlay = inlay })
+            require("plugins.lspconfig.rust").setup({ inlay = inlay, lsp = lsp })
+            require("plugins.lspconfig.json").setup()
+            require("plugins.lspconfig.null").setup()
+            lsp.setup()
+            local nlspsettings = require("nlspsettings")
+            nlspsettings.setup({
+                local_settings_dir = ".vim",
+                local_settings_root_markers_fallback = { ".git" },
+                -- Schemas are extended in plugins.lspconfig.json
+                append_default_schemas = true,
+                loader = "json",
+            })
+        end
+    },
+    {
+        "rachartier/tiny-inline-diagnostic.nvim",
+        event = "VeryLazy",
+        priority = 1000, -- needs to be loaded in first
+        opts = {
+            preset = "powerline",
+            options = {
+                show_source = true,
+            }
+        }
+    },
+
+    {
+        "hedyhli/outline.nvim",
+        lazy = true,
+        cmd = { "Outline", "OutlineOpen" },
+        keys = { "<leader>o", "<cmd>Outline<CR>", desc = "Toggle outline" },
+        opts = {}
+    },
+
 }

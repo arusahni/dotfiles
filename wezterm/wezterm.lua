@@ -39,63 +39,63 @@ end
 
 local function get_process(tab)
     local process_icons = {
-            ["docker"] = {
+        ["docker"] = {
             -- { Foreground = { Color = colors.blue } },
             { Text = wezterm.nerdfonts.linux_docker },
         },
-            ["docker-compose"] = {
+        ["docker-compose"] = {
             -- { Foreground = { Color = colors.blue } },
             { Text = wezterm.nerdfonts.linux_docker },
         },
-            ["nvim"] = {
+        ["nvim"] = {
             -- { Foreground = { Color = colors.green } },
             { Text = wezterm.nerdfonts.custom_vim },
         },
-            ["vim"] = {
+        ["vim"] = {
             -- { Foreground = { Color = colors.green } },
             { Text = wezterm.nerdfonts.dev_vim },
         },
-            ["node"] = {
+        ["node"] = {
             -- { Foreground = { Color = colors.green } },
             { Text = wezterm.nerdfonts.mdi_hexagon },
         },
-            ["zsh"] = {
+        ["zsh"] = {
             -- { Foreground = { Color = colors.peach } },
             { Text = wezterm.nerdfonts.dev_terminal },
         },
-            ["bash"] = {
+        ["bash"] = {
             -- { Foreground = { Color = colors.subtext0 } },
             { Text = wezterm.nerdfonts.cod_terminal_bash },
         },
-            ["pacman"] = {
+        ["pacman"] = {
             -- { Foreground = { Color = colors.lavender } },
             { Text = wezterm.nerdfonts.linux_archlinux },
         },
-            ["htop"] = {
+        ["htop"] = {
             -- { Foreground = { Color = colors.yellow } },
             { Text = wezterm.nerdfonts.mdi_chart_donut_variant },
         },
-            ["cargo"] = {
+        ["cargo"] = {
             -- { Foreground = { Color = colors.peach } },
             { Text = wezterm.nerdfonts.dev_rust },
         },
-            ["go"] = {
+        ["go"] = {
             -- { Foreground = { Color = colors.sapphire } },
             { Text = wezterm.nerdfonts.mdi_language_go },
         },
-            ["git"] = {
+        ["git"] = {
             -- { Foreground = { Color = colors.peach } },
             { Text = wezterm.nerdfonts.dev_git },
         },
-            ["lua"] = {
+        ["lua"] = {
             -- { Foreground = { Color = colors.blue } },
             { Text = wezterm.nerdfonts.seti_lua },
         },
-            ["wget"] = {
+        ["wget"] = {
             -- { Foreground = { Color = colors.yellow } },
             { Text = wezterm.nerdfonts.mdi_arrow_down_box },
         },
-            ["curl"] = {
+        ["curl"] = {
             -- { Foreground = { Color = colors.yellow } },
             { Text = wezterm.nerdfonts.mdi_flattr },
         }
@@ -123,6 +123,7 @@ wezterm.on("format-tab-title", function(tab)
 end)
 
 return merge({
+    adjust_window_size_when_changing_font_size = false,
     color_scheme = "midnight-in-mojave",
     colors = {
         -- Overrides the cell background color when the current cell is occupied by the
@@ -140,6 +141,21 @@ return merge({
     front_end = "WebGpu",
     -- webgpu_power_preference = "LowPower",
     hide_tab_bar_if_only_one_tab = true,
+    keys = {
+        { key = "UpArrow",   mods = "SHIFT", action = wezterm.action.ScrollToPrompt(-1) },
+        { key = "DownArrow", mods = "SHIFT", action = wezterm.action.ScrollToPrompt(1) },
+
+        { key = "v", mods = "CTRL|ALT", action = wezterm.action.SplitHorizontal({domain="CurrentPaneDomain"}) },
+        { key = "x", mods = "CTRL|ALT", action = wezterm.action.SplitVertical({domain="CurrentPaneDomain"}) },
+        { key = "UpArrow", mods = "CTRL|ALT", action = wezterm.action.ActivatePaneDirection("Up") },
+        { key = "k", mods = "CTRL|ALT", action = wezterm.action.ActivatePaneDirection("Up") },
+        { key = "DownArrow", mods = "CTRL|ALT", action = wezterm.action.ActivatePaneDirection("Down") },
+        { key = "j", mods = "CTRL|ALT", action = wezterm.action.ActivatePaneDirection("Down") },
+        { key = "LeftArrow", mods = "CTRL|ALT", action = wezterm.action.ActivatePaneDirection("Left") },
+        { key = "h", mods = "CTRL|ALT", action = wezterm.action.ActivatePaneDirection("Left") },
+        { key = "RightArrow", mods = "CTRL|ALT", action = wezterm.action.ActivatePaneDirection("Right") },
+        { key = "l", mods = "CTRL|ALT", action = wezterm.action.ActivatePaneDirection("Right") },
+    },
     mouse_bindings = {
         -- Disable the default click behavior
         {

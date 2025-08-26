@@ -1,10 +1,13 @@
 require("fidget").setup({
-    text = {
-        spinner = "bouncing_ball",
+    progress = {
+        display = {
+            progress_icon = { pattern = "bouncing_ball" },
+        },
     },
-    window = {
-        border = "rounded",
-        blend = 0,
+    notification = {
+        window = {
+            border = "rounded",
+            winblend = 0,
+        },
     },
 })
-
