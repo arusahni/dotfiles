@@ -41,7 +41,7 @@
 # # which is explained in the docs for that config option.
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
-theme = midnight-in-mojave
+theme = "Midnight In Mojave"
 font-family = "CommitMono Nerd Font"
 # adjust-cell-height = 10%
 font-size = 12
@@ -50,8 +50,8 @@ font-feature = -clig, -liga
 freetype-load-flags = no-force-autohint,no-hinting
 gtk-tabs-location = bottom
 gtk-wide-tabs = false
-cursor-style = "block"
 shell-integration-features = no-cursor
+cursor-style = "block"
 cursor-color = "white"
 window-padding-x = 8
 window-padding-y = 8
