@@ -8,7 +8,7 @@ local function extend(tab1, tab2)
 end
 
 function M.setup()
-    local lspconfig = require("lspconfig")
+    -- local lspconfig = require("lspconfig")
     local nlspsettings = require("nlspsettings")
     local nlsp_schemas = nlspsettings.get_default_schemas()
     local schema_store = require('schemastore').json.schemas()
@@ -18,8 +18,8 @@ function M.setup()
     schemas = extend(schemas, nlsp_schemas)
     local global_capabilities = vim.lsp.protocol.make_client_capabilities()
     global_capabilities.textDocument.completion.completionItem.snippetSupport = true
-    lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, { capabilities = global_capabilities })
-    lspconfig.jsonls.setup({
+    vim.lsp.config("jsonls", {
+        capabilities = global_capabilities,
         settings = {
             json = {
                 schemas = schemas,
