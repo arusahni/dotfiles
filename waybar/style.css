@@ -113,3 +113,8 @@ tooltip label {
 #custom-media {
   color: #8968cd;
 }
+
+#custom-notification {
+  font-family: "NotoSansMono Nerd Font";
+	padding: 2px 4px;
+}

@@ -14,13 +14,13 @@
     "modules-right": [
         "mpd",
         "idle_inhibitor",
-        "pulseaudio",
         "cpu",
         "memory",
-        "backlight",
         "keyboard-state",
         "battery",
         "tray",
+        "custom/notification",
+        "pulseaudio",
         "clock"
     ]
 }
