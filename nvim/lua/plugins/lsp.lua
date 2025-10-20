@@ -20,20 +20,70 @@ end
 
 return {
 
+    -- {
+    --     "hrsh7th/nvim-cmp",
+    --     event = "InsertEnter",
+    --     dependencies = {
+    --         { "L3MON4D3/LuaSnip",        version = "v2.*" },
+    --         { "saadparwaiz1/cmp_luasnip" },
+    --         { "onsails/lspkind.nvim" },
+    --         { "hrsh7th/cmp-buffer" },
+    --     },
+    --     config = function()
+    --         -- Autocompletion
+    --         require("plugins.lspconfig.cmp").setup()
+    --         require("luasnip.loaders.from_snipmate").lazy_load({ paths = "~/.config/nvim/snippets" })
+    --     end
+    -- },
     {
-        "hrsh7th/nvim-cmp",
-        event = "InsertEnter",
+        "saghen/blink.cmp",
         dependencies = {
-            { "L3MON4D3/LuaSnip",        version = "v2.*" },
-            { "saadparwaiz1/cmp_luasnip" },
-            { "onsails/lspkind.nvim" },
-            { "hrsh7th/cmp-buffer" },
+            "onsails/lspkind.nvim",
+            -- optional: provides snippets for the snippet source
+            "rafamadriz/friendly-snippets",
         },
-        config = function()
-            -- Autocompletion
-            require("plugins.lspconfig.cmp").setup()
-            require("luasnip.loaders.from_snipmate").lazy_load({ paths = "~/.config/nvim/snippets" })
-        end
+        event = "InsertEnter",
+        -- use a release tag to download pre-built binaries
+        version = "1.*",
+        opts = {
+            keymap = {
+              preset = "default",
+              ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+              ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+              ["<C-k>"] = { "select_prev", "snippet_backward", "show_signature", "hide_signature", "fallback" },
+              ["<C-j>"] = { "select_next", "snippet_forward", "fallback" },
+              ["<CR>"] = { "accept", "fallback" },
+              ["<Esc>"] = { "hide", "fallback" },
+              ["<PageUp>"] = { "scroll_documentation_up", "fallback" },
+              ["<PageDown>"] = { "scroll_documentation_down", "fallback" },
+            },
+            appearance = {
+                nerd_font_variant = "mono"
+            },
+            completion = {
+                documentation = {
+                    auto_show = true,
+                    window = { border = "single" }
+                },
+                menu = {
+                    border = "single",
+                    draw = {
+                        columns = {
+                            { "label", "label_description", gap = 1 },
+                            { "kind_icon", gap = 1 }
+                        },
+                        treesitter = { "lsp" },
+                    },
+                    max_height = 20,
+                }
+            },
+            sources = {
+                default = { "lsp", "path", "buffer", "snippets", "omni" },
+            },
+            fuzzy = { implementation = "prefer_rust_with_warning" },
+            signature = { enabled = true },
+        },
+        opts_extend = { "sources.default" }
     },
     {
         "neovim/nvim-lspconfig",
@@ -41,8 +91,8 @@ return {
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
             -- LSP Support
-            { "hrsh7th/cmp-nvim-lsp" },
-            { "hrsh7th/cmp-nvim-lsp-signature-help" },
+            -- { "hrsh7th/cmp-nvim-lsp" },
+            -- { "hrsh7th/cmp-nvim-lsp-signature-help" },
             -- {
             --     "mason-org/mason.nvim",
             --     -- build = function()
@@ -58,7 +108,7 @@ return {
             { "nvimtools/none-ls.nvim" },
 
             -- LSP customizations
-            { "j-hui/fidget.nvim",                tag = "v1.4.5" },
+            { "j-hui/fidget.nvim",             tag = "v1.4.5" },
             { "MysticalDevil/inlay-hints.nvim" },
             { "tamago324/nlsp-settings.nvim" },
 
