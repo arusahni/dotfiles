@@ -55,6 +55,9 @@ cursor-style = "block"
 cursor-color = "white"
 window-padding-x = 8
 window-padding-y = 8
+quick-terminal-position = top
+quick-terminal-size = 700px,45%
+quick-terminal-autohide = true
 
 
 keybind = ctrl+alt+v=new_split:right
@@ -64,3 +67,4 @@ keybind = ctrl+alt+h=goto_split:left
 keybind = ctrl+alt+j=goto_split:up
 keybind = ctrl+alt+k=goto_split:down
 keybind = shift+enter=text:\n
+keybind = global:f12=toggle_quick_terminal
