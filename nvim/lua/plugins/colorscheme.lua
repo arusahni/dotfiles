@@ -1,12 +1,16 @@
 return {
-    -- {
-    --     "navarasu/onedark.nvim",
-    --     lazy = false,
-    --     priority = 1000,
-    --     config = function()
-    --         require("onedark").load()
-    --     end,
-    -- },
+    {
+        "navarasu/onedark.nvim",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            require("onedark").setup({
+                style = "darker",
+                transparent = true,
+            })
+            require("onedark").load()
+        end,
+    },
     {
         "scottmckendry/cyberdream.nvim",
         lazy = false,
@@ -15,6 +19,10 @@ return {
             italic_comments = true,
         },
     },
+    -- {
+    --   "olimorris/onedarkpro.nvim",
+    --   priority = 1000, -- Ensure it loads first
+    -- },
     {
         "catppuccin/nvim",
         name = "catppuccin",

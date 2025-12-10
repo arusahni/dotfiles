@@ -1,4 +1,3 @@
-vim.cmd.colorscheme "cyberdream"
 vim.cmd([[
 hi Search ctermfg=237 ctermbg=13
 hi MatchParen cterm=underline
