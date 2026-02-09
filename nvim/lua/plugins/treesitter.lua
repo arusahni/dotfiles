@@ -9,7 +9,6 @@ return {
         ensure_installed = "all", -- one of "all", "maintained", or a list of languages
         -- List of parsers to ignore installing
         ignore_install = {
-            "css",
             "systemverilog",
         },
         highlight = {
