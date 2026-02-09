@@ -365,6 +365,7 @@ binds {
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+T hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
     Mod+D hotkey-overlay-title="Run an Application: anyrun" { spawn "anyrun"; }
+    Mod+E hotkey-overlay-title="Open explorer: Dolphin" { spawn "dolphin"; }
     Alt+Space { spawn "anyrun"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
@@ -620,4 +621,6 @@ environment {
     // Set the display for xwayland-satellite apps
     //  See: https://github.com/YaLTeR/niri/wiki/Xwayland
     DISPLAY ":1"
+    // Force themeing for QT apps
+    QT_STYLE_OVERRIDE "kvantum"
 }
