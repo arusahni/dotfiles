@@ -1,0 +1,58 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "icon_theme": "Zed (Default)",
+  "terminal": {
+    "font_family": "CommitMono Nerd Font",
+    "dock": "right",
+  },
+  "project_panel": {
+    "dock": "right",
+  },
+  "agent": {
+    "always_allow_tool_actions": true,
+    "default_profile": "write",
+    "model_parameters": [],
+    "default_model": {
+      "provider": "google",
+      "model": "gemini-3-pro-preview",
+    },
+  },
+  "vim_mode": true,
+  "ui_font_size": 16,
+  "buffer_font_size": 14,
+  "theme": {
+    "mode": "dark",
+    "light": "One Light",
+    "dark": "One Dark Pro",
+  },
+  "ui_font_family": "CommitMono Nerd Font",
+  "ui_font_features": { "calt": false, "liga": false },
+  "buffer_font_features": { "calt": false, "liga": false },
+  "lsp": {
+    "rust-analyzer": {
+      "initialization_options": {
+        "rust": {
+          "analyzerTargetDir": "target-ra",
+        },
+        "cargo": {
+          "features": "all",
+        },
+      },
+    },
+  },
+  "auto_install_extensions": {
+    "git-firefly": true,
+    "html": true,
+    "one-dark-pro": true,
+    "ruby": true,
+    "sql": true,
+    "toml": true,
+  },
+}

@@ -1,0 +1,26 @@
+{
+    "layer": "top",
+    "spacing": 0,
+    "include": [
+        "$HOME/.config/waybar/modules.jsonc"
+    ],
+    "modules-left": [
+        "niri/workspaces",
+        "wlr/taskbar"
+    ],
+    "modules-center": [
+        "niri/window"
+    ],
+    "modules-right": [
+        "mpd",
+        "idle_inhibitor",
+        "cpu",
+        "memory",
+        "keyboard-state",
+        "battery",
+        "tray",
+        "custom/notification",
+        "pulseaudio",
+        "clock"
+    ]
+}

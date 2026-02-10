@@ -1,7 +1,7 @@
 return {
     {
         "tpope/vim-repeat",
-        event = "VeryLazy"
+        event = { "InsertEnter", "BufReadPost", "BufNewFile" },
     },
 
     {
@@ -11,15 +11,31 @@ return {
         },
         cmd = "NvimTreeToggle",
         config = true,
+        lazy = true,
+        opts = {
+            view = {
+                side = "right",
+            },
+        },
     },
 
     {
         "tpope/vim-surround",
-        event = { "BufReadPost", "BufNewFile" }
+        event = { "InsertEnter", "BufReadPost", "BufNewFile" }
     },
 
     {
         "tpope/vim-fugitive",
+        event = "VeryLazy"
+    },
+
+    {
+        "almo7aya/openingh.nvim",
+        event = "VeryLazy",
+    },
+
+    {
+        "tpope/vim-rhubarb",
         event = "VeryLazy"
     },
 
@@ -32,21 +48,13 @@ return {
 
     {
         "simnalamburt/vim-mundo",
-        event = "VeryLazy"
+        event = { "InsertEnter", "BufReadPost", "BufNewFile" }
     },
 
     {
         "wellle/targets.vim",
-        event = { "BufReadPost", "BufNewFile" }
+        event = { "InsertEnter", "BufReadPost", "BufNewFile" }
     },
-
-    -- {
-    --     "neoclide/coc.nvim",
-    --     event = "VeryLazy",
-    --     branch = 'release',
-    --     build =
-    --     ':CocInstall coc-json coc-yaml coc-snippets coc-ultisnips coc-css coc-eslint coc-prettier coc-tsserver coc-vetur coc-pyright coc-rust-analyzer coc-elixir coc-diagnostic coc-stylelint coc-flutter'
-    -- },
 
     {
         "JoosepAlviste/nvim-ts-context-commentstring",
@@ -60,9 +68,12 @@ return {
 
     {
         "NvChad/nvim-colorizer.lua",
-        event = { "BufReadPost", "BufNewFile" },
+        event = { "InsertEnter", "BufReadPost", "BufNewFile" },
         config = true,
     },
 
-    "gpanders/editorconfig.nvim",
+    {
+        "weihanglo/polar.vim" ,
+        event = { "InsertEnter", "BufReadPost", "BufNewFile" },
+    }
 }

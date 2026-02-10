@@ -1,10 +1,12 @@
 local M = {}
+
 function M.setup()
-    local lspzero = require('lsp-zero')
-    return {
-        lsp = lspzero.preset({}),
-        cmp_action = lspzero.cmp_action(),
-    }
+    local lsp_zero = require("lsp-zero")
+    lsp_zero.extend_lspconfig({
+        capabilities = require("cmp_nvim_lsp").default_capabilities(),
+        lsp_attach = lsp_attach,
+    })
+    return lsp_zero
 end
 
 return M

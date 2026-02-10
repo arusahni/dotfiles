@@ -1,91 +1,198 @@
-return {
-    "VonHeikemen/lsp-zero.nvim",
-    branch = 'v2.x',
-    dependencies = {
-        -- LSP Support
-        { "neovim/nvim-lspconfig" },
-        {
-            "williamboman/mason.nvim",
-            build = function()
-                pcall(vim.cmd, "MasonUpdate")
-            end,
-        },
-        { "williamboman/mason-lspconfig.nvim" },
-        { "jose-elias-alvarez/null-ls.nvim" },
-
-        -- Autocompletion
-        { "hrsh7th/nvim-cmp" },
-        { "hrsh7th/cmp-nvim-lsp" },
-        { "hrsh7th/cmp-nvim-lsp-signature-help" },
-        { "L3MON4D3/LuaSnip" },
-
-        -- LSP customizations
-        { "j-hui/fidget.nvim" },
-        { "onsails/lspkind.nvim" },
-        { "simrat39/inlay-hints.nvim" },
-        { "tamago324/nlsp-settings.nvim" },
-
-        -- Language customizations
-        { "simrat39/rust-tools.nvim" },
-        { "b0o/schemastore.nvim" },
-    },
-    config = function(_, _)
-        local lspzero = require("plugins.lspconfig.lsp-zero").setup()
-        local lsp = lspzero["lsp"]
-        local cmp_action = lspzero["cmp_action"]
-        lsp.ensure_installed({
-            "tsserver",
-            "lua_ls",
-            "pyright",
-            "bashls",
-            "docker_compose_language_service",
-            "dockerls",
-            "eslint",
-            "html",
-            "marksman",
-            "ruff_lsp",
-            "rust_analyzer",
-            "svelte",
-            "yamlls",
-            "jsonls",
+local function lsp_attach(client, bufnr)
+    if client.supports_method "textDocument/documentHighlight" then
+        local group = vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
+        vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+            group = group,
+            buffer = bufnr,
+            callback = vim.lsp.buf.document_highlight,
         })
-        local inlay = require("plugins.lspconfig.inlay").setup()
-        lsp.on_attach(function(client, bufnr)
-            lsp.default_keymaps({
-                buffer = bufnr,
-                preserve_mappings = false,
-            })
-            if client.supports_method "textDocument/documentHighlight" then
-                local group = vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
-                vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-                    group = group,
-                    buffer = bufnr,
-                    callback = vim.lsp.buf.document_highlight,
-                })
-                vim.api.nvim_create_autocmd("CursorMoved", {
-                    group = group,
-                    buffer = bufnr,
-                    callback = vim.lsp.buf.clear_references,
-                })
-            end
-            vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
-                vim.lsp.handlers['signature_help'],
-                { border = 'single', close_events = { "CursorMoved", "BufHidden", "InsertCharPre" } }
-            )
-        end)
-        lsp.set_sign_icons({
-            error = "",
-            warn = "",
-            hint = "",
-            info = "",
+        vim.api.nvim_create_autocmd("CursorMoved", {
+            group = group,
+            buffer = bufnr,
+            callback = vim.lsp.buf.clear_references,
         })
-        require("plugins.lspconfig.fidget")
-        require("plugins.lspconfig.lua").setup({ lsp = lsp })
-        require("plugins.lspconfig.typescript").setup({ inlay = inlay })
-        require("plugins.lspconfig.rust").setup({ inlay = inlay, lsp = lsp })
-        require("plugins.lspconfig.json").setup()
-        require("plugins.lspconfig.null").setup()
-        lsp.setup()
-        require("plugins.lspconfig.cmp").setup({ cmp_action = cmp_action })
     end
+    vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+        vim.lsp.handlers['signature_help'],
+        { border = 'single', close_events = { "CursorMoved", "BufHidden", "InsertCharPre" } }
+    )
+end
+
+return {
+
+    -- {
+    --     "hrsh7th/nvim-cmp",
+    --     event = "InsertEnter",
+    --     dependencies = {
+    --         { "L3MON4D3/LuaSnip",        version = "v2.*" },
+    --         { "saadparwaiz1/cmp_luasnip" },
+    --         { "onsails/lspkind.nvim" },
+    --         { "hrsh7th/cmp-buffer" },
+    --     },
+    --     config = function()
+    --         -- Autocompletion
+    --         require("plugins.lspconfig.cmp").setup()
+    --         require("luasnip.loaders.from_snipmate").lazy_load({ paths = "~/.config/nvim/snippets" })
+    --     end
+    -- },
+    {
+        "saghen/blink.cmp",
+        dependencies = {
+            "onsails/lspkind.nvim",
+            -- optional: provides snippets for the snippet source
+            "rafamadriz/friendly-snippets",
+        },
+        event = "InsertEnter",
+        -- use a release tag to download pre-built binaries
+        version = "1.*",
+        opts = {
+            keymap = {
+              preset = "default",
+              ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+              ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+              ["<C-k>"] = { "select_prev", "snippet_backward", "show_signature", "hide_signature", "fallback" },
+              ["<C-j>"] = { "select_next", "snippet_forward", "fallback" },
+              ["<CR>"] = { "accept", "fallback" },
+              ["<Esc>"] = { "hide", "fallback" },
+              ["<PageUp>"] = { "scroll_documentation_up", "fallback" },
+              ["<PageDown>"] = { "scroll_documentation_down", "fallback" },
+            },
+            appearance = {
+                nerd_font_variant = "mono"
+            },
+            completion = {
+                documentation = {
+                    auto_show = true,
+                    window = { border = "single" }
+                },
+                menu = {
+                    border = "single",
+                    draw = {
+                        columns = {
+                            { "label", "label_description", gap = 1 },
+                            { "kind_icon", gap = 1 }
+                        },
+                        treesitter = { "lsp" },
+                    },
+                    max_height = 20,
+                }
+            },
+            sources = {
+                default = { "lsp", "path", "buffer", "snippets", "omni" },
+            },
+            fuzzy = { implementation = "prefer_rust_with_warning" },
+            signature = { enabled = true },
+        },
+        opts_extend = { "sources.default" }
+    },
+    {
+        "neovim/nvim-lspconfig",
+        cmd = { "LspInfo" },
+        event = { "BufReadPre", "BufNewFile" },
+        dependencies = {
+            -- LSP Support
+            -- { "hrsh7th/cmp-nvim-lsp" },
+            -- { "hrsh7th/cmp-nvim-lsp-signature-help" },
+            -- {
+            --     "mason-org/mason.nvim",
+            --     -- build = function()
+            --     --     pcall(vim.cmd, "MasonUpdate")
+            --     -- end,
+            -- },
+            {
+                "mason-org/mason-lspconfig.nvim",
+                dependencies = {
+                    { "mason-org/mason.nvim" },
+                }
+            },
+            { "nvimtools/none-ls.nvim" },
+
+            -- LSP customizations
+            { "j-hui/fidget.nvim",             tag = "v1.4.5" },
+            { "MysticalDevil/inlay-hints.nvim" },
+            { "tamago324/nlsp-settings.nvim" },
+
+            -- Language customizations
+            -- { "simrat39/rust-tools.nvim" },
+            {
+                "mrcjkb/rustaceanvim",
+                version = '^4', -- Recommended
+                lazy = false,   -- This plugin is already lazy
+            },
+            { "b0o/schemastore.nvim" },
+            { "aznhe21/actions-preview.nvim" },
+        },
+        config = function(_, _)
+            -- Comment this out for debugging
+            vim.lsp.set_log_level("off")
+            local inlay = require("plugins.lspconfig.inlay").setup()
+            require("mason").setup({})
+            require("mason-lspconfig").setup({
+                ensure_installed = {
+                    "ts_ls",
+                    "lua_ls",
+                    "pyright",
+                    "bashls",
+                    "docker_compose_language_service",
+                    "dockerls",
+                    "eslint",
+                    "html",
+                    "marksman",
+                    "ruff",
+                    "svelte",
+                    "yamlls",
+                    "jsonls",
+                    exclude = {
+                        "rust_analyzer"
+                    }
+                }
+            })
+            require("plugins.lspconfig.fidget")
+            require("plugins.lspconfig.lua").setup()
+            require("plugins.lspconfig.typescript").setup({ inlay = inlay })
+            require("plugins.lspconfig.rust").setup({ inlay = inlay })
+            require("plugins.lspconfig.json").setup()
+            require("plugins.lspconfig.null").setup()
+            local nlspsettings = require("nlspsettings")
+            nlspsettings.setup({
+                local_settings_dir = ".vim",
+                local_settings_root_markers_fallback = { ".git" },
+                -- Schemas are extended in plugins.lspconfig.json
+                append_default_schemas = true,
+                loader = "json",
+            })
+            -- Todo: configure LSP zero
+            vim.api.nvim_create_autocmd("LspAttach", {
+                desc = "LSP document highlighting",
+                callback = function(event)
+                    local client = vim.lsp.get_client_by_id(event.data.client_id)
+                    if not client then
+                        return
+                    end
+                    local bufnr = event.buf
+                    lsp_attach(client, bufnr)
+                end
+            });
+        end
+    },
+    {
+        "rachartier/tiny-inline-diagnostic.nvim",
+        event = "VeryLazy",
+        priority = 1000, -- needs to be loaded in first
+        opts = {
+            preset = "powerline",
+            options = {
+                show_source = true,
+            }
+        }
+    },
+
+    {
+        "hedyhli/outline.nvim",
+        lazy = true,
+        cmd = { "Outline", "OutlineOpen" },
+        keys = { "<leader>o", "<cmd>Outline<CR>", desc = "Toggle outline" },
+        opts = {}
+    },
+
 }

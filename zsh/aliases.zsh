@@ -54,3 +54,7 @@ fi
 if (( $+commands[poetry] )); then
     alias pvenv='source $(poetry env info --path)/bin/activate'
 fi
+
+if (( $+commands[xh] )); then
+    alias httpie='>&2 echo Using "xh" instead!; nocorrect xh '
+fi
