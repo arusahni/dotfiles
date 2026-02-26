@@ -33,5 +33,17 @@
     "bindings": {
       "g r": "editor::FindAllReferences"
     }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-shift-tab": "pane::ActivatePreviousItem"
+    }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-tab": "pane::ActivateNextItem"
+    }
   }
 ]

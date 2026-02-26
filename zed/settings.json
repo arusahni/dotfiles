@@ -7,6 +7,23 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "edit_predictions": {
+    "provider": "zed",
+  },
+  "tab_bar": {
+    "show_tab_bar_buttons": true,
+  },
+  "tabs": {
+    "show_diagnostics": "off",
+    "file_icons": true,
+    "git_status": false,
+  },
+  "buffer_font_family": "CommitMono Nerd Font",
+  "buffer_font_weight": 400.0,
+  "title_bar": {
+    "show_menus": false,
+    "show_branch_icon": true,
+  },
   "icon_theme": "Zed (Default)",
   "terminal": {
     "font_family": "CommitMono Nerd Font",
@@ -16,17 +33,26 @@
     "dock": "right",
   },
   "agent": {
-    "always_allow_tool_actions": true,
+    "tool_permissions": {
+      "default": "allow"
+    },
+    "inline_assistant_model": {
+      "provider": "google",
+      "model": "gemini-3-flash-preview",
+    },
+    "use_modifier_to_send": true,
+    "play_sound_when_agent_done": true,
+    "enable_feedback": false,
     "default_profile": "write",
     "model_parameters": [],
     "default_model": {
       "provider": "google",
-      "model": "gemini-3-pro-preview",
+      "model": "gemini-3-flash-preview",
     },
   },
   "vim_mode": true,
   "ui_font_size": 16,
-  "buffer_font_size": 14,
+  "buffer_font_size": 15.0,
   "theme": {
     "mode": "dark",
     "light": "One Light",
@@ -55,4 +81,6 @@
     "sql": true,
     "toml": true,
   },
+  "context_servers": {
+    },
 }
