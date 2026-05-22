@@ -7,6 +7,32 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "diff_view_style": "unified",
+  "cli_default_open_behavior": "existing_window",
+  "outline_panel": {
+    "dock": "left"
+  },
+  "collaboration_panel": {
+    "dock": "left"
+  },
+  "git_panel": {
+    "dock": "left"
+  },
+  "languages": {
+    "Rust": {
+      "inlay_hints": {
+        "enabled": false,
+      },
+    },
+  },
+  "agent_servers": {
+    "gemini": {
+      "type": "registry",
+    },
+    "claude-acp": {
+      "type": "registry",
+    },
+  },
   "edit_predictions": {
     "provider": "zed",
   },
@@ -33,19 +59,21 @@
     "dock": "right",
   },
   "agent": {
+    "dock": "right",
     "tool_permissions": {
-      "default": "allow"
+      "default": "allow",
     },
     "inline_assistant_model": {
-      "provider": "google",
-      "model": "gemini-3-flash-preview",
+      "provider": "zed.dev",
+      "model": "claude-haiku-4-5",
     },
     "use_modifier_to_send": true,
-    "play_sound_when_agent_done": true,
+    "play_sound_when_agent_done": "always",
     "enable_feedback": false,
     "default_profile": "write",
     "model_parameters": [],
     "default_model": {
+      "enable_thinking": false,
       "provider": "google",
       "model": "gemini-3-flash-preview",
     },
@@ -81,6 +109,5 @@
     "sql": true,
     "toml": true,
   },
-  "context_servers": {
-    },
+  "context_servers": {},
 }
