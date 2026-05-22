@@ -45,12 +45,11 @@ return {
     },
 
     "thinca/vim-localrc",
-
     {
-        "simnalamburt/vim-mundo",
-        event = { "InsertEnter", "BufReadPost", "BufNewFile" }
+        "nvim.undotree",
+        dir = vim.env.VIMRUNTIME .. "/pack/dist/opt/nvim.undotree",
+        event = { "BufReadPost", "BufNewFile" },
     },
-
     {
         "wellle/targets.vim",
         event = { "InsertEnter", "BufReadPost", "BufNewFile" }
