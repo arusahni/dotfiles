@@ -4,3 +4,4 @@ wezterm/local.lua
 *.save
 zsh/cache/
 nvim/plugin/packer_compiled.lua
+jj/repos/
