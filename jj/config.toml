@@ -3,6 +3,7 @@ pager = "delta"
 conflict-marker-style = "git"
 diff-formatter = ":git"
 diff-editor = ":builtin"
+default-command = "log"
 
 [user]
 name = "Aru Sahni"
@@ -10,3 +11,8 @@ email = "aru@arusahni.net"
 
 [aliases]
 tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
+
+[fix.tools.rustfmt]
+enabled = false
+command = ["rustfmt", "--emit", "stdout"]
+patterns = ["glob:'**/*.rs'"]
