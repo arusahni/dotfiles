@@ -120,6 +120,12 @@ return {
                 lazy = false,   -- This plugin is already lazy
             },
             { "b0o/schemastore.nvim" },
+            {
+                "kosayoda/nvim-lightbulb",
+                opts = {
+                    autocmd = { enabled = true },
+                },
+            },
             { "aznhe21/actions-preview.nvim" },
         },
         config = function(_, _)
