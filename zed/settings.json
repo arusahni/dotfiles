@@ -10,13 +10,13 @@
   "diff_view_style": "unified",
   "cli_default_open_behavior": "existing_window",
   "outline_panel": {
-    "dock": "left"
+    "dock": "left",
   },
   "collaboration_panel": {
-    "dock": "left"
+    "dock": "left",
   },
   "git_panel": {
-    "dock": "left"
+    "dock": "left",
   },
   "languages": {
     "Rust": {
@@ -47,8 +47,8 @@
   "buffer_font_family": "CommitMono Nerd Font",
   "buffer_font_weight": 400.0,
   "title_bar": {
+    "show_branch_status_icon": true,
     "show_menus": false,
-    "show_branch_icon": true,
   },
   "icon_theme": "Zed (Default)",
   "terminal": {
@@ -110,4 +110,7 @@
     "toml": true,
   },
   "context_servers": {},
+  "file_types": {
+    "HTML": ["*.webc"],
+  },
 }
