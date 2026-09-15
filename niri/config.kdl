@@ -312,6 +312,24 @@ window-rule {
     open-floating true
 }
 
+// Zoom floating
+window-rule {
+    match app-id=r#"zoom$"# title="_toolbar$"
+    match app-id=r#"zoom$"# title="_float_"
+    open-floating true
+}
+
+// Quite possibly the worst popover - this is the pencil glyph that shows when
+// you hover a shared screen
+window-rule {
+    match app-id=r#"zoom$"# title="^annotate_toolbar$"
+    open-focused false
+    draw-border-with-background false
+    shadow {
+        off
+    }
+}
+
 window-rule {
     match app-id=r#"firefox$"#
     match app-id=r#"zen-twilight$"#
