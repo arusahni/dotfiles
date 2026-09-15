@@ -260,7 +260,7 @@ cursor {
 // See the binds section below for more spawn examples.
 
 spawn-at-startup "xwayland-satellite"
-spawn-sh-at-startup "NOCTALIA_PAM_SERVICE=noctalia qs -c noctalia-shell"
+spawn-sh-at-startup "NOCTALIA_PAM_SERVICE=noctalia noctalia"
 spawn-at-startup "kdeconnect-indicator"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
@@ -321,6 +321,16 @@ window-rule {
     open-maximized true
 }
 
+
+// Floating Noctalia settings window.
+window-rule {
+  match app-id="dev.noctalia.Noctalia"
+  open-floating true
+  default-column-width { fixed 1080; }
+  default-window-height { fixed 920; }
+}
+
+
 // Example: block out two password managers from screen capture.
 // (This example rule is commented out with a "/-" in front.)
 /-window-rule {
@@ -357,8 +367,8 @@ binds {
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+T hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
     Mod+E hotkey-overlay-title="Open explorer: Thunar" { spawn "thunar"; }
-    Super+Alt+L hotkey-overlay-title="Lock the Screen: Noctalia" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
-    Alt+Space hotkey-overlay-title="Open launcher" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+    Super+Alt+L hotkey-overlay-title="Lock the Screen: Noctalia" { spawn "noctalia" "msg" "session" "lock"; }
+    Alt+Space hotkey-overlay-title="Open launcher" {spawn-sh "noctalia msg panel-toggle launcher"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
@@ -366,11 +376,12 @@ binds {
 
     // Example volume keys mappings for PipeWire & WirePlumber.
     // The allow-when-locked=true property makes them work even when the session is locked.
-    XF86AudioRaiseVolume { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "increase"; }
-    XF86AudioLowerVolume { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "decrease"; }
-    XF86AudioMute { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "muteOutput"; }
-    XF86MonBrightnessUp { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "brightness" "increase"; }
-    XF86MonBrightnessDown { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "brightness" "decrease"; }
+    XF86AudioRaiseVolume { spawn-sh "pactl set-sink-mute @DEFAULT_SINK@ false && noctalia msg volume-up"; }
+    XF86AudioLowerVolume { spawn-sh "pactl set-sink-mute @DEFAULT_SINK@ false && noctalia msg volume-down"; }
+    XF86AudioMute { spawn-sh "noctalia msg volume-mute"; }
+    XF86MonBrightnessUp { spawn-sh "noctalia msg brightness-up"; }
+    XF86MonBrightnessDown { spawn-sh "noctalia msg brightness-down"; }
+
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     // You can also move the mouse into the top-left hot corner,
     // or do a four-finger swipe up on a touchpad.
@@ -601,7 +612,7 @@ binds {
 }
 
 switch-events {
-    lid-close { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
+    lid-close { spawn "noctalia" "msg" "session" "lock-and-suspend"; }
 }
 
 environment {
@@ -614,4 +625,9 @@ environment {
     QT_STYLE_OVERRIDE "kvantum"
     // Set Noctalia PAM service for fingerprint support
     NOCTALIA_PAM_SERVICE: "noctalia"
+}
+
+debug {
+  // Allows notification actions and window activation from Noctalia.
+  honor-xdg-activation-with-invalid-serial
 }
