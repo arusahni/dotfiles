@@ -15,9 +15,30 @@ width = 5.0
 
 [borders.color]
 alpha = 1.0
-blue = 0.979300037944676
+blue = 1.0
+green = 0.7773296925872586
+red = 0.0
+
+[borders.glow]
+enabled = false
+opacity = 0.6
+radius = 8.0
+
+[borders.gradient]
+direction = "topLeftToBottomRight"
+enabled = false
+
+[borders.gradient.end]
+alpha = 1.0
+blue = 0.7
 green = 1.0
-red = 0.08458520228437894
+red = 0.0
+
+[borders.gradient.start]
+alpha = 1.0
+blue = 1.0
+green = 0.4
+red = 0.0
 
 [clipboard]
 historyEnabled = false
@@ -45,7 +66,7 @@ raiseOnMouseFocus = false
 
 [gaps]
 fullscreenUsesOuterGaps = false
-size = 16.0
+size = 12.0
 
 [gaps.outer]
 bottom = 0.0
@@ -66,14 +87,14 @@ updateChecksEnabled = true
 
 [gestures]
 fingerCount = 3
-invertDirection = true
+invertDirection = false
 mouseMoveModifierKey = "option"
 mouseResizeModifierKey = "option"
 overviewGestureEnabled = false
 overviewGestureFingerCount = 4
 scrollEnabled = true
 scrollModifierKey = "optionShift"
-scrollSensitivity = 5.0
+scrollSensitivity = 3.0
 trackpadScrollStyle = "snap"
 windowGestureSensitivity = 1.0
 windowMoveEnabled = false
@@ -180,7 +201,7 @@ inactiveIconOpacity = 0.55
 notchActiveZoneWidth = 180.0
 notchMode = "moveBelowMenuBar"
 notificationBadgeRefreshIntervalSeconds = 5.0
-notificationBadges = "dot"
+notificationBadges = "text"
 position = "overlappingMenuBar"
 reserveLayoutSpace = false
 revealHoldMilliseconds = 200.0
@@ -275,6 +296,14 @@ bundleId = "com.apple.MobileSMS"
 id = "552FB77D-BF0E-4737-90A6-B5BC6986C579"
 minHeight = 320.0
 minWidth = 660.0
+
+[[appRules]]
+assignToWorkspace = "3"
+axRole = "AXWindow"
+axSubrole = "AXStandardWindow"
+bundleId = "com.tidal.desktop"
+id = "A48B320F-DB64-4758-84BB-50B047720993"
+initialContainerPrimarySpan = 0.5
 
 [[hotkeys]]
 binding = "Unassigned"
