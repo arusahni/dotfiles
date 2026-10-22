@@ -1,4 +1,20 @@
-terminal=$(ps -o 'cmd=' -p $(ps -o 'ppid=' -p $$))
+platform='unknown'
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+    platform='linux'
+elif [[ "$unamestr" == 'FreeBSD' ]]; then
+    platform='freebsd'
+elif [[ "$unamestr" == 'Darwin' ]]; then
+    platform='osx'
+fi
+
+export $platform
+
+if [[ "$platform" == 'osx' ]]; then
+    terminal=$(ps -o 'comm=' -p $(ps -o 'ppid=' -p $$))
+else
+    terminal=$(ps -o 'cmd=' -p $(ps -o 'ppid=' -p $$))
+fi
 wezterm="wezterm"
 if [[ "$terminal" =~ .*"$wezterm".* ]]; then
     export TERM=wezterm
@@ -8,10 +24,12 @@ else
     export TERM="xterm-256color"
 fi
 export PATH="$HOME/.cargo/bin:$HOME/.local/npm/bin:$HOME/.local/bin:$PATH:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin"
+if [[ "$platform" == 'osx' ]]; then
+    export PATH="/opt/homebrew/bin:$PATH"
+fi
 export NODE_PATH="$HOME/.local/npm/lib/node_modules:$NODE_PATH"
 export N_PREFIX="$HOME/.local/npm"
 export MANPATH="$HOME/.local/npm/share/man:$MANPATH"
-export TZ="America/New_York"
 export HOSTNAME="$(hostname)"
 # Render escape sequences in paged output (e.g., bolding in man-style help pages)
 export PAGER="less -R"
@@ -25,14 +43,3 @@ export LC_CTYPE=C
 export REPORTTIME=10
 
 export ANSIBLE_NOCOWS=1
-
-platform='unknown'
-unamestr=`uname`
-if [[ "$unamestr" == 'Linux' ]]; then
-    platform='linux'
-elif [[ "$unamestr" == 'FreeBSD' ]]; then
-    platform='freebsd'
-elif [[ "$unamestr" == 'Darwin' ]]; then
-    platform='osx'
-fi
-export $platform
