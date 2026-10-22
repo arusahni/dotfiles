@@ -1,5 +1,5 @@
 setopt prompt_subst
-autoload -Uz add-zsh-hook vcs_info
+autoload -Uz add-zsh-hook
 
 # Add a newline between prompts
 _precmd_newline_between_prompts() {
@@ -9,10 +9,8 @@ _precmd_newline_between_prompts() {
 }
 
 add-zsh-hook precmd _precmd_newline_between_prompts
-add-zsh-hook precmd vcs_info
-
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:git*+set-message:*' hooks set-git-metadata
+# Remove the old hook when reloading this file in an existing shell.
+add-zsh-hook -d precmd vcs_info
 
 export PR_NO_COLOR="%{$terminfo[sgr0]%}"
 _headerline="${FG[006]}%n${PR_WHITE}@${PR_GREEN}%m${PR_NO_COLOR}[${PR_RED}%2c${PR_NO_COLOR}]"
@@ -47,26 +45,6 @@ cond() {
     fi
 }
 
-zstyle ':vcs_info:*' unstagedstr "${_git_modified}"
-zstyle ':vcs_info:*' stagedstr "${_git_staged}"
-zstyle ':vcs_info:git:*' formats "${_git_symbol}${_gprefix}%m%F{003}%b%u%c${_gsuffix}"
-
-# Show different symbols as appropriate for various Git repository states
-function +vi-set-git-metadata() {
-    local ahead behind merging
-    local -a gitstatus
-    ahead="$(git log --oneline @{u}.. 2> /dev/null | wc -l | tr -d ' ')"
-    (( $ahead )) && gitstatus+=( "${_git_ahead}${ahead}" )
-    behind="$(git log --oneline ..@{u} 2> /dev/null | wc -l | tr -d ' ')"
-    (( $behind )) && gitstatus+=( "${_git_behind}${behind}" )
-    local git_dir="$(git rev-parse --git-dir 2> /dev/null)"
-    if [ -n $GIT_DIR ] && test -r $GIT_DIR/MERGE_HEAD; then
-        gitstatus+=( "$_git_merging" )
-    fi
-
-    hook_com[misc]+="${(j: :)gitstatus} "
-}
-
 get_jujutsu_bookmark() {
     jj log --ignore-working-copy -n 1 --no-graph --color never \
         -r "ancestors(present(@)) & bookmarks()" \
@@ -74,12 +52,54 @@ get_jujutsu_bookmark() {
 }
 
 git_prompt() {
-    jj_bookmark=$(get_jujutsu_bookmark 2> /dev/null)
-    if [[ -n "$jj_bookmark" ]]; then
-        echo "${_git_symbol}${_gprefix}%F{003}${jj_bookmark}${_gsuffix}"
-    else
-        echo "${vcs_info_msg_0_}"
+    local root=$PWD git_dir jj_bookmark
+    # Find the nearest repository without spawning Git or jj outside one.
+    while [[ ! -d "$root/.jj" && ! -e "$root/.git" ]]; do
+        [[ $root == / ]] && return
+        root=${root:h}
+    done
+    if [[ -d "$root/.jj" ]]; then
+        jj_bookmark=$(get_jujutsu_bookmark 2> /dev/null)
+        if [[ -n $jj_bookmark ]]; then
+            print -r -- "${_git_symbol}${_gprefix}%F{003}${jj_bookmark//\%/%%}${_gsuffix}"
+            return
+        fi
+        [[ -e "$root/.git" ]] || return
     fi
+
+    # One read-only query supplies the branch, divergence and tracked changes.
+    local git_status line branch oid ahead behind modified staged
+    local -a gitstatus counts
+    git_status=$(GIT_OPTIONAL_LOCKS=0 command git status --porcelain=v2 \
+        --branch --untracked-files=no --ignore-submodules=dirty 2> /dev/null) || return
+    for line in "${(@f)git_status}"; do
+        case $line in
+            '# branch.head '*) branch=${line#\# branch.head } ;;
+            '# branch.oid '*) oid=${line#\# branch.oid } ;;
+            '# branch.ab '*)
+                counts=(${=line})
+                ahead=${counts[3]#+}
+                behind=${counts[4]#-}
+                ;;
+            [12]' '*)
+                [[ ${line[3]} != . ]] && staged=$_git_staged
+                [[ ${line[4]} != . ]] && modified=$_git_modified
+                ;;
+            'u '*) staged=$_git_staged; modified=$_git_modified ;;
+        esac
+    done
+    [[ $branch == '(detached)' ]] && branch=${oid[1,7]}
+    (( ahead > 0 )) && gitstatus+=( "${_git_ahead}${ahead}" )
+    (( behind > 0 )) && gitstatus+=( "${_git_behind}${behind}" )
+
+    git_dir=$root/.git
+    if [[ -f $git_dir ]]; then
+        git_dir=$(< "$git_dir")
+        git_dir=${git_dir#gitdir: }
+        [[ $git_dir == /* ]] || git_dir=$root/$git_dir
+    fi
+    [[ -r "$git_dir/MERGE_HEAD" ]] && gitstatus+=( "$_git_merging" )
+    print -r -- "${_git_symbol}${_gprefix}${(j: :)gitstatus} %F{003}${branch//\%/%%}${modified}${staged}${_gsuffix}"
 }
 
 # Set the left-hand prompt
