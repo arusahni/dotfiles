@@ -7,6 +7,9 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "soft_wrap_indent": "none",
+  "soft_wrap": "editor_width",
+  "disable_ai": true,
   "diff_view_style": "unified",
   "cli_default_open_behavior": "existing_window",
   "outline_panel": {
@@ -16,6 +19,7 @@
     "dock": "left",
   },
   "git_panel": {
+    "tree_view": true,
     "dock": "left",
   },
   "languages": {
@@ -59,6 +63,9 @@
     "dock": "right",
   },
   "agent": {
+    "auto_compact": {
+      "threshold": "90%"
+    },
     "dock": "right",
     "tool_permissions": {
       "default": "allow",
@@ -73,9 +80,10 @@
     "default_profile": "write",
     "model_parameters": [],
     "default_model": {
-      "enable_thinking": false,
-      "provider": "google",
-      "model": "gemini-3-flash-preview",
+      "effort": "high",
+      "enable_thinking": true,
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4-6",
     },
   },
   "vim_mode": true,
