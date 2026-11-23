@@ -47,15 +47,15 @@ return {
         version = "1.*",
         opts = {
             keymap = {
-              preset = "default",
-              ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
-              ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
-              ["<C-k>"] = { "select_prev", "snippet_backward", "show_signature", "hide_signature", "fallback" },
-              ["<C-j>"] = { "select_next", "snippet_forward", "fallback" },
-              ["<CR>"] = { "accept", "fallback" },
-              ["<Esc>"] = { "hide", "fallback" },
-              ["<PageUp>"] = { "scroll_documentation_up", "fallback" },
-              ["<PageDown>"] = { "scroll_documentation_down", "fallback" },
+                preset = "default",
+                ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+                ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+                ["<C-k>"] = { "select_prev", "snippet_backward", "show_signature", "hide_signature", "fallback" },
+                ["<C-j>"] = { "select_next", "snippet_forward", "fallback" },
+                ["<CR>"] = { "accept", "fallback" },
+                ["<Esc>"] = { "hide", "fallback" },
+                ["<PageUp>"] = { "scroll_documentation_up", "fallback" },
+                ["<PageDown>"] = { "scroll_documentation_down", "fallback" },
             },
             appearance = {
                 nerd_font_variant = "mono"
@@ -69,7 +69,7 @@ return {
                     border = "single",
                     draw = {
                         columns = {
-                            { "label", "label_description", gap = 1 },
+                            { "label",     "label_description", gap = 1 },
                             { "kind_icon", gap = 1 }
                         },
                         treesitter = { "lsp" },
@@ -119,6 +119,32 @@ return {
                 version = '^4', -- Recommended
                 lazy = false,   -- This plugin is already lazy
             },
+            {
+                "ray-x/go.nvim",
+                dependencies = { -- optional packages
+                    "ray-x/guihua.lua",
+                    "neovim/nvim-lspconfig",
+                    "nvim-treesitter/nvim-treesitter",
+                },
+                opts = {
+                    -- lsp_keymaps = false,
+                    -- other options
+                },
+                config = function(_, opts)
+                    require("go").setup(opts)
+                    local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
+                    vim.api.nvim_create_autocmd("BufWritePre", {
+                        pattern = "*.go",
+                        callback = function()
+                            require('go.format').goimports()
+                        end,
+                        group = format_sync_grp,
+                    })
+                end,
+                event = { "CmdlineEnter" },
+                ft = { "go", 'gomod' },
+                build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
+            },
             { "b0o/schemastore.nvim" },
             {
                 "kosayoda/nvim-lightbulb",
@@ -148,6 +174,7 @@ return {
                     "svelte",
                     "yamlls",
                     "jsonls",
+                    "gopls",
                     exclude = {
                         "rust_analyzer"
                     }
