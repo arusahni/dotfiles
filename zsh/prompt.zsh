@@ -45,26 +45,45 @@ cond() {
     fi
 }
 
-get_jujutsu_bookmark() {
-    jj log --ignore-working-copy -n 1 --no-graph --color never \
-        -r "ancestors(present(@)) & bookmarks()" \
-        -T 'bookmarks.join(" ")'
+get_jujutsu_prompt() {
+    local jj_status line bookmark dirty ahead
+    local -i ahead_count=0
+    local -a revisions
+    # Pick the closest bookmarked ancestor; break merge ties by timestamp.
+    # Include it and all commits ahead of it in one read-only query.
+    # Ahead excludes undescribed commits with no described descendant.
+    jj_status=$(command jj log --ignore-working-copy --no-graph --color never --no-pager \
+        --config 'revset-aliases."prompt_base()"="latest(heads(::@ & bookmarks()))"' \
+        --config 'revset-aliases."prompt_ahead()"="prompt_base()..@ & ::(prompt_base()..@ ~ description(exact:\"\"))"' \
+        -r '(coalesce(prompt_base(), @)..@) | coalesce(prompt_base(), @)' \
+        -T 'if(current_working_copy && !empty && !description, "D", "-") ++ if(!empty && self.contained_in("prompt_ahead()"), "A", "-") ++ "\t" ++ if(self.contained_in("prompt_base()"), bookmarks.join(" ")) ++ "\n"' \
+        2> /dev/null) || return
+    revisions=("${(@f)jj_status}")
+    for line in "${revisions[@]}"; do
+        [[ ${line[1]} == D ]] && dirty=$_git_modified
+        # Empty commits (including the usual empty @) do not count as ahead.
+        [[ ${line[2]} == A ]] && (( ++ahead_count ))
+        [[ -n ${line#*$'\t'} ]] && bookmark=${line#*$'\t'}
+    done
+    # Without an ancestor bookmark, show @ and just the description marker.
+    if [[ -n $bookmark ]]; then
+        (( ahead_count > 0 )) && ahead="${_git_ahead}${ahead_count} "
+    else
+        bookmark=@
+    fi
+    print -r -- "${_git_symbol}${_gprefix}${ahead}%F{003}${bookmark//\%/%%}${dirty}${_gsuffix}"
 }
 
 git_prompt() {
-    local root=$PWD git_dir jj_bookmark
+    local root=$PWD git_dir
     # Find the nearest repository without spawning Git or jj outside one.
     while [[ ! -d "$root/.jj" && ! -e "$root/.git" ]]; do
         [[ $root == / ]] && return
         root=${root:h}
     done
     if [[ -d "$root/.jj" ]]; then
-        jj_bookmark=$(get_jujutsu_bookmark 2> /dev/null)
-        if [[ -n $jj_bookmark ]]; then
-            print -r -- "${_git_symbol}${_gprefix}%F{003}${jj_bookmark//\%/%%}${_gsuffix}"
-            return
-        fi
-        [[ -e "$root/.git" ]] || return
+        get_jujutsu_prompt
+        return
     fi
 
     # One read-only query supplies the branch, divergence and tracked changes.
