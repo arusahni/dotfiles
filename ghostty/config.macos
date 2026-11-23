@@ -1,0 +1,27 @@
+# macOS-only overrides. Loaded after ./config via
+# ~/Library/Application Support/com.mitchellh.ghostty/config.ghostty.
+
+# Drop the Linux split binds.
+keybind = ctrl+alt+v=unbind
+keybind = ctrl+alt+x=unbind
+keybind = ctrl+alt+h=unbind
+keybind = ctrl+alt+j=unbind
+keybind = ctrl+alt+k=unbind
+keybind = ctrl+alt+l=unbind
+
+keybind = super+ctrl+v=new_split:right
+keybind = super+ctrl+x=new_split:down
+keybind = super+ctrl+h=goto_split:left
+keybind = super+ctrl+j=goto_split:down
+keybind = super+ctrl+k=goto_split:up
+keybind = super+ctrl+l=goto_split:right
+keybind = super+ctrl+left=goto_split:left
+keybind = super+ctrl+down=goto_split:down
+keybind = super+ctrl+up=goto_split:up
+keybind = super+ctrl+right=goto_split:right
+keybind = super+ctrl+shift+left=resize_split:left,10
+keybind = super+ctrl+shift+down=resize_split:down,10
+keybind = super+ctrl+shift+up=resize_split:up,10
+keybind = super+ctrl+shift+right=resize_split:right,10
+keybind = super+ctrl+[=resize_split:left,10
+keybind = super+ctrl+]=resize_split:right,10

@@ -44,7 +44,7 @@
 theme = "Midnight In Mojave"
 font-family = "CommitMono Nerd Font"
 # adjust-cell-height = 10%
-font-size = 12
+font-size = 15
 font-feature = -clig, -liga
 # font-style = "Bold"
 freetype-load-flags = no-force-autohint,no-hinting
@@ -56,7 +56,7 @@ cursor-color = "white"
 window-padding-x = 8
 window-padding-y = 8
 quick-terminal-position = top
-quick-terminal-size = 700px,45%
+quick-terminal-size = 900px,35%
 quick-terminal-autohide = true
 
 
@@ -64,7 +64,7 @@ keybind = ctrl+alt+v=new_split:right
 keybind = ctrl+alt+x=new_split:down
 keybind = ctrl+alt+l=goto_split:right
 keybind = ctrl+alt+h=goto_split:left
-keybind = ctrl+alt+j=goto_split:up
-keybind = ctrl+alt+k=goto_split:down
+keybind = ctrl+alt+j=goto_split:down
+keybind = ctrl+alt+k=goto_split:up
 keybind = shift+enter=text:\n
 keybind = global:f12=toggle_quick_terminal
