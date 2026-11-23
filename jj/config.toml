@@ -11,6 +11,7 @@ email = "aru@arusahni.net"
 
 [aliases]
 tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
+publish = ["util", "exec", "--", "sh", "-c", "jj git push --bookmark \"$(jj bookmark list -r @ -T name)\" \"$@\"", "publish"]
 
 [fix.tools.rustfmt]
 enabled = false
